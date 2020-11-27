@@ -1,6 +1,4 @@
-﻿using WarehouseSystemAnalyst.Data.Interfaces.Models;
-
-namespace WarehouseSystemAnalyst.Data
+﻿namespace WarehouseSystemAnalyst.Data.Interfaces.Models
 {
     public interface IBasePallet : IBaseEntity
     {

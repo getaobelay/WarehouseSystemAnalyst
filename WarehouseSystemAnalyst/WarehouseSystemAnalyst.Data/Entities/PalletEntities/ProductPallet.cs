@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WarehouseSystemAnalyst.Data.Implementation.BaseEntites;
 
-namespace WarehouseSystemAnalyst.Data.Entites.PalletEntities
+namespace WarehouseSystemAnalyst.Data.Entites.ProductEntities
 {
-    public class ProductPallet : IBasePallet
+    public class ProductPallet : BasePallet
     {
-        public string SupplierPallet { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string PalletNumber { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string PalletCode { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string PK { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string CreatedBy { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string ModifiedBy { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public DateTime CreateDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public DateTime ModifiedDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string ProductID { get; set; }
+        public string BatcID { get; set; }
+
+        public Product Product { get; set; }
+        public Batch Batch { get; set; }
     }
 }

@@ -12,8 +12,8 @@ namespace WarehouseSystemAnalyst.Data.Configuration
 {
     public static class BaseEntityBuilderHelper
     {
-        public static EntityTypeBuilder BuilderBaseEntity<IBaseEntity>(this EntityTypeBuilder<IBaseEntity> builder)
-            where IBaseEntity : class
+        public static EntityTypeBuilder BuilderBaseEntity<BaseEntity>(this EntityTypeBuilder<IBaseEntity> builder)
+            where BaseEntity : class, IBaseEntity, new()
         {
             var entityTypes = Assembly.GetExecutingAssembly()
              .GetTypes()
@@ -21,6 +21,10 @@ namespace WarehouseSystemAnalyst.Data.Configuration
                  && x.BaseType != null
                  && x.BaseType == typeof(IBaseEntity)).ToList();
 
+            foreach (var entity in entityTypes)
+            {
+
+            }
             return builder;
         }
     }

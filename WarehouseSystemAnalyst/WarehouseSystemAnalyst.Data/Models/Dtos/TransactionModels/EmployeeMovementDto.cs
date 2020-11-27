@@ -1,5 +1,5 @@
 ﻿using WarehouseSystemAnalyst.Data.Entites.WarehouseEntites;
-using WarehouseSystemAnalyst.Data.Entites.UserEntites;
+using WarehouseSystemAnalyst.Data.Entities.ContactEntities;
 
 namespace WarehouseSystemAnalyst.Data.Models.Dtos.TransactionModels
 {
@@ -12,9 +12,9 @@ namespace WarehouseSystemAnalyst.Data.Models.Dtos.TransactionModels
         public string ActionType { get; set; }
         public string CreationDate { get; set; }
         public string UpdateDate { get; set; }
-        public string MovementID { get; set; }
+        public string ItemID { get; set; }
 
         public virtual Employee Employee { get; set; }
-        public virtual Movement Movement { get; set; }
+        public virtual ProductItem Item { get; set; }
     }
 }

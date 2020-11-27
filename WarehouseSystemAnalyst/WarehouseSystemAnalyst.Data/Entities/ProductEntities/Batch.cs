@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using WarehouseSystemAnalyst.Data.Models.Data.InventoryModels;
 using WarehouseSystemAnalyst.Data.Entites.WarehouseEntites;
-using WarehouseSystemAnalyst.Data.Entites.BaseEntites;
+using WarehouseSystemAnalyst.Data.Interfaces.Models;
+using System;
+using WarehouseSystemAnalyst.Data.Implementation.BaseEntites;
 
 namespace WarehouseSystemAnalyst.Data.Entites.ProductEntities
 {
-    public class Batch : BaseEntity
+    public class Batch : BaseProduct
     {
         public string ProductID { get; set; }
         public string InventoryID { get; set; }
@@ -15,20 +17,11 @@ namespace WarehouseSystemAnalyst.Data.Entites.ProductEntities
         public string MovementID { get; set; }
 
         public virtual Product Product { get; set; }
-        public virtual Stock Stock { get; set; }
-        public virtual Inventory Inventory { get; set; }
-        public virtual ICollection<ProductPallet> Pallets { get; set; }
-        public virtual ICollection<ProductSuppliers> ProductSuppliers { get; set; }
-        public virtual ICollection<Item> Items { get; set; }
-
-
-        public Batch()
-        {
-            Pallets = new HashSet<ProductPallet>();
-            ProductSuppliers = new HashSet<ProductSuppliers>();
-            Items = new HashSet<Item>();
-
-        }
+        public virtual StockOut Stock { get; set; }
+        public virtual StockIn Inventory { get; set; }
+        public virtual ICollection<ProductPallet> Pallets { get; set; } = new HashSet<ProductPallet>();
+        public virtual ICollection<ProductSuppliers> ProductSuppliers { get; set; } = new HashSet<ProductSuppliers>();
+        public virtual ICollection<ProductItem> Items { get; set; } = new HashSet<ProductItem>();
 
     }
 }

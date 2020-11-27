@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using WarehouseSystemAnalyst.Data.Entites.TrasnactionEntites;
-using WarehouseSystemAnalyst.Data.Entites.UserEntites;
-using WarehouseSystemAnalyst.Data.Entites.TrasnactionEntites;
 using WarehouseSystemAnalyst.Data.Models.Dtos.ProductDtos;
+using WarehouseSystemAnalyst.Data.Models.Dtos.UserModels;
 
 namespace WarehouseSystemAnalyst.Data.Models.Dtos.WarehouseDtos
 {
@@ -27,11 +25,7 @@ namespace WarehouseSystemAnalyst.Data.Models.Dtos.WarehouseDtos
         public LocationDto Location { get; set; }
         public ProductPackagesDto ProductPackage { get; set; }
         public BatchDto Batch { get; set; }
-        public Employee Employee { get; set; }
-
-        public IEnumerable<EmployeeTransaction> EmployeeTransactions { get; set; }
-        public IEnumerable<ProductTransaction> ProductTransactions { get; set; }
-        public IEnumerable<WarehouseTransaction> WarehouseTransactions { get; set; }
+        public EmployeeDto Employee { get; set; }
 
     }
 }

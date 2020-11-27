@@ -2,12 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 using WarehouseSystemAnalyst.Data.Entites.BaseEntites;
+using WarehouseSystemAnalyst.Data.Implementation.BaseEntites;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
 
 namespace WarehouseSystemAnalyst.Data.Entites.ProductEntities
 {
-    public class ProductMesures : BaseEntity
+    public class ProductMesures : IBaseEntity
     {
+        public int Id { get; set; }
+        public string PK { get; set; }
+        public string CreatedBy { get; set; }
+        public string ModifiedBy { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime ModifiedDate { get; set; }
         public decimal UnitBuyPrice { get; set; }
         public decimal UnitSellPrice { get; set; }
         public decimal QuantityPerUnit { get; set; }
@@ -17,5 +24,6 @@ namespace WarehouseSystemAnalyst.Data.Entites.ProductEntities
         public string MesureID { get; set; }
         public Product Product { get; set; }
         public Mesure Mesure { get; set; }
+
     }
 }

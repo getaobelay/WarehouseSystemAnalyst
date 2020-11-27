@@ -6,22 +6,23 @@ using WarehouseSystemAnalyst.Data.Interfaces.Models;
 
 namespace WarehouseSystemAnalyst.Data.Implementation.BaseEntites
 {
-    public abstract class BaseWarehouse : IBaseWarehouse<Item>
+    public abstract class BaseWarehouse : IBaseWarehouse<ProductItem>
     {
-        public abstract string WarehouseName { get; set; }
-        public abstract string MovementID { get; set; }
-        public abstract string LocationID { get; set; }
-        public abstract ICollection<Item> Items { get; set; }
-        public abstract ICollection<Location> Locations { get; set; }
-        public abstract string ProductID { get; set; }
-        public abstract string BatchID { get; set; }
-        public abstract ICollection<Product> Products { get; set; }
-        public abstract ICollection<Batch> Batches { get; set; }
-        public abstract int Id { get; set; }
-        public abstract string PK { get; set; }
-        public abstract DateTime CreateDate { get; set; }
-        public abstract DateTime ModifiedDate { get; set; }
-        public abstract string CreatedBy { get; set; }
-        public abstract string ModifiedBy { get; set; }
+        public int Id { get; set; }
+        public string PK { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime ModifiedDate { get; set; }
+        public string CreatedBy { get; set; }
+        public string ModifiedBy { get; set; }
+        public string WarehouseName { get; set; }
+        public string ItemID { get; set; }
+        public string LocationID { get; set; }
+        public string ProductID { get; set; }
+        public string BatchID { get; set; }
+        public ICollection<ProductItem> Items { get; set; }
+        public ICollection<Location> Locations { get; set; }
+        public ICollection<Product> Products { get; set; }
+        public ICollection<Batch> Batches { get; set; }
+
     }
 }

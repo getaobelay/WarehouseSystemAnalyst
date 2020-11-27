@@ -1,14 +1,10 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Linq;
-using WarehouseSystemAnalyst.Configurations.Services;
 using WarehouseSystemAnalyst.Server.Data;
 using WarehouseSystemAnalyst.Server.Models;
 
@@ -42,7 +38,6 @@ namespace WarehouseSystemAnalyst.Server
             services.AddAuthentication()
                 .AddIdentityServerJwt();
 
-            services.AddBaseServices();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

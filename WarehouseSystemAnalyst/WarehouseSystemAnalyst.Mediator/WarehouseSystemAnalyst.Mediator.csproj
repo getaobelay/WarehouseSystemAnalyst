@@ -5,12 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.0.0" />
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\WarehouseSystemAnalyst.Data\WarehouseSystemAnalyst.Data.csproj" />
-    <ProjectReference Include="..\WarehouseSystemAnalyst.Services\WarehouseSystemAnalyst.Services.csproj" />
+    <ProjectReference Include="..\WarehouseSystemAnalyst.Interfaces\WarehouseSystemAnalyst.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

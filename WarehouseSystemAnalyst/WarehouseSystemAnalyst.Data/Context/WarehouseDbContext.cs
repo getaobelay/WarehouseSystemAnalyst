@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using WarehouseSystemAnalyst.Data.Entites.TrasnactionEntites;
 using WarehouseSystemAnalyst.Data.Models.Data.InventoryModels;
 using WarehouseSystemAnalyst.Data.Entites.WarehouseEntites;
 using System;
@@ -14,6 +13,7 @@ using System.Threading;
 using System.Collections.Generic;
 using WarehouseSystemAnalyst.Data.Entities;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using WarehouseSystemAnalyst.Data.Entites.BaseEntites;
 
 namespace WarehouseSystemAnalyst.Data.Context
 {
@@ -29,41 +29,41 @@ namespace WarehouseSystemAnalyst.Data.Context
 
         }
 
-        #region Transactions Related DbSets
-        public virtual DbSet<EmployeeTransaction> EmployeeTransactions { get; set; }
-        public virtual DbSet<ProductTransaction> ProductTransactions { get; set; }
-        public virtual DbSet<WarehouseTransaction> WarehouseTransactions { get; set; }
-        #endregion Transactions Related DbSets
+        //#region Transactions Related DbSets
+        //public virtual DbSet<EmployeeTransaction> EmployeeTransactions { get; set; }
+        //public virtual DbSet<ProductTransaction> ProductTransactions { get; set; }
+        //public virtual DbSet<WarehouseTransaction> WarehouseTransactions { get; set; }
+        //#endregion Transactions Related DbSets
 
-        #region Product Related DbSts
+        //#region Product Related DbSts
 
-        public virtual DbSet<Batch> Batches { get; set; }
-        public virtual DbSet<Package> Packages { get; set; }
-        public virtual DbSet<ProductPallet> Pallet { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<SubCategory> SubCategories { get; set; }
-        public virtual DbSet<ProductSuppliers> ProductSuppliers { get; set; }
-        public virtual DbSet<ProductMesures> ProductMesures { get; set; }
-        public virtual DbSet<ProductPackages> ProductPackages { get; set; }
-        public virtual DbSet<Mesure> UnitOfMesures { get; set; }
+        //public virtual DbSet<Batch> Batches { get; set; }
+        //public virtual DbSet<Package> Packages { get; set; }
+        //public virtual DbSet<ProductPallet> Pallet { get; set; }
+        //public virtual DbSet<Product> Products { get; set; }
+        //public virtual DbSet<Category> Categories { get; set; }
+        //public virtual DbSet<SubCategory> SubCategories { get; set; }
+        //public virtual DbSet<ProductSuppliers> ProductSuppliers { get; set; }
+        //public virtual DbSet<ProductMesures> ProductMesures { get; set; }
+        //public virtual DbSet<ProductPackages> ProductPackages { get; set; }
+        //public virtual DbSet<Mesure> UnitOfMesures { get; set; }
 
 
-        #endregion Product Related DbSts
+        //#endregion Product Related DbSts
 
-        #region Warehouse Related DbSts
-        public virtual DbSet<Movement> Movements { get; set; }
-        public virtual DbSet<Location> Locations { get; set; }
-        public virtual DbSet<Warehouse> Warehouses { get; set; }
+        //#region Warehouse Related DbSts
+        //public virtual DbSet<Movement> Movements { get; set; }
+        //public virtual DbSet<Location> Locations { get; set; }
+        //public virtual DbSet<Warehouse> Warehouses { get; set; }
 
-        #endregion Warehouse Related DbSts
+        //#endregion Warehouse Related DbSts
 
-        #region Inventory Related DbSts
-        public virtual DbSet<Inventory> Inventories { get; set; }
-        public virtual DbSet<Stock> Stocks { get; set; }
-        public virtual DbSet<Supplier> Suppliers { get; set; }
+        //#region Inventory Related DbSts
+        //public virtual DbSet<Inventory> Inventories { get; set; }
+        //public virtual DbSet<Stock> Stocks { get; set; }
+        //public virtual DbSet<Supplier> Suppliers { get; set; }
 
-        #endregion Inventory Related DbSts
+        //#endregion Inventory Related DbSts
 
         public DbSet<Audit> Audits { get; set; }
 
@@ -88,7 +88,8 @@ namespace WarehouseSystemAnalyst.Data.Context
            .GetTypes()
            .Where(x => !string.IsNullOrEmpty(x.Namespace)
                && x.BaseType != null
-               && x.BaseType == typeof(IBaseEntity)).ToList();
+               && x.BaseType == typeof(BaseEntity))
+           .ToList();
 
             var method = typeof(ModelBuilder).GetMethod("Entity");
 
@@ -103,11 +104,6 @@ namespace WarehouseSystemAnalyst.Data.Context
 
 
         public ICurrentUser CurrentUser;
-
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-        {
-            return base.SaveChangesAsync(cancellationToken);
-        }
 
         private void BaseEntitySaving()
         {
