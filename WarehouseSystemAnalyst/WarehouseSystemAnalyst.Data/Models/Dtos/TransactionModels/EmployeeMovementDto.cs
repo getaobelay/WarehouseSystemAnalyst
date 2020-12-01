@@ -1,5 +1,6 @@
-﻿using WarehouseSystemAnalyst.Data.Entites.WarehouseEntites;
+﻿using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
 using WarehouseSystemAnalyst.Data.Entities.ContactEntities;
+using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
 
 namespace WarehouseSystemAnalyst.Data.Models.Dtos.TransactionModels
 {
@@ -15,6 +16,6 @@ namespace WarehouseSystemAnalyst.Data.Models.Dtos.TransactionModels
         public string ItemID { get; set; }
 
         public virtual Employee Employee { get; set; }
-        public virtual ProductItem Item { get; set; }
+        public virtual WarehouseItem Item { get; set; }
     }
 }

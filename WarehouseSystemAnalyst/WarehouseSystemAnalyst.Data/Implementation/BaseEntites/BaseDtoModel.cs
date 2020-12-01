@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WarehouseSystemAnalyst.Data.Implementation.BaseEntites
+﻿namespace WarehouseSystemAnalyst.Data.Implementation.BaseEntites
 {
     public class BaseDtoModel
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using WarehouseSystemAnalyst.Data.Entites.WarehouseEntites;
+using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
 
-namespace WarehouseSystemAnalyst.Data.Entites.ProductEntities
+namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities
 {
     public class ProductPackages : IBaseEntity
     {
@@ -15,11 +15,12 @@ namespace WarehouseSystemAnalyst.Data.Entites.ProductEntities
         public DateTime ModifiedDate { get; set; }
         public string ProductID { get; set; }
         public string PackageID { get; set; }
-        public string ItemID { get; set; }
+        public string ProductItemID { get; set; }
+        public string WarehouseItemID { get; set; }
 
         public virtual Product Product { get; set; }
         public virtual Package Package { get; set; }
-        public virtual ICollection<ProductItem> Items { get; set; } = new HashSet<ProductItem>();
-
+        public virtual ICollection<WarehouseItem> WarehouseItems { get; set; } = new HashSet<WarehouseItem>();
+        public virtual ICollection<ProductItem> ProductItems { get; set; } = new HashSet<ProductItem>();
     }
 }

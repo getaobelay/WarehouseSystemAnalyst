@@ -6,9 +6,9 @@ using WarehouseSystemAnalyst.Data.Interfaces.Models;
 
 namespace WarehouseSystemAnalyst.Data.Interfaces.Repositories
 {
-    public interface IInventoryRepository<TSource, TDestension> : IBaseMissionRepository<TSource, TDestension>
-        where TSource : IBaseStock, new()
-        where TDestension : IBaseStock, new()
+    public interface IInventoryRepository<TSource, TDestension> : IBaseTransactionRepository<TSource, TDestension>
+        where TSource : class, IBaseStock, new()
+        where TDestension : class, IBaseStock, new()
     {
 
     }

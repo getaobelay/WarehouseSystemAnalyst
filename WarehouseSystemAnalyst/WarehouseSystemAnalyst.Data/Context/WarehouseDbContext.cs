@@ -1,21 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection;
-using WarehouseSystemAnalyst.Data.Models.Data.InventoryModels;
-using WarehouseSystemAnalyst.Data.Entites.WarehouseEntites;
-using System;
-using WarehouseSystemAnalyst.Data.Interfaces.Models;
-using WarehouseSystemAnalyst.Data.Entites.ProductEntities;
-using WarehouseSystemAnalyst.Data.Entites.InventoryEntites;
-using System.Linq;
-using WarehouseSystemAnalyst.Data.Entities.ContactEntities;
-using System.Threading.Tasks;
-using System.Threading;
-using System.Collections.Generic;
-using WarehouseSystemAnalyst.Data.Entities;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using WarehouseSystemAnalyst.Data.Entites.BaseEntites;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
+using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
+using WarehouseSystemAnalyst.Data.Entities.ContactEntities;
+using WarehouseSystemAnalyst.Data.Interfaces.Models;
+using WarehouseSystemAnalyst.Data.Entities.Enrollment;
 
-namespace WarehouseSystemAnalyst.Data.Context
+namespace WarehouseSystemAnalyst.Data.DataContext
 {
     public class WarehouseDbContext : DbContext
     {
@@ -26,7 +22,6 @@ namespace WarehouseSystemAnalyst.Data.Context
         public WarehouseDbContext(DbContextOptions<WarehouseDbContext> options)
             : base(options)
         {
-
         }
 
         //#region Transactions Related DbSets
@@ -48,7 +43,6 @@ namespace WarehouseSystemAnalyst.Data.Context
         //public virtual DbSet<ProductPackages> ProductPackages { get; set; }
         //public virtual DbSet<Mesure> UnitOfMesures { get; set; }
 
-
         //#endregion Product Related DbSts
 
         //#region Warehouse Related DbSts
@@ -66,7 +60,6 @@ namespace WarehouseSystemAnalyst.Data.Context
         //#endregion Inventory Related DbSts
 
         public DbSet<Audit> Audits { get; set; }
-
 
         ///public virtual DbSet<BaseTransaction> ContractTransaction { get; set; }
 
@@ -102,7 +95,6 @@ namespace WarehouseSystemAnalyst.Data.Context
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
-
         public ICurrentUser CurrentUser;
 
         private void BaseEntitySaving()
@@ -121,6 +113,7 @@ namespace WarehouseSystemAnalyst.Data.Context
                             entity.CreatedBy = CurrentUser.GetUsername();
                             entity.ModifiedBy = CurrentUser.GetUsername();
                             break;
+
                         case EntityState.Modified:
                             Entry(entity).Property(x => x.CreatedBy).IsModified = false;
                             Entry(entity).Property(x => x.CreateDate).IsModified = false;
@@ -232,8 +225,5 @@ namespace WarehouseSystemAnalyst.Data.Context
 
             return SaveChangesAsync();
         }
-
     }
-
 }
-

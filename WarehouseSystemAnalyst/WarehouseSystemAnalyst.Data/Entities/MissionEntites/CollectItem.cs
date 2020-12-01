@@ -1,7 +1,7 @@
-﻿using WarehouseSystemAnalyst.Data.Entites.ProductEntities;
+﻿using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
 using WarehouseSystemAnalyst.Data.Implementation.BaseEntites;
 
-namespace WarehouseSystemAnalyst.Data.Entites.MissionEntites
+namespace WarehouseSystemAnalyst.Data.Entities.MissionEntites
 {
     public class CollectItem : BaseMission<Product>
     {

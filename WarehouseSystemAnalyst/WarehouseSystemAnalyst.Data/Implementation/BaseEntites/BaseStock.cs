@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WarehouseSystemAnalyst.Data.Entites.ProductEntities;
+using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
-using WarehouseSystemAnalyst.Data.Entites.WarehouseEntites;
 
 namespace WarehouseSystemAnalyst.Data.Implementation.BaseEntites
 {
@@ -24,8 +20,10 @@ namespace WarehouseSystemAnalyst.Data.Implementation.BaseEntites
         public string ProductID { get; set; }
         public string BatchID { get; set; }
         public string WarehouseID { get; set; }
+
         //public ICollection<Warehouse> Warehouses { get; set; }
         public ICollection<Product> Products { get; set; }
+
         public ICollection<Batch> Batches { get; set; }
     }
 }

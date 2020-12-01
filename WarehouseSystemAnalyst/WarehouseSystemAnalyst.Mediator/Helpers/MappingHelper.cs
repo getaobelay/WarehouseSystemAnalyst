@@ -2,7 +2,6 @@
 using System;
 using WarehouseSystemAnalyst.Mediator.MappingProfiles.InventoryConfigs;
 using WarehouseSystemAnalyst.Mediator.MappingProfiles.ProductConfigs;
-using WarehouseSystemAnalyst.Mediator.MappingProfiles.TransactionConfigs;
 using WarehouseSystemAnalyst.Mediator.MappingProfiles.WarehouseConfigs;
 
 namespace WarehouseSystemAnalyst.Mediator.Helpers
@@ -33,12 +32,8 @@ namespace WarehouseSystemAnalyst.Mediator.Helpers
                 cfg.AddProfile(typeof(RelatedProductProfiles));
 
                 cfg.AddProfile(typeof(LocationProfile));
-                cfg.AddProfile(typeof(MovementProfile));
+                ///cfg.AddProfile(typeof(MovementProfile));
                 cfg.AddProfile(typeof(WarehouseProfile));
-
-                cfg.AddProfile(typeof(EmployeeMovementProfile));
-                cfg.AddProfile(typeof(ProductMovementProfile));
-                cfg.AddProfile(typeof(WarehouseMovementProfile));
             });
 
             return config.CreateMapper();

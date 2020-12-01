@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using WarehouseSystemAnalyst.Data.Entites.ProductEntities;
+using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
 
 namespace WarehouseSystemAnalyst.Data.Interfaces.Models
 {

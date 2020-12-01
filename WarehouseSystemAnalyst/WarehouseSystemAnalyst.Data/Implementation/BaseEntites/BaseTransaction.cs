@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
 
 namespace WarehouseSystemAnalyst.Data.Implementation.BaseEntites
@@ -14,5 +11,6 @@ namespace WarehouseSystemAnalyst.Data.Implementation.BaseEntites
         public string ModifiedBy { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime ModifiedDate { get; set; }
+        public string Note { get; set; }
     }
 }

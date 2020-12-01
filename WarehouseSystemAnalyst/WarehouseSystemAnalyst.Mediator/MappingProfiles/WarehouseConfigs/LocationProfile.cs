@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using WarehouseSystemAnalyst.Data.Entites.WarehouseEntites;
+using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
 using WarehouseSystemAnalyst.Data.Models.Dtos.WarehouseDtos;
 
 namespace WarehouseSystemAnalyst.Mediator.MappingProfiles.WarehouseConfigs

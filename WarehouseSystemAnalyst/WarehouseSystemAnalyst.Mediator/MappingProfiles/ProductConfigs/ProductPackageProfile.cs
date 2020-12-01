@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using WarehouseSystemAnalyst.Data.Entites.ProductEntities;
+using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
 using WarehouseSystemAnalyst.Data.Models.Dtos.ProductDtos;
 
 namespace WarehouseSystemAnalyst.Mediator.MappingProfiles.ProductConfigs

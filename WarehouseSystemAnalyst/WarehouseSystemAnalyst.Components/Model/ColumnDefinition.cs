@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace WarehouseSystemAnalyst.Components.Model
+﻿namespace WarehouseSystemAnalyst.Components.Model
 {
     public class ColumnDefinition
     {
@@ -12,6 +7,7 @@ namespace WarehouseSystemAnalyst.Components.Model
             DataType = DataType.NotSet;
             Alignment = Alignment.NotSet;
         }
+
         public string DataField { get; set; }
         public string Caption { get; set; }
         public DataType DataType { get; set; }

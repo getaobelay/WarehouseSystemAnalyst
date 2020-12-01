@@ -1,10 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WarehouseSystemAnalyst.Data.Extensions
 {
@@ -29,6 +25,5 @@ namespace WarehouseSystemAnalyst.Data.Extensions
             var TableName = tableNameAnnotation.Value.ToString();
             return TableName;
         }
-
     }
 }

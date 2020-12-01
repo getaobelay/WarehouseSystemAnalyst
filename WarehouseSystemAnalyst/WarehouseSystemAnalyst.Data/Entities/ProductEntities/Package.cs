@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using WarehouseSystemAnalyst.Data.Entites.BaseEntites;
+﻿using System.Collections.Generic;
 using WarehouseSystemAnalyst.Data.Implementation.BaseEntites;
-using WarehouseSystemAnalyst.Data.Interfaces.Models;
 
-namespace WarehouseSystemAnalyst.Data.Entites.ProductEntities
+namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities
 {
-
-
     public class Package : BaseProduct
     {
         public string Type { get; set; }

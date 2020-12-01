@@ -12,8 +12,6 @@ namespace WarehouseSystemAnalyst.Data.Implementation.Repositories
     {
         private bool _disposed;
         private IDbContextTransaction _objTransaction;
-        private readonly Dictionary<string, object> _repositories;
-
         public UnitOfWorkRepository()
         {
             Context = new TContext();

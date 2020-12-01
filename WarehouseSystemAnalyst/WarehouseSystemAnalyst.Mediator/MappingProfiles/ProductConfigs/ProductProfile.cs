@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using WarehouseSystemAnalyst.Data.Entites.ProductEntities;
+using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
 using WarehouseSystemAnalyst.Data.Models.Dtos.ProductDtos;
 
 namespace WarehouseSystemAnalyst.Mediator.MappingProfiles.ProductConfigs
@@ -14,8 +14,7 @@ namespace WarehouseSystemAnalyst.Mediator.MappingProfiles.ProductConfigs
                 .ForMember(c => c.BatchPallet, opt => opt.MapFrom(src => src.Batches))
                 .ForMember(c => c.Category, opt => opt.MapFrom(src => src.Category))
                 .ForMember(c => c.SubCategory, opt => opt.MapFrom(src => src.SubCategory))
-                .ForMember(c => c.InventoryQuantity, opt => opt.MapFrom(src => src.Inventory.UnitsInInventory))
-                .ForMember(c => c.StockQuantity, opt => opt.MapFrom(src => src.Stock.UnitsInStock));
+                .ForMember(c => c.StockQuantity, opt => opt.MapFrom(src => src.StockOut.UnitsInStock));
         }
     }
 }

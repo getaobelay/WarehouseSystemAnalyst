@@ -1,13 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WarehouseSystemAnalyst.Data.Context
+﻿namespace WarehouseSystemAnalyst.Data.DataContext
 {
-
     public class WarehouseDbContextUserWrapper
     {
         public WarehouseDbContext Context;

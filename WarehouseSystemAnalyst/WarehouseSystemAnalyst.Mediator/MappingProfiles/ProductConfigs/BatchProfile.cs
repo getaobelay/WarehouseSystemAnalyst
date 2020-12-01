@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using WarehouseSystemAnalyst.Data.Entites.ProductEntities;
+using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
 using WarehouseSystemAnalyst.Data.Models.Dtos.ProductDtos;
 
 namespace WarehouseSystemAnalyst.Mediator.MappingProfiles.ProductConfigs
@@ -11,8 +11,7 @@ namespace WarehouseSystemAnalyst.Mediator.MappingProfiles.ProductConfigs
             CreateMap<Batch, BatchDto>().ReverseMap();
             CreateMap<Batch, BatchDto>()
                        .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.ProductName))
-                       .ForMember(dest => dest.StockQuantity, opt => opt.MapFrom(src => src.Stock.UnitsInStock))
-                       .ForMember(dest => dest.InventoryQuantity, opt => opt.MapFrom(src => src.Inventory.UnitsInInventory));
+                       .ForMember(dest => dest.StockQuantity, opt => opt.MapFrom(src => src.Stock.UnitsInStock));
         }
     }
 }

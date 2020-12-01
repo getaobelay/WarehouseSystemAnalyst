@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WarehousControl.Client.Components.Layout
-{
+namespace WarehousControl.Client.Components.Layout {
     public class Dashboard
-    {
-    }
+
+{
+}
 }

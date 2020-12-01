@@ -6,6 +6,5 @@
         Left,
         Center,
         Right
-
     }
 }

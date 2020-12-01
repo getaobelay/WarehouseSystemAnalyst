@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using WarehouseSystemAnalyst.Data.Models.Data.InventoryModels;
+using WarehouseSystemAnalyst.Data.Entities.StockEntites;
 using WarehouseSystemAnalyst.Data.Models.Dtos.InventoryDtos;
 
 namespace WarehouseSystemAnalyst.Mediator.MappingProfiles.InventoryConfigs

@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using WarehouseSystemAnalyst.Data.Entites.BaseEntites;
-using WarehouseSystemAnalyst.Data.Implementation.BaseEntites;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
 
-namespace WarehouseSystemAnalyst.Data.Entites.ProductEntities
+namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities
 {
     public class ProductMesures : IBaseEntity
     {
@@ -24,6 +20,5 @@ namespace WarehouseSystemAnalyst.Data.Entites.ProductEntities
         public string MesureID { get; set; }
         public Product Product { get; set; }
         public Mesure Mesure { get; set; }
-
     }
 }

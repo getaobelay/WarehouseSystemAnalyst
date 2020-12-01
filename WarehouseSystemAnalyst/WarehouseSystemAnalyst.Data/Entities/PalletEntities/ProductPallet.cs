@@ -1,6 +1,7 @@
-﻿using WarehouseSystemAnalyst.Data.Implementation.BaseEntites;
+﻿using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
+using WarehouseSystemAnalyst.Data.Implementation.BaseEntites;
 
-namespace WarehouseSystemAnalyst.Data.Entites.ProductEntities
+namespace WarehouseSystemAnalyst.Data.Entities.PalletEntities
 {
     public class ProductPallet : BasePallet
     {

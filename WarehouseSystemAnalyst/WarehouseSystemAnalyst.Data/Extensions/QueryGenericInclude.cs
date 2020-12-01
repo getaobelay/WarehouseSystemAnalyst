@@ -1,8 +1,7 @@
-﻿
+﻿using global::Microsoft.EntityFrameworkCore.Metadata;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using global::Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Microsoft.EntityFrameworkCore
 {
@@ -53,6 +52,5 @@ namespace Microsoft.EntityFrameworkCore
                 entityType = stack.Peek().Current.GetTargetType();
             }
         }
-
     }
 }

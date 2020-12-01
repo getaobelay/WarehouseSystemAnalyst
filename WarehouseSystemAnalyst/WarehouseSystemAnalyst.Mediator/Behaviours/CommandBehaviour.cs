@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using WarehouseSystemAnalyst.Data.Context;
+using WarehouseSystemAnalyst.Data.DataContext;
 using WarehouseSystemAnalyst.Interfaces.CQRS.Behaviours;
 
 namespace WarehouseSystemAnalyst.Mediator.Behaviours

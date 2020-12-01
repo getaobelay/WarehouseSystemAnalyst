@@ -1,12 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WarehouseSystemAnalyst.Data.Entites.BaseEntites;
-using WarehouseSystemAnalyst.Data.Entites.ProductEntities;
+using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
 
 namespace WarehouseSystemAnalyst.Data.Configuration.BaseEntities
 {
@@ -14,10 +8,15 @@ namespace WarehouseSystemAnalyst.Data.Configuration.BaseEntities
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            {
+            builder.HasOne(d => d.Category)
+                  .WithMany(p => p.Products)
+                  .HasForeignKey(d => d.CategoryID)
+                  .HasPrincipalKey(p => p.Id);
 
-
-            }
+            builder.HasMany(d => d.Batches)
+                  .WithOne(p => p.Product)
+                  .HasForeignKey(d => d.ProductID)
+                  .HasPrincipalKey(p => p.Id);
         }
     }
 }

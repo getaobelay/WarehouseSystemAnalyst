@@ -1,4 +1,4 @@
-﻿namespace WarehouseSystemAnalyst.Data.Context
+﻿namespace WarehouseSystemAnalyst.Data.DataContext
 {
     public interface ICurrentUser
     {
