@@ -12,7 +12,7 @@ namespace WarehouseSystemAnalyst.Mediator.MappingProfiles.ProductConfigs
             CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<SubCategory, SubCategoryDto>().ReverseMap();
             CreateMap<Mesure, MesureDto>().ReverseMap();
-            CreateMap<ProductSuppliers, ProductSuppliersDto>().ReverseMap();
+            CreateMap<ProductVendor, ProductSuppliersDto>().ReverseMap();
             CreateMap<Package, PackageDto>().ReverseMap();
         }
     }

@@ -1,23 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using WarehouseSystemAnalyst.Data.Models.Data.InventoryModels;
+using WarehouseSystemAnalyst.Data.Entities.StockEntites;
 
 namespace WarehouseSystemAnalyst.Data.Configuration.InventoryEntities
 {
-    public class StockOutConfig : IEntityTypeConfiguration<StockOut>
+    public class StockOutConfig : IEntityTypeConfiguration<Inventory>
     {
-        public void Configure(EntityTypeBuilder<StockOut> builder)
+        public void Configure(EntityTypeBuilder<Inventory> builder)
         {
 
             builder.HasMany(d => d.Batches)
-                .WithOne(p => p.StockOut)
+                .WithOne(p => p.Inventory)
                 .HasForeignKey(d => d.StockOutID)
-                .HasPrincipalKey(c => c.Id);
+                .HasPrincipalKey(c => c.PK);
 
             builder.HasMany(d => d.Products)
-                .WithOne(p => p.StockOut)
-                .HasForeignKey(d => d.StockOutID)
-                .HasPrincipalKey(c => c.Id);
+                .WithOne(p => p.Inventory)
+                .HasForeignKey(d => d.InventoryAK)
+                .HasPrincipalKey(c => c.PK);
         }
     }
 }

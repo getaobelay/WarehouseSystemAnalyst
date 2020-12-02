@@ -4,7 +4,7 @@ using WarehouseSystemAnalyst.Data.Interfaces.Models;
 
 namespace WarehouseSystemAnalyst.Data.Entities.SupplyChainEntities
 {
-    public class ProductSuppliers : IBaseEntity
+    public class ProductVendor : IBaseEntity
     {
         public int Id { get; set; }
         public string PK { get; set; }
@@ -13,13 +13,10 @@ namespace WarehouseSystemAnalyst.Data.Entities.SupplyChainEntities
         public DateTime CreateDate { get; set; }
         public DateTime ModifiedDate { get; set; }
         public string ProductID { get; set; }
-        public string BatchID { get; set; }
-
-        public string SupplierID { get; set; }
-
+        public string VendorID { get; set; }
         public Product Product { get; set; }
         public Batch Batch { get; set; }
 
-        public virtual Supplier Suppliers { get; set; }
+        public virtual Vendor Vendor { get; set; }
     }
 }

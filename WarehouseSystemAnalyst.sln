@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseSystemAnalyst.Server", "WarehouseSystemAnalyst\Server\WarehouseSystemAnalyst.Server.csproj", "{61AFFDA1-0333-4F22-8B2B-68CCF36A8DAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehouseSystemAnalyst.Server", "WarehouseSystemAnalyst\Server\WarehouseSystemAnalyst.Server.csproj", "{61AFFDA1-0333-4F22-8B2B-68CCF36A8DAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseSystemAnalyst.Client", "WarehouseSystemAnalyst\Client\WarehouseSystemAnalyst.Client.csproj", "{85806507-494C-4F64-BC85-E0AF476B5D8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehouseSystemAnalyst.Client", "WarehouseSystemAnalyst\Client\WarehouseSystemAnalyst.Client.csproj", "{85806507-494C-4F64-BC85-E0AF476B5D8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseSystemAnalyst.Shared", "WarehouseSystemAnalyst\Shared\WarehouseSystemAnalyst.Shared.csproj", "{FF0FDD8D-8B6B-47DF-A5C2-F15C3221925A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehouseSystemAnalyst.Shared", "WarehouseSystemAnalyst\Shared\WarehouseSystemAnalyst.Shared.csproj", "{FF0FDD8D-8B6B-47DF-A5C2-F15C3221925A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehouseSystemAnalyst.Components", "WarehouseSystemAnalyst\WarehouseSystemAnalyst.Components\WarehouseSystemAnalyst.Components.csproj", "{2C587BF3-225C-4A6B-9272-2FB6F2B95286}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehouseSystemAnalyst.Interfaces", "WarehouseSystemAnalyst\WarehouseSystemAnalyst.Interfaces\WarehouseSystemAnalyst.Interfaces.csproj", "{3EF32CB6-4C44-453B-96CD-52D74E6FA16B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehouseSystemAnalyst.Mediator", "WarehouseSystemAnalyst\WarehouseSystemAnalyst.Mediator\WarehouseSystemAnalyst.Mediator.csproj", "{81CFE7C1-41FE-4BB4-9610-BB9229814BCD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehouseSystemAnalyst.DataTests", "WarehouseSystemAnalyst\WarehouseSystemAnalyst.DataTests\WarehouseSystemAnalyst.DataTests.csproj", "{4E686D55-DF73-4E0E-BD58-26D25CD21D29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{81CFE7C1-41FE-4BB4-9610-BB9229814BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81CFE7C1-41FE-4BB4-9610-BB9229814BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81CFE7C1-41FE-4BB4-9610-BB9229814BCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E686D55-DF73-4E0E-BD58-26D25CD21D29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E686D55-DF73-4E0E-BD58-26D25CD21D29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E686D55-DF73-4E0E-BD58-26D25CD21D29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E686D55-DF73-4E0E-BD58-26D25CD21D29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

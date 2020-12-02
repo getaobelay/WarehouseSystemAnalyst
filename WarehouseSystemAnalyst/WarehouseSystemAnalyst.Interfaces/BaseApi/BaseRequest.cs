@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using WarehouseSystemAnalyst.Data.Interfaces.Base;
+using WarehouseSystemAnalyst.Interfaces.Base;
 
 namespace WarehouseSystemAnalyst.Data.Implementation.BaseApi
 {

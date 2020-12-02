@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
+using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes;
+
 namespace WarehouseSystemAnalyst.Data.Configuration.WarehouseEntities
 {
     internal class AllocationWarehouseConfig : IEntityTypeConfiguration<AllocationWarehouse>

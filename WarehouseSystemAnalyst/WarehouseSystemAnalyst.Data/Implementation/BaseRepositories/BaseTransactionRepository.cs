@@ -230,7 +230,7 @@ namespace WarehouseSystemAnalyst.Data.Implementation.BaseRepositories
                 throw;
             }
         }
-        public virtual async Task<IEnumerable<TDestension>> GetListQuery(Expression<Func<TDestension, bool>> filter = null, Func<IQueryable<TDestension>, IOrderedQueryable<TDestension>> orderBy = null, string includes = "")
+        public virtual async Task<IEnumerable<TDestension>> GetListQuery(Expression<Func<Entities.WarehouseEntites.WarehouseTypes.GoodsWarehouse, bool>> sourceFilter, Expression<Func<TDestension, bool>> filter = null, Func<IQueryable<TDestension>, IOrderedQueryable<TDestension>> orderBy = null, string includes = "")
         {
             try
             {
@@ -295,6 +295,9 @@ namespace WarehouseSystemAnalyst.Data.Implementation.BaseRepositories
                 await Context.DisposeAsync();
             _isDisposed = true;
         }
-
+        public Task<IEnumerable<TDestension>> GetListQuery(Expression<Func<TDestension, bool>> filter = null, Func<IQueryable<TDestension>, IOrderedQueryable<TDestension>> orderBy = null, string includes = "")
+        {
+            throw new NotImplementedException();
+        }
     }
 }

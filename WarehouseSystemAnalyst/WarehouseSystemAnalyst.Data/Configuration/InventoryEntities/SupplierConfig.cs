@@ -4,23 +4,11 @@ using WarehouseSystemAnalyst.Data.Entities.SupplyChainEntities;
 
 namespace WarehouseSystemAnalyst.Data.Configuration.InventoryEntities
 {
-    public class SupplierConfig : IEntityTypeConfiguration<Supplier>
+    public class SupplierConfig : IEntityTypeConfiguration<Vendor>
     {
-        public void Configure(EntityTypeBuilder<Supplier> builder)
+        public void Configure(EntityTypeBuilder<Vendor> builder)
         {
-            builder.HasKey(e => e.SupplierPK);
 
-            builder.Property(e => e.SupplierID)
-                    .ValueGeneratedOnAdd()
-                    .IsConcurrencyToken();
-
-            builder.HasIndex(e => e.SupplierPK)
-                    .IsUnique()
-                    .HasFilter("[SupplierPK] IS NOT NULL");
-
-            builder.HasIndex(e => e.SupplierID)
-                   .IsUnique()
-                   .HasFilter("[SupplierID] IS NOT NULL");
         }
     }
 }

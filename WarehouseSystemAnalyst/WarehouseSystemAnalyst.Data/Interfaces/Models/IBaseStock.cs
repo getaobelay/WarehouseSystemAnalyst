@@ -19,7 +19,6 @@ namespace WarehouseSystemAnalyst.Data.Interfaces.Models
         public decimal BatchQuantity { get; set; }
         public string ProductID { get; set; }
         public string BatchID { get; set; }
-        public string WarehouseID { get; set; }
         //public ICollection<Warehouse> Warehouses { get; set; }
         public ICollection<Product> Products { get; set; }
         public ICollection<Batch> Batches { get; set; }

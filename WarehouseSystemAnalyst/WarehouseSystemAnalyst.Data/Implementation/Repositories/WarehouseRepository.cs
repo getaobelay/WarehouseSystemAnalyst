@@ -16,8 +16,8 @@ namespace WarehouseSystemAnalyst.Data.Implementation.Repositories
 {
     public class WarehouseRepository<TSource, TDestension> :
         BaseTransactionRepository<TSource, TDestension>, IWarehouseRepository<TSource, TDestension>
-        where TSource : class, IBaseWarehouse<WarehouseItem>, new()
-        where TDestension : class, IBaseWarehouse<WarehouseItem>, new()
+        where TSource : class, IBaseWarehouse, new()
+        where TDestension : class, IBaseWarehouse, new()
     {
         protected WarehouseRepository(IUnitOfWorkRepository<WarehouseDbContext> unitOfWork) : base(unitOfWork)
         {

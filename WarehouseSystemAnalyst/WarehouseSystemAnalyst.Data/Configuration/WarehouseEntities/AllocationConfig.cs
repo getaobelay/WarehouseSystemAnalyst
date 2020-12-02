@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
 
 namespace WarehouseSystemAnalyst.Data.Configuration.WarehouseEntities
@@ -13,7 +8,15 @@ namespace WarehouseSystemAnalyst.Data.Configuration.WarehouseEntities
     {
         public void Configure(EntityTypeBuilder<Allocation> builder)
         {
+            builder.HasOne(o => o.Order)
+              .WithMany(w => w.Allocations)
+              .HasForeignKey(o => o.AllocationId)
+              .HasPrincipalKey(w => w.PK);
 
+            builder.HasMany(d => d.WarehouseItems)
+                 .WithOne(p => p.Allocation)
+                 .HasForeignKey(d => d.AllocationId)
+                 .HasPrincipalKey(p => p.PK);
         }
     }
 }

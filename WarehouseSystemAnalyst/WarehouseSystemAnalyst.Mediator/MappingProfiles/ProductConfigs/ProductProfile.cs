@@ -13,8 +13,7 @@ namespace WarehouseSystemAnalyst.Mediator.MappingProfiles.ProductConfigs
             CreateMap<Product, ProductDto>()
                 .ForMember(c => c.BatchPallet, opt => opt.MapFrom(src => src.Batches))
                 .ForMember(c => c.Category, opt => opt.MapFrom(src => src.Category))
-                .ForMember(c => c.SubCategory, opt => opt.MapFrom(src => src.SubCategory))
-                .ForMember(c => c.StockQuantity, opt => opt.MapFrom(src => src.StockOut.UnitsInStock));
+                .ForMember(c => c.StockQuantity, opt => opt.MapFrom(src => src.Inventory.UnitsInInventory));
         }
     }
 }

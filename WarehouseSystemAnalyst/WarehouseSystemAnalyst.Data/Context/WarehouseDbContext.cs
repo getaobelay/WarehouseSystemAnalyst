@@ -6,10 +6,18 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
 using WarehouseSystemAnalyst.Data.Entities.ContactEntities;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
 using WarehouseSystemAnalyst.Data.Entities.Enrollment;
+using WarehouseSystemAnalyst.Data.Entities.MissionEntites;
+using WarehouseSystemAnalyst.Data.Entities.PalletEntities;
+using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
+using WarehouseSystemAnalyst.Data.Entities.StockEntites;
+using WarehouseSystemAnalyst.Data.Entities.SupplyChainEntities;
+using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
+using WarehouseSystemAnalyst.Data.Implementation.BaseEntites;
+using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes;
+using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
 
 namespace WarehouseSystemAnalyst.Data.DataContext
 {
@@ -24,74 +32,48 @@ namespace WarehouseSystemAnalyst.Data.DataContext
         {
         }
 
-        //#region Transactions Related DbSets
-        //public virtual DbSet<EmployeeTransaction> EmployeeTransactions { get; set; }
-        //public virtual DbSet<ProductTransaction> ProductTransactions { get; set; }
-        //public virtual DbSet<WarehouseTransaction> WarehouseTransactions { get; set; }
-        //#endregion Transactions Related DbSets
+        //public DbSet<Customer> Customers { get; set; }
 
-        //#region Product Related DbSts
-
-        //public virtual DbSet<Batch> Batches { get; set; }
-        //public virtual DbSet<Package> Packages { get; set; }
-        //public virtual DbSet<ProductPallet> Pallet { get; set; }
-        //public virtual DbSet<Product> Products { get; set; }
-        //public virtual DbSet<Category> Categories { get; set; }
-        //public virtual DbSet<SubCategory> SubCategories { get; set; }
-        //public virtual DbSet<ProductSuppliers> ProductSuppliers { get; set; }
-        //public virtual DbSet<ProductMesures> ProductMesures { get; set; }
-        //public virtual DbSet<ProductPackages> ProductPackages { get; set; }
-        //public virtual DbSet<Mesure> UnitOfMesures { get; set; }
-
-        //#endregion Product Related DbSts
-
-        //#region Warehouse Related DbSts
-        //public virtual DbSet<Movement> Movements { get; set; }
-        //public virtual DbSet<Location> Locations { get; set; }
-        //public virtual DbSet<Warehouse> Warehouses { get; set; }
-
-        //#endregion Warehouse Related DbSts
-
-        //#region Inventory Related DbSts
-        //public virtual DbSet<Inventory> Inventories { get; set; }
-        //public virtual DbSet<Stock> Stocks { get; set; }
-        //public virtual DbSet<Supplier> Suppliers { get; set; }
-
-        //#endregion Inventory Related DbSts
-
+        public DbSet<BaseStock> BaseStocks { get; set; }
+        public DbSet<BaseWarehouse> Warehouses { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<CollectItem> CollectItems { get; set; }
+        public DbSet<CollectProductItem> CollectProductItems { get; set; }
+        public DbSet<CollectProducts> CollectProducts { get; set; }
+        public DbSet<ProductPallet> ProductPallets { get; set; }
+        public DbSet<Batch> Batches { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Mesure> Mesures { get; set; }
+        public DbSet<Package> Packages { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductItem> ProductItems { get; set; }
+        public DbSet<ProductMesures> ProductMesures { get; set; }
+        public DbSet<ProductPackages> ProductPackages { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
+        public DbSet<Inventory> Inventories { get; set; }
+        public DbSet<ProductVendor> ProductVendors { get; set; }
+        public DbSet<Vendor> Vendors { get; set; }
+        public DbSet<Allocation> Allocations { get; set; }
+        public DbSet<AllocationWarehouse> AllocationWarehouses { get; set; }
+        public DbSet<GoodsWarehouse> GoodsWarehouses { get; set; }
+        public DbSet<ShippingWarehouse> ShippingWarehouses { get; set; }
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<WarehouseItem> WarehouseItems { get; set; }
         public DbSet<Audit> Audits { get; set; }
-
-        ///public virtual DbSet<BaseTransaction> ContractTransaction { get; set; }
-
-        public virtual DbSet<Employee> Employees { get; set; }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=WarehouseProjectDb;Trusted_Connection=True;MultipleActiveResultSets=true");
+                optionsBuilder.UseSqlServer("Data Source=DESKTOP-QHFHS9D;Initial Catalog=WarehouseDb;Integrated Security=True;MultipleActiveResultSets=true");
+
+                //optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=WarehouseProjectDb;Trusted_Connection=True;MultipleActiveResultSets=true");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            var entityTypes = Assembly.GetExecutingAssembly()
-           .GetTypes()
-           .Where(x => !string.IsNullOrEmpty(x.Namespace)
-               && x.BaseType != null
-               && x.BaseType == typeof(BaseEntity))
-           .ToList();
-
-            var method = typeof(ModelBuilder).GetMethod("Entity");
-
-            foreach (var type in entityTypes)
-            {
-                method.MakeGenericMethod(type)
-                      .Invoke(modelBuilder, new object[] { });
-            }
-
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 

@@ -1,22 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
+using WarehouseSystemAnalyst.Data.Extensions;
 
 namespace WarehouseSystemAnalyst.Data.Configuration.BaseEntities
 {
-    internal class ProductEntityBuilder : IEntityTypeConfiguration<Product>
+    internal class ProductConfig : IEntityTypeConfiguration<Product>
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
+            builder.BaseBuilder();
             builder.HasOne(d => d.Category)
                   .WithMany(p => p.Products)
-                  .HasForeignKey(d => d.CategoryID)
-                  .HasPrincipalKey(p => p.Id);
+                  .HasForeignKey(d => d.CategoryAK)
+                  .HasPrincipalKey(p => p.PK);
 
             builder.HasMany(d => d.Batches)
                   .WithOne(p => p.Product)
                   .HasForeignKey(d => d.ProductID)
-                  .HasPrincipalKey(p => p.Id);
+                  .HasPrincipalKey(p => p.PK);
         }
     }
 }

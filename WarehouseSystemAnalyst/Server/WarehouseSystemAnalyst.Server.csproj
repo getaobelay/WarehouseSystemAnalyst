@@ -12,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Client\WarehouseSystemAnalyst.Client.csproj" />
     <ProjectReference Include="..\Shared\WarehouseSystemAnalyst.Shared.csproj" />
+    <ProjectReference Include="..\WarehouseSystemAnalyst.Data\WarehouseSystemAnalyst.Data.csproj" />
     <ProjectReference Include="..\WarehouseSystemAnalyst.Mediator\WarehouseSystemAnalyst.Mediator.csproj" />
   </ItemGroup>
 

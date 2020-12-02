@@ -1,24 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using WarehouseSystemAnalyst.Data.Entities.SupplyChainEntities;
-
+using WarehouseSystemAnalyst.Data.Extensions;
 namespace WarehouseSystemAnalyst.Data.Configuration.ProductEntities
 {
-    public class ProductSupplierConfig : IEntityTypeConfiguration<ProductSuppliers>
+    public class ProductSupplierConfig : IEntityTypeConfiguration<ProductVendor>
     {
-        public void Configure(EntityTypeBuilder<ProductSuppliers> builder)
+        public void Configure(EntityTypeBuilder<ProductVendor> builder)
         {
-            builder.HasKey(p => p.Id);
+            builder.BaseBuilder();
 
-            builder.HasOne(d => d.Suppliers)
-                  .WithMany(p => p.ProductSuppliers)
-                  .HasForeignKey(p => p.SupplierID)
-                  .HasPrincipalKey(p => p.SupplierID);
+            builder.HasOne(d => d.Vendor)
+                  .WithMany(p => p.ProductVendors)
+                  .HasForeignKey(p => p.VendorID)
+                  .HasPrincipalKey(p => p.PK);
 
             builder.HasOne(d => d.Product)
-                  .WithMany(p => p.ProductSuppliers)
+                  .WithMany(p => p.ProductVendors)
                   .HasForeignKey(p => p.ProductID)
-                  .HasPrincipalKey(p => p.Id);
+                  .HasPrincipalKey(p => p.PK);
         }
     }
 }

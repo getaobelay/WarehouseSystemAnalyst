@@ -6,8 +6,8 @@ namespace WarehouseSystemAnalyst.Data.Extensions
 {
     public static class EntityBuilders
     {
-        public static EntityTypeBuilder BasePallletBuilder<TTransaction>(this EntityTypeBuilder<TTransaction> builder)
-where TTransaction : class, IBaseTransaction
+        public static EntityTypeBuilder BasePallletBuilder<TBasePallet>(this EntityTypeBuilder<TBasePallet> builder)
+where TBasePallet : class, IBasePallet
         {
 
             builder.BaseBuilder();
@@ -20,17 +20,17 @@ where TTransaction : class, IBaseTransaction
 
             builder.Property(e => e.ProductQuantity)
                     .ValueGeneratedOnAddOrUpdate()
-                   .HasDefaultValueSql("decimal(8,2)")
+                   .HasColumnType("decimal(8,2)")
                    .IsRequired();
 
             builder.Property(e => e.BatchQuantity)
                    .ValueGeneratedOnAddOrUpdate()
-                   .HasDefaultValueSql("decimal(8,2)")
+                   .HasColumnType("decimal(8,2)")
                    .IsRequired();
 
             builder.Property(e => e.TotalUnitsQuantity)
                    .ValueGeneratedOnAddOrUpdate()
-                   .HasDefaultValueSql("decimal(8,2)")
+                   .HasColumnType("decimal(8,2)")
                    .IsRequired();
 
             return builder;
@@ -62,8 +62,8 @@ where TTransaction : class, IBaseTransaction
 
             return builder;
         }
-        public static EntityTypeBuilder BaseWarehouseBuilder<TWarehouse, TItem>(this EntityTypeBuilder<TWarehouse> builder)
-where TWarehouse : class, IBaseWarehouse<TItem>
+        public static EntityTypeBuilder BaseWarehouseBuilder<TWarehouse>(this EntityTypeBuilder<TWarehouse> builder)
+where TWarehouse : class, IBaseWarehouse
 
         {
 

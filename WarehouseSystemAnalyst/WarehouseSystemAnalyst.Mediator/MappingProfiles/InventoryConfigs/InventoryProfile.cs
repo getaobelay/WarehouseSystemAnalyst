@@ -8,9 +8,9 @@ namespace WarehouseSystemAnalyst.Mediator.MappingProfiles.InventoryConfigs
     {
         public InventoryProfile()
         {
-            CreateMap<InventoryDto, StockIn>();
+            CreateMap<InventoryDto, Stock>();
 
-            CreateMap<StockIn, InventoryDto>();
+            CreateMap<Stock, InventoryDto>();
         }
     }
 }

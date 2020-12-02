@@ -10,8 +10,7 @@ namespace WarehouseSystemAnalyst.Mediator.MappingProfiles.ProductConfigs
         {
             CreateMap<ProductMesures, ProductMesuresDto>()
             .ForMember(c => c.ProductName, opt => opt.MapFrom(src => src.Product.ProductName))
-            .ForMember(c => c.Quantity, opt => opt.MapFrom(src => src.Product.Id))
-            .ForMember(c => c.Measurement, opt => opt.MapFrom(src => src.Mesure.Measurement));
+            .ForMember(c => c.Quantity, opt => opt.MapFrom(src => src.Product.Id));
         }
     }
 }
