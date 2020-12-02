@@ -102,7 +102,7 @@ namespace WarehouseSystemAnalyst.Data.Implementation.BaseRepositories
         }
         public virtual async Task<ListTransaction<TSource, TDestension>> GetAllAsync()
         {
-            return await Task.FromResult(Transaction.ListOk(_sourceEntities, _destensionEntities));
+            return await Task.FromResult(ListTransaction.ListsFound(_sourceEntities, _destensionEntities));
         }
         public virtual async Task<Transaction<TSource, TDestension>> InsertAsync(TSource source, TDestension destension)
         {
@@ -118,7 +118,7 @@ namespace WarehouseSystemAnalyst.Data.Implementation.BaseRepositories
             if (Context == null || _isDisposed)
                 Context = new WarehouseDbContext();
 
-            return await Task.FromResult(Transaction.Ok(source, destension));
+            return await Task.FromResult(Transaction.Found(source, destension));
         }
         public async virtual Task<Transaction<TSource, TDestension>> UpdateAsync(TSource source, TDestension destension)
         {
@@ -139,7 +139,7 @@ namespace WarehouseSystemAnalyst.Data.Implementation.BaseRepositories
                 Context.Entry(source).State = EntityState.Modified;
                 Context.Entry(destension).State = EntityState.Modified;
 
-                return await Task.FromResult(Transaction.Ok(source, destension));
+                return await Task.FromResult(Transaction.Found(source, destension));
 
             }
             catch (Exception)
@@ -184,11 +184,11 @@ namespace WarehouseSystemAnalyst.Data.Implementation.BaseRepositories
 
                 if (sourceOrderBy != null && destOrderBy != null)
                 {
-                    return await Task.FromResult(Transaction.ListOk(sourceQuery.ToList(), destQuery.ToList()));
+                    return await Task.FromResult(ListTransaction.ListsFound(sourceQuery.ToList(), destQuery.ToList()));
                 }
                 else
                 {
-                    return await Task.FromResult(Transaction.ListOk(await sourceQuery.ToListAsync(), await destQuery.ToListAsync()));
+                    return await Task.FromResult(ListTransaction.ListsFound(await sourceQuery.ToListAsync(), await destQuery.ToListAsync()));
                 }
             }
             catch (Exception)
@@ -275,7 +275,7 @@ namespace WarehouseSystemAnalyst.Data.Implementation.BaseRepositories
                     TDestension dest = await _destensionEntities.Where(destFilter).SingleOrDefaultAsync();
                     if (dest != null)
                     {
-                        return await Task.FromResult(Transaction.Ok(source, dest));
+                        return await Task.FromResult(Transaction.Found(source, dest));
                     }
 
                     return await Task.FromResult(Transaction.DestinationEmpty<TSource, TDestension>(source));

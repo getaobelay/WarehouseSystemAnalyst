@@ -4,18 +4,19 @@ using WarehouseSystemAnalyst.Data.Entities.StockEntites;
 
 namespace WarehouseSystemAnalyst.Data.Configuration.InventoryEntities
 {
-    public class StockInConfig : IEntityTypeConfiguration<Stock>
+    public class InventoryConfig : IEntityTypeConfiguration<Inventory>
     {
-        public void Configure(EntityTypeBuilder<Stock> builder)
+        public void Configure(EntityTypeBuilder<Inventory> builder)
         {
+
             builder.HasMany(d => d.Batches)
-                .WithOne(p => p.Stock)
-                .HasForeignKey(d => d.StockInID)
+                .WithOne(p => p.Inventory)
+                .HasForeignKey(d => d.Stock)
                 .HasPrincipalKey(c => c.PK);
 
             builder.HasMany(d => d.Products)
-                .WithOne(p => p.Stock)
-                .HasForeignKey(d => d.StockID)
+                .WithOne(p => p.Inventory)
+                .HasForeignKey(d => d.Inventory)
                 .HasPrincipalKey(c => c.PK);
         }
     }

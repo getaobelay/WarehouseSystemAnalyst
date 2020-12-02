@@ -10,7 +10,7 @@ namespace WarehouseSystemAnalyst.Data.Configuration.WarehouseEntities
         {
             builder.HasOne(o => o.Order)
               .WithMany(w => w.Allocations)
-              .HasForeignKey(o => o.AllocationId)
+              .HasForeignKey(o => o.OrderID)
               .HasPrincipalKey(w => w.PK);
 
             builder.HasMany(d => d.WarehouseItems)
