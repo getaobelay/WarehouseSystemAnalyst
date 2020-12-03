@@ -6,7 +6,7 @@ using WarehouseSystemAnalyst.Data.Interfaces.Repositories;
 
 namespace arehouseSystemAnalyst.Data.Interfaces.Repositories
 {
-    public interface IWarehouseRepository<TSource, TDestination> : IBaseTransactionRepository1<TSource, TDestination>
+    public interface IWarehouseRepository<TSource, TDestination> : IBaseTransactionRepository<TSource, TDestination>
         where TSource : class, IBaseWarehouse, new()
         where TDestination : class, IBaseWarehouse, new()
     {

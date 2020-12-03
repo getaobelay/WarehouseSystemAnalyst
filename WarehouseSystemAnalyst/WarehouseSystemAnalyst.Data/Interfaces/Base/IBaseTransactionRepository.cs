@@ -8,19 +8,27 @@ using WarehouseSystemAnalyst.Data.Interfaces.Models;
 
 namespace WarehouseSystemAnalyst.Data.Interfaces.Repositories
 {
-    public interface IBaseTransactionRepository<TSource, TDestension>
+    public interface IBaseTransactionRepository<TSource, TDestination>
         where TSource : class, IBaseEntity, new()
-        where TDestension : class, IBaseEntity, new()
+        where TDestination : class, IBaseEntity, new()
     {
-        Task<bool> DeleteAsync(object sourceId = null, object destensionId = null);
-        Task<bool> DeleteAsync(TSource sourceToDelete = null, TDestension destensionToDelete = null);
-        void Dispose();
-        Task<ListTransaction<TSource, TDestension>> GetAllAsync();
-        Task<IEnumerable<TDestension>> GetListQuery(Expression<Func<TDestension, bool>> filter = null, Func<IQueryable<TDestension>, IOrderedQueryable<TDestension>> orderBy = null, string includes = "");
+        Task<bool> DeleteSourceAsync(object sourceId);
+        Task<bool> DeleteDestinationAsync(object destinationId);
+        Task<bool> DeleteSourceAsync(TSource sourceToDelete);
+        Task<bool> DeleteDestinationAsync(TDestination destinationToDelete);
+        Task<ListTransaction<TSource, TDestination>> GetAllAsync();
+        Task<IEnumerable<TDestination>> GetListQuery(Expression<Func<TDestination, bool>> filter = null, Func<IQueryable<TDestination>, IOrderedQueryable<TDestination>> orderBy = null, string includes = "");
         Task<IEnumerable<TSource>> GetListQuery(Expression<Func<TSource, bool>> filter = null, Func<IQueryable<TSource>, IOrderedQueryable<TSource>> orderBy = null, string includes = "");
-        Task<ListTransaction<TSource, TDestension>> GetListQuery(Expression<Func<TSource, bool>> sourceFilter = null, Expression<Func<TDestension, bool>> destFilter = null, Func<IQueryable<TSource>, IOrderedQueryable<TSource>> sourceOrderBy = null, Func<IQueryable<TDestension>, IOrderedQueryable<TDestension>> destOrderBy = null, string includes = "");
-        Task<Transaction<TSource, TDestension>> GetSingleQuery(Expression<Func<TSource, bool>> sourceFilter, Expression<Func<TDestension, bool>> destFilter, string includes = "");
-        Task<Transaction<TSource, TDestension>> InsertAsync(TSource source, TDestension destension);
-        Task<Transaction<TSource, TDestension>> UpdateAsync(TSource source, TDestension destension);
+        Task<ListTransaction<TSource, TDestination>> GetAllListQuery(Expression<Func<TDestination, bool>> destFilter = null, Func<IQueryable<TDestination>, IOrderedQueryable<TDestination>> destOrderBy = null, string destIncludes = "", Expression<Func<TSource, bool>> sourceFilter = null, Func<IQueryable<TSource>, IOrderedQueryable<TSource>> sourceOrderBy = null, string sourceIncludes = "");
+        Task<Transaction<TSource, TDestination>> GetSingleQuery(Expression<Func<TSource, bool>> sourceFilter, Expression<Func<TDestination, bool>> destFilter, string sourceIncludes = "", string destinationIncludes = "");
+        Task<TSource> GetSingleQuery(Expression<Func<TSource, bool>> sourceFilter, string sourceIncludes = "");
+        Task<TDestination> GetSingleQuery(Expression<Func<TDestination, bool>> destFilter, string destIncludes = "");
+        Task<TSource> InsertAsync(TSource source);
+        Task<TDestination> InsertAsync(TDestination destination);
+        Task<Transaction<TSource, TDestination>> InsertAsync(TSource source, TDestination destination);
+        Task<TSource> UpdateAsync(TSource source);
+        Task<TDestination> UpdateAsync(TDestination destination);
+        Task<Transaction<TSource, TDestination>> UpdateAsync(TSource source, TDestination destination);
+        void Dispose();
     }
 }

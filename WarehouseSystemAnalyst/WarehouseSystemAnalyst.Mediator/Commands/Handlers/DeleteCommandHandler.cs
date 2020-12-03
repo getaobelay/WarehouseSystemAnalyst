@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using System;
 using Microsoft.EntityFrameworkCore;
-using WarehouseSystemAnalyst.Interfaces.CQRS.Models;
 using WarehouseSystemAnalyst.Interfaces.CQRS.Wrappers;
 using WarehouseSystemAnalyst.Mediator.Models;
+using WarehouseSystemAnalyst.Mediator.Interfaces.Models;
 
 namespace WarehouseSystemAnalyst.Mediator.Commands.Handlers
 {

@@ -2,8 +2,8 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using WarehouseSystemAnalyst.Interfaces.CQRS.Models;
 using WarehouseSystemAnalyst.Interfaces.CQRS.Wrappers;
+using WarehouseSystemAnalyst.Mediator.Interfaces.Models;
 using WarehouseSystemAnalyst.Mediator.Models;
 
 namespace WarehouseSystemAnalyst.Mediator.Commands.Handlers

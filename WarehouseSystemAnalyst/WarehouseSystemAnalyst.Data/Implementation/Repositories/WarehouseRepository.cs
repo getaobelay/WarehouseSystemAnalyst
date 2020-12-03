@@ -15,7 +15,7 @@ using System.Linq;
 namespace WarehouseSystemAnalyst.Data.Implementation.Repositories
 {
     public class WarehouseRepository<TSource, TDestension> :
-        BaseTransactionRepository1<TSource, TDestension>, IWarehouseRepository<TSource, TDestension>
+        BaseTransactionRepository<TSource, TDestension>, IWarehouseRepository<TSource, TDestension>
         where TSource : class, IBaseWarehouse, new()
         where TDestension : class, IBaseWarehouse, new()
     {

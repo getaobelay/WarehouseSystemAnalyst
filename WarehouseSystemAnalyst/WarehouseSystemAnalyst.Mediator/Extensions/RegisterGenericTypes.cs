@@ -1,9 +1,9 @@
 ﻿using Autofac;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using WarehouseSystemAnalyst.Interfaces.CQRS.Models;
 using WarehouseSystemAnalyst.Mediator.Commands.Handlers;
 using WarehouseSystemAnalyst.Mediator.Commands.Requests;
+using WarehouseSystemAnalyst.Mediator.Interfaces.Models;
 using WarehouseSystemAnalyst.Mediator.Queries.Handlers;
 using WarehouseSystemAnalyst.Mediator.Queries.Requests;
 

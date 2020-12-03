@@ -11,19 +11,19 @@ using WarehouseSystemAnalyst.Data.Interfaces.Repositories;
 
 namespace WarehouseSystemAnalyst.Data.Implementation.BaseRepositories
 {
-    public class BaseTransactionRepository<TSource, TDestension> : IBaseTransactionRepository<TSource, TDestension>, IDisposable
-        where TDestension : class, IBaseEntity, new()
+    public class BaseTransactionRepository<TSource, TDestination> : IBaseTransactionRepository<TSource, TDestination>, IDisposable
+        where TDestination : class, IBaseEntity, new()
         where TSource : class, IBaseEntity, new()
     {
 
         internal DbSet<TSource> _sourceEntities { get; set; }
-        internal DbSet<TDestension> _destensionEntities { get; set; }
+        internal DbSet<TDestination> _destinationEntities { get; set; }
 
         private bool _isDisposed;
         protected BaseTransactionRepository(
             IUnitOfWorkRepository<WarehouseDbContext> unitOfWork) : this(unitOfWork.Context)
         {
-
+            UnitOfWork = unitOfWork;
         }
 
         public BaseTransactionRepository(WarehouseDbContext context)
@@ -31,96 +31,210 @@ namespace WarehouseSystemAnalyst.Data.Implementation.BaseRepositories
             _isDisposed = true;
             Context = context;
         }
+
         public WarehouseDbContext Context { get; set; }
-
         protected virtual DbSet<TSource> SourceEntities => _sourceEntities ??= Context.Set<TSource>();
-        protected virtual DbSet<TDestension> DestensionEntities => _destensionEntities ??= Context.Set<TDestension>();
-        public virtual async Task<bool> DeleteAsync(TSource sourceToDelete = default, TDestension destensionToDelete = default)
-        {
-            if (sourceToDelete == null && destensionToDelete == null)
-                throw new ArgumentNullException($"{nameof(sourceToDelete)}+{nameof(destensionToDelete)}");
+        protected virtual DbSet<TDestination> DestinationEntities => _destinationEntities ??= Context.Set<TDestination>();
+        public IUnitOfWorkRepository<WarehouseDbContext> UnitOfWork { get; }
 
-            if (sourceToDelete != null)
+        public async void Dispose()
+        {
+            if (Context != null)
+                await Context.DisposeAsync();
+            _isDisposed = true;
+        }
+        public virtual async Task<bool> DeleteSourceAsync(object sourceId)
+        {
+            if (sourceId == null)
+                throw new ArgumentNullException(nameof(sourceId));
+
+            try
+            {
+                TSource sourceToDelete = await _sourceEntities.FindAsync(sourceId);
+
+                if (sourceToDelete == null)
+                    throw new ArgumentNullException($"{nameof(sourceToDelete)}");
+
+                if (Context == null || _isDisposed)
+                    Context = new WarehouseDbContext();
+
+                return await DeleteSourceAsync(sourceToDelete);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public virtual async Task<bool> DeleteDestinationAsync(object destinationId)
+        {
+            if (destinationId == null)
+                throw new ArgumentNullException(nameof(destinationId));
+
+            try
+            {
+                TDestination destinationToDelete = await _destinationEntities.FindAsync(destinationId);
+
+                if (Context == null || _isDisposed)
+                    Context = new WarehouseDbContext();
+
+                return await DeleteDestinationAsync(destinationToDelete);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+        public async virtual Task<bool> DeleteSourceAsync(TSource sourceToDelete)
+        {
+            if (sourceToDelete == null)
+                throw new ArgumentNullException($"{nameof(sourceToDelete)}");
+
+            try
             {
                 if (Context.Entry(sourceToDelete).State == EntityState.Detached)
                 {
                     _sourceEntities.Attach(sourceToDelete);
                 }
                 _sourceEntities.Remove(sourceToDelete);
-                _destensionEntities.Remove(destensionToDelete);
+                return await Task.FromResult(true);
+            }
+            catch (Exception)
+            {
+                return await Task.FromResult(false);
+                throw;
             }
 
-            else
+
+        }
+        public async virtual Task<bool> DeleteDestinationAsync(TDestination destinationToDelete)
+        {
+            if (destinationToDelete == null)
+                throw new ArgumentNullException($"{nameof(destinationToDelete)}");
+
+            try
             {
-                if (Context.Entry(sourceToDelete).State == EntityState.Detached)
+                if (Context.Entry(destinationToDelete).State == EntityState.Detached)
                 {
-                    _sourceEntities.Attach(sourceToDelete);
+                    _destinationEntities.Attach(destinationToDelete);
                 }
-                _sourceEntities.Remove(sourceToDelete);
-                _destensionEntities.Remove(destensionToDelete);
+                _destinationEntities.Remove(destinationToDelete);
+                return await Task.FromResult(true);
+            }
+            catch (Exception)
+            {
+                return await Task.FromResult(false);
+                throw;
             }
 
-            return await Context.SaveChangesAsync() >= 1;
+        }
+        public virtual async Task<ListTransaction<TSource, TDestination>> GetAllAsync()
+        {
+            try
+            {
+                return await Task.FromResult(ListTransaction.ListsFound(_sourceEntities, _destinationEntities));
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public virtual async Task<ListTransaction<TSource, TDestination>> GetAllListQuery(Expression<Func<TDestination, bool>> destFilter = null, Func<IQueryable<TDestination>, IOrderedQueryable<TDestination>> destOrderBy = null, string destIncludes = "", Expression<Func<TSource, bool>> sourceFilter = null, Func<IQueryable<TSource>, IOrderedQueryable<TSource>> sourceOrderBy = null, string sourceIncludes = "")
+        {
+            try
+            {
+                var sourceQuery = await GetListQuery(sourceFilter, sourceOrderBy, sourceIncludes);
+                var destQuery = await GetListQuery(destFilter, destOrderBy, sourceIncludes);
+
+                if (sourceQuery != null && destQuery != null)
+                    return await Task.FromResult(ListTransaction.ListsFound(sourceQuery, destQuery));
+
+                if (sourceQuery != null)
+                    return await Task.FromResult(ListTransaction.DestinationEmpty<TSource, TDestination>(sourceQuery));
+
+                if (destQuery != null)
+                    return await Task.FromResult(ListTransaction.SourceEmpty<TSource, TDestination>(destination: destQuery));
+
+                return await Task.FromResult(ListTransaction.ListsEmpty<TSource, TDestination>());
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
 
         }
-        public virtual async Task<bool> DeleteAsync(object sourceId = default, object destensionId = default)
+        public virtual async Task<TSource> InsertAsync(TSource source)
         {
-
-            if (sourceId == null && destensionId == null)
-                throw new ArgumentNullException(nameof(sourceId) + nameof(destensionId));
-
-            TSource sourceToDelete = await _sourceEntities.FindAsync(sourceId);
-            TDestension destToDelete = await _destensionEntities.FindAsync(destensionId);
-
-            if (sourceToDelete == null && destToDelete == null)
-                throw new ArgumentNullException($"{nameof(sourceToDelete) } + {nameof(sourceToDelete)}");
-
-            else if (sourceToDelete != null && destToDelete != null)
+            try
             {
+                if (source == null)
+                    throw new ArgumentNullException(nameof(source));
+
+                await _sourceEntities.AddAsync(source);
                 if (Context == null || _isDisposed)
                     Context = new WarehouseDbContext();
 
-                return await DeleteAsync(sourceToDelete, destToDelete);
+                await UnitOfWork.SaveChangesAsync();
+                return source;
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
 
-            else if (sourceToDelete != null)
+        }
+        public virtual async Task<TDestination> InsertAsync(TDestination destination)
+        {
+            try
             {
+                if (destination == null)
+                    throw new ArgumentNullException(nameof(destination));
+
+                await _destinationEntities.AddAsync(destination);
                 if (Context == null || _isDisposed)
                     Context = new WarehouseDbContext();
 
-                return await DeleteAsync(sourceToDelete);
+                await UnitOfWork.SaveChangesAsync();
+                return destination;
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
 
-            else
+        }
+        public virtual async Task<Transaction<TSource, TDestination>> InsertAsync(TSource source, TDestination destination)
+        {
+            try
             {
+                if (source == null)
+                    throw new ArgumentNullException(nameof(source));
+
+                if (destination == null)
+                    throw new ArgumentNullException(nameof(destination));
+
+                await InsertAsync(destination);
+                await InsertAsync(source);
+
                 if (Context == null || _isDisposed)
                     Context = new WarehouseDbContext();
 
-                return await DeleteAsync(destToDelete);
+                return await Task.FromResult(Transaction.Found(source, destination));
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
 
         }
-        public virtual async Task<ListTransaction<TSource, TDestension>> GetAllAsync()
-        {
-            return await Task.FromResult(ListTransaction.ListsFound(_sourceEntities, _destensionEntities));
-        }
-        public virtual async Task<Transaction<TSource, TDestension>> InsertAsync(TSource source, TDestension destension)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-
-            if (destension == null)
-                throw new ArgumentNullException(nameof(destension));
-
-            await _destensionEntities.AddAsync(destension);
-            await _sourceEntities.AddAsync(source);
-
-            if (Context == null || _isDisposed)
-                Context = new WarehouseDbContext();
-
-            return await Task.FromResult(Transaction.Found(source, destension));
-        }
-        public async virtual Task<Transaction<TSource, TDestension>> UpdateAsync(TSource source, TDestension destension)
+        public virtual async Task<TSource> UpdateAsync(TSource source)
         {
             try
             {
@@ -131,64 +245,93 @@ namespace WarehouseSystemAnalyst.Data.Implementation.BaseRepositories
                     Context = new WarehouseDbContext();
 
                 var sourceDbSet = Context.Set<TSource>();
-                var destDbSet = Context.Set<TDestension>();
-
                 sourceDbSet.Attach(source);
-                destDbSet.Attach(destension);
-
                 Context.Entry(source).State = EntityState.Modified;
-                Context.Entry(destension).State = EntityState.Modified;
+                await UnitOfWork.SaveChangesAsync();
+                return source;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public virtual async Task<TDestination> UpdateAsync(TDestination destination)
+        {
+            try
+            {
+                if (destination == null)
+                    throw new ArgumentNullException(nameof(destination));
 
-                return await Task.FromResult(Transaction.Found(source, destension));
+                if (Context == null || _isDisposed)
+                    Context = new WarehouseDbContext();
+
+                var sourceDbSet = Context.Set<TDestination>();
+                sourceDbSet.Attach(destination);
+                Context.Entry(destination).State = EntityState.Modified;
+                await UnitOfWork.SaveChangesAsync();
+                return destination;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+        public virtual async Task<Transaction<TSource, TDestination>> UpdateAsync(TSource source, TDestination destination)
+        {
+            try
+            {
+                if (source == null && destination == null)
+                    throw new ArgumentNullException(nameof(source));
+
+                if (Context == null || _isDisposed)
+                    Context = new WarehouseDbContext();
+
+                if (source != null)
+                {
+                    if (destination != null)
+                    {
+                        return await Task.FromResult(Transaction.Found(await UpdateAsync(source), await UpdateAsync(destination)));
+                    }
+                    return await Task.FromResult(Transaction.DestinationEmpty<TSource, TDestination>(await UpdateAsync(source)));
+                }
+
+                return await Task.FromResult(Transaction.Empty<TSource, TDestination>());
 
             }
             catch (Exception)
             {
-                return default;
+                return await Task.FromResult(Transaction.Empty<TSource, TDestination>());
             }
         }
-        public virtual async Task<ListTransaction<TSource, TDestension>> GetListQuery(Expression<Func<TSource, bool>> sourceFilter = null, Expression<Func<TDestension, bool>> destFilter = null, Func<IQueryable<TSource>, IOrderedQueryable<TSource>> sourceOrderBy = null, Func<IQueryable<TDestension>, IOrderedQueryable<TDestension>> destOrderBy = null, string includes = "")
+        public virtual async Task<IEnumerable<TDestination>> GetListQuery(Expression<Func<TDestination, bool>> filter = null, Func<IQueryable<TDestination>, IOrderedQueryable<TDestination>> orderBy = null, string includes = "")
         {
             try
             {
-                IQueryable<TSource> sourceQuery = _sourceEntities;
-                IQueryable<TDestension> destQuery = _destensionEntities;
+                IQueryable<TDestination> query = _destinationEntities;
 
-                if (destFilter != null && sourceFilter != null)
+                if (filter != null)
                 {
-                    sourceQuery = sourceQuery.Where(sourceFilter);
-                    destQuery = destQuery.Where(destFilter);
+                    query = query.Where(filter);
 
-                }
-
-                else if (destFilter != null)
-                {
-                    sourceQuery = sourceQuery.Where(sourceFilter);
-
-                }
-
-                else if (sourceFilter != null)
-                {
-                    destQuery = destQuery.Where(destFilter);
                 }
 
                 if (includes != null)
                 {
                     foreach (var include in includes)
                     {
-                        sourceQuery = sourceQuery.Include(includes);
-                        destQuery = destQuery.Include(includes);
-
+                        query = query.Include(includes);
                     }
                 }
 
-                if (sourceOrderBy != null && destOrderBy != null)
+                if (orderBy != null)
                 {
-                    return await Task.FromResult(ListTransaction.ListsFound(sourceQuery.ToList(), destQuery.ToList()));
+                    return await Task.FromResult(query.ToList());
                 }
                 else
                 {
-                    return await Task.FromResult(ListTransaction.ListsFound(await sourceQuery.ToListAsync(), await destQuery.ToListAsync()));
+                    return await Task.FromResult(await query.ToListAsync());
                 }
             }
             catch (Exception)
@@ -200,11 +343,11 @@ namespace WarehouseSystemAnalyst.Data.Implementation.BaseRepositories
         {
             try
             {
-                IQueryable<TSource> sourceQuery = _sourceEntities;
+                IQueryable<TSource> query = _sourceEntities;
 
                 if (filter != null)
                 {
-                    sourceQuery = sourceQuery.Where(filter);
+                    query = query.Where(filter);
 
                 }
 
@@ -212,17 +355,17 @@ namespace WarehouseSystemAnalyst.Data.Implementation.BaseRepositories
                 {
                     foreach (var include in includes)
                     {
-                        sourceQuery = sourceQuery.Include(includes);
+                        query = query.Include(includes);
                     }
                 }
 
                 if (orderBy != null)
                 {
-                    return await Task.FromResult(sourceQuery.ToList());
+                    return await Task.FromResult(query.ToList());
                 }
                 else
                 {
-                    return await Task.FromResult(await sourceQuery.ToListAsync());
+                    return await Task.FromResult(await query.ToListAsync());
                 }
             }
             catch (Exception)
@@ -230,58 +373,42 @@ namespace WarehouseSystemAnalyst.Data.Implementation.BaseRepositories
                 throw;
             }
         }
-        public virtual async Task<IEnumerable<TDestension>> GetListQuery(Expression<Func<Entities.WarehouseEntites.WarehouseTypes.GoodsWarehouse, bool>> sourceFilter, Expression<Func<TDestension, bool>> filter = null, Func<IQueryable<TDestension>, IOrderedQueryable<TDestension>> orderBy = null, string includes = "")
+        public virtual async Task<TSource> GetSingleQuery(Expression<Func<TSource, bool>> sourceFilter, string sourceIncludes = "")
         {
             try
             {
-                IQueryable<TDestension> destQuery = _destensionEntities;
+                TSource source = new TSource();
 
-                if (filter != null)
+                if (sourceIncludes != null)
                 {
-                    destQuery = destQuery.Where(filter);
-
+                    source = await _sourceEntities.Where(sourceFilter).Include(sourceIncludes).SingleOrDefaultAsync();
                 }
 
-                if (includes != null)
-                {
-                    foreach (var include in includes)
-                    {
-                        destQuery = destQuery.Include(includes);
-                    }
-                }
-
-                if (orderBy != null)
-                {
-                    return await Task.FromResult(destQuery.ToList());
-                }
                 else
                 {
-                    return await Task.FromResult(await destQuery.ToListAsync());
+                    source = await _sourceEntities.Where(sourceFilter).SingleOrDefaultAsync();
                 }
+
+                return source;
             }
             catch (Exception)
             {
                 throw;
             }
         }
-        public virtual async Task<Transaction<TSource, TDestension>> GetSingleQuery(Expression<Func<TSource, bool>> sourceFilter, Expression<Func<TDestension, bool>> destFilter, string includes = "")
+        public virtual async Task<TDestination> GetSingleQuery(Expression<Func<TDestination, bool>> destFilter, string destIncludes = "")
         {
             try
             {
-
-                TSource source = await _sourceEntities.Where(sourceFilter).SingleOrDefaultAsync();
-                if (source != null)
+                if (destIncludes != null)
                 {
-                    TDestension dest = await _destensionEntities.Where(destFilter).SingleOrDefaultAsync();
-                    if (dest != null)
-                    {
-                        return await Task.FromResult(Transaction.Found(source, dest));
-                    }
-
-                    return await Task.FromResult(Transaction.DestinationEmpty<TSource, TDestension>(source));
+                    return await _destinationEntities.Where(destFilter).Include(destIncludes).SingleOrDefaultAsync();
                 }
 
-                return await Task.FromResult(Transaction.Empty<TSource, TDestension>());
+                else
+                {
+                    return await _destinationEntities.Where(destFilter).SingleOrDefaultAsync();
+                }
 
             }
             catch (Exception)
@@ -289,15 +416,38 @@ namespace WarehouseSystemAnalyst.Data.Implementation.BaseRepositories
                 throw;
             }
         }
-        public async void Dispose()
+        public virtual async Task<Transaction<TSource, TDestination>> GetSingleQuery(Expression<Func<TSource, bool>> sourceFilter, Expression<Func<TDestination, bool>> destFilter, string sourceIncludes = "", string destinationIncludes = "")
         {
-            if (Context != null)
-                await Context.DisposeAsync();
-            _isDisposed = true;
-        }
-        public Task<IEnumerable<TDestension>> GetListQuery(Expression<Func<TDestension, bool>> filter = null, Func<IQueryable<TDestension>, IOrderedQueryable<TDestension>> orderBy = null, string includes = "")
-        {
-            throw new NotImplementedException();
+            try
+            {
+                var source = await GetSingleQuery(sourceFilter, sourceIncludes);
+                var destination = await GetSingleQuery(destFilter, destinationIncludes);
+
+                if (source != null && destination != null)
+                {
+                    return await Task.FromResult(Transaction.Found(source, destination));
+                }
+                else if (source != null)
+                {
+                    return await Task.FromResult(Transaction.DestinationEmpty<TSource, TDestination>(source));
+                }
+
+                else if (destination != null)
+                {
+                    return await Task.FromResult(Transaction.SourceEmpty<TSource, TDestination>(destination));
+                }
+
+                else
+                {
+                    return await Task.FromResult(Transaction.Empty<TSource, TDestination>());
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
     }
 }

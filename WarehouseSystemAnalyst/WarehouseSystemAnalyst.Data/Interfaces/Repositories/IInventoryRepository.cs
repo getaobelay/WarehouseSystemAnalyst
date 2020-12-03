@@ -7,7 +7,7 @@ using WarehouseSystemAnalyst.Data.Interfaces.Models;
 
 namespace WarehouseSystemAnalyst.Data.Interfaces.Repositories
 {
-    public interface IInventoryRepository<TSource, TDestination> : IBaseTransactionRepository1<TSource, TDestination>
+    public interface IInventoryRepository<TSource, TDestination> : IBaseTransactionRepository<TSource, TDestination>
         where TSource : class, IBaseStock, new()
         where TDestination : class, IBaseStock, new()
     {

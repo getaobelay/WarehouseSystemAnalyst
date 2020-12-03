@@ -1,8 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using WarehouseSystemAnalyst.Interfaces.CQRS.Models;
 using WarehouseSystemAnalyst.Interfaces.CQRS.Wrappers;
+using WarehouseSystemAnalyst.Mediator.Interfaces.Models;
 
 namespace WarehouseSystemAnalyst.Mediator.Queries.Handlers
 {
