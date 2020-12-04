@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
+﻿using System;
+using System.Collections.Generic;
 using WarehouseSystemAnalyst.Data.Entities.PalletEntities;
-using WarehouseSystemAnalyst.Data.Entities.SupplyChainEntities;
-using WarehouseSystemAnalyst.Data.Implementation.BaseEntites;
 using WarehouseSystemAnalyst.Data.Entities.StockEntites;
+using WarehouseSystemAnalyst.Data.Entities.SupplyChainEntities;
+using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
-using System;
 
 namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities
 {
@@ -33,6 +32,7 @@ namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities
         public string ProductPackageAK { get; set; }
 
         #endregion Keys
+
         public virtual Category Category { get; set; }
         public virtual Stock Stock { get; set; }
         public virtual Inventory Inventory { get; set; }

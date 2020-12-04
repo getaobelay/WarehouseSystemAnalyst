@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
-using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
 
 namespace WarehouseSystemAnalyst.Data.Entities.BaseEntites
@@ -10,6 +9,7 @@ namespace WarehouseSystemAnalyst.Data.Entities.BaseEntites
     {
         public int Id { get; set; }
         public string PK { get; set; }
+        public string Name { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime ModifiedDate { get; set; }
         public string CreatedBy { get; set; }
@@ -23,6 +23,8 @@ namespace WarehouseSystemAnalyst.Data.Entities.BaseEntites
 
         //public ICollection<Warehouse> Warehouses { get; set; }
         public ICollection<Product> Products { get; set; }
+
         public ICollection<Batch> Batches { get; set; }
+
     }
 }

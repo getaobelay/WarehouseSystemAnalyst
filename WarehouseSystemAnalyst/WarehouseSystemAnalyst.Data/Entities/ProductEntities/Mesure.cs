@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using WarehouseSystemAnalyst.Data.Implementation.BaseEntites;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
 
 namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities
@@ -17,6 +16,5 @@ namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities
         public string ProductItemId { get; set; }
         public ICollection<ProductMesures> ProductMesures { get; set; } = new HashSet<ProductMesures>();
         public ICollection<ProductItem> ProductItems { get; set; } = new HashSet<ProductItem>();
-
     }
 }

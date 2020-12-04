@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
+﻿using System;
+using System.Collections.Generic;
 using WarehouseSystemAnalyst.Data.Entities.PalletEntities;
-using WarehouseSystemAnalyst.Data.Entities.SupplyChainEntities;
 using WarehouseSystemAnalyst.Data.Entities.StockEntites;
-using System;
+using WarehouseSystemAnalyst.Data.Entities.SupplyChainEntities;
+using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
 
 namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities

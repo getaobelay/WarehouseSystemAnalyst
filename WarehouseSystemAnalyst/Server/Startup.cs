@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WarehouseSystemAnalyst.Data;
 using WarehouseSystemAnalyst.Server.Data;
 using WarehouseSystemAnalyst.Server.Models;
 
@@ -38,6 +39,7 @@ namespace WarehouseSystemAnalyst.Server
             services.AddAuthentication()
                 .AddIdentityServerJwt();
 
+            services.GetServices();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

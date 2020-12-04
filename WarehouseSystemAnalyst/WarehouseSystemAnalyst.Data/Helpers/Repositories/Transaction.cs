@@ -23,13 +23,13 @@ namespace WarehouseSystemAnalyst.Data.Helpers.Repositories
                 where TDestinationEntity : class, IBaseEntity, new()
             => new ListTransaction<TSourceEntity, TDestinationEntity>(source: source, destination: destination);
 
-
         public static ListTransaction<TSourceEntity, TDestinationEntity>
             ListsEmpty<TSourceEntity, TDestinationEntity>()
                 where TDestinationEntity : class, IBaseEntity, new()
                 where TSourceEntity : class, IBaseEntity, new() =>
             new ListTransaction<TSourceEntity, TDestinationEntity>(source: default, destination: default);
     }
+
     public static class Transaction
     {
         public static Transaction<TSourceEntity, TDestinationEntity>
@@ -48,8 +48,7 @@ namespace WarehouseSystemAnalyst.Data.Helpers.Repositories
             Found<TSourceEntity, TDestinationEntity>(TSourceEntity source, TDestinationEntity destination)
                 where TDestinationEntity : class, IBaseEntity, new()
                 where TSourceEntity : class, IBaseEntity, new()
-            => new Transaction<TSourceEntity, TDestinationEntity>(source: source,destination: destination);
-
+            => new Transaction<TSourceEntity, TDestinationEntity>(source: source, destination: destination);
 
         public static Transaction<TSourceEntity, TDestinationEntity>
             Empty<TSourceEntity, TDestinationEntity>()
@@ -70,9 +69,7 @@ namespace WarehouseSystemAnalyst.Data.Helpers.Repositories
 
         public TSourceEntity source { get; set; }
         public TDestinationEntity destination { get; set; }
-
     }
-
 
     public class ListTransaction<TSourceEntity, TDestinationEntity>
        where TSourceEntity : class, IBaseEntity, new()
@@ -86,6 +83,5 @@ namespace WarehouseSystemAnalyst.Data.Helpers.Repositories
 
         public IEnumerable<TSourceEntity> source { get; set; }
         public IEnumerable<TDestinationEntity> destination { get; set; }
-
     }
 }

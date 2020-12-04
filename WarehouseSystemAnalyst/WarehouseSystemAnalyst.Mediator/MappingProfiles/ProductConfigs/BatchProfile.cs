@@ -10,6 +10,7 @@ namespace WarehouseSystemAnalyst.Mediator.MappingProfiles.ProductConfigs
         {
             CreateMap<Batch, BatchDto>().ReverseMap();
             CreateMap<Batch, BatchDto>()
-                       .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.ProductName));        }
+                       .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.ProductName));
+        }
     }
 }

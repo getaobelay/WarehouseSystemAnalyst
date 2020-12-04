@@ -1,29 +1,29 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
+using WarehouseSystemAnalyst.Data.DataContext;
+using WarehouseSystemAnalyst.Data.Interfaces.Models;
 using WarehouseSystemAnalyst.Interfaces.CQRS.Wrappers;
-using WarehouseSystemAnalyst.Mediator.Interfaces.Models;
+using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
 
 namespace WarehouseSystemAnalyst.Mediator.Queries.Handlers
 {
-    public class ListQueryHandler<TEntity, TDto, TQuery, TContext> :
-        IQueryHandlerWrapper<TQuery, TEntity, TContext>
-        where TEntity : class, new()
+    public class ListQueryHandler<TEntity, TDto, TQuery> :
+        IQueryHandlerWrapper<TQuery, TEntity>
+        where TEntity : class, IBaseEntity, new()
         where TDto : class, new()
-        where TContext : DbContext, new()
         where TQuery : class, IQueryWrapper<TEntity>, new()
     {
-
-        public ListQueryHandler(IWarehouseContext<TContext, TEntity> context)
+        public ListQueryHandler(IWarehouseContext<WarehouseDbContext, TEntity> context)
         {
-            Context = context;
+            WarehouseContext = context;
         }
 
-        public IWarehouseContext<TContext, TEntity> Context { get; set; }
+        public IWarehouseContext<WarehouseDbContext, TEntity> WarehouseContext { get; set; }
 
         public async Task<IQueryResponse<TEntity>> Handle(TQuery request, CancellationToken cancellationToken)
         {
-            var result = await Context.Repository.GetAllAsync();
+            var result = await WarehouseContext.Repository.GetAllAsync();
             throw new System.NotImplementedException();
         }
     }

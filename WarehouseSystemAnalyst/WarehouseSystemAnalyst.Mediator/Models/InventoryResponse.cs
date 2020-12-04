@@ -18,7 +18,6 @@
     //public class InventoryResponse<TModel> : CommandResponse<TModel>, IQuantityResponse<TModel>
     //    where TModel : class, new()
     //{
-
     //    public InventoryResponse(TModel model, string message, bool error) : base(model, message, error)
     //    {
     //    }
@@ -31,7 +30,6 @@
 
     //    public int AvailableQuantity { get; set; }
     //    public int AvailableItems { get; set; }
-
 
     //}
 }

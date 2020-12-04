@@ -6,7 +6,6 @@ namespace WarehouseSystemAnalyst.Data.Models.Dtos.ProductDtos
 {
     public class BatchDto
     {
-
         public string BatchID { get; set; }
         public string BatchPallet { get; set; }
         public DateTime ExpriationDate { get; set; }

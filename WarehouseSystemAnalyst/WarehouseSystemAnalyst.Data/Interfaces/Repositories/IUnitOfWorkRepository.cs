@@ -7,10 +7,15 @@ namespace WarehouseSystemAnalyst.Data.Interfaces.Repositories
         where TContext : DbContext, new()
     {
         TContext Context { get; }
+
         Task CreateTransactionAsync();
+
         Task CommitAsync();
+
         Task RollbackAsync();
+
         Task SaveChangesAsync();
+
         void Dispose();
     }
 }

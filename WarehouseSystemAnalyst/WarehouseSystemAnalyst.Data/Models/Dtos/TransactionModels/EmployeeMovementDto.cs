@@ -1,6 +1,5 @@
-﻿using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
-using WarehouseSystemAnalyst.Data.Entities.ContactEntities;
-using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
+﻿using WarehouseSystemAnalyst.Data.Entities.ContactEntities;
+using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
 
 namespace WarehouseSystemAnalyst.Data.Models.Dtos.TransactionModels
 {

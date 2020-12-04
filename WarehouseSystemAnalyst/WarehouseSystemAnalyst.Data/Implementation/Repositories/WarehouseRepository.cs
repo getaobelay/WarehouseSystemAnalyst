@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
+﻿using arehouseSystemAnalyst.Data.Interfaces.Repositories;
+using System;
+using System.Threading.Tasks;
+using WarehouseSystemAnalyst.Data.DataContext;
+using WarehouseSystemAnalyst.Data.Helpers.Repositories;
 using WarehouseSystemAnalyst.Data.Implementation.BaseRepositories;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
-using WarehouseSystemAnalyst.Data.DataContext;
 using WarehouseSystemAnalyst.Data.Interfaces.Repositories;
-using arehouseSystemAnalyst.Data.Interfaces.Repositories;
-using System.Threading.Tasks;
-using WarehouseSystemAnalyst.Data.Helpers.Repositories;
-using System.Linq.Expressions;
-using System.Linq;
 
 namespace WarehouseSystemAnalyst.Data.Implementation.Repositories
 {
@@ -19,7 +14,7 @@ namespace WarehouseSystemAnalyst.Data.Implementation.Repositories
         where TSource : class, IBaseWarehouse, new()
         where TDestension : class, IBaseWarehouse, new()
     {
-        protected WarehouseRepository(IUnitOfWorkRepository<WarehouseDbContext> unitOfWork) : base(unitOfWork)
+        public WarehouseRepository(IUnitOfWorkRepository<WarehouseDbContext> unitOfWork) : base(unitOfWork)
         {
         }
 

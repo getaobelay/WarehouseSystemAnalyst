@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehouseSystemAnalyst.Data
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehouseSystemAnalyst.Mediator", "WarehouseSystemAnalyst\WarehouseSystemAnalyst.Mediator\WarehouseSystemAnalyst.Mediator.csproj", "{81CFE7C1-41FE-4BB4-9610-BB9229814BCD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehouseSystemAnalyst.DataTests", "WarehouseSystemAnalyst\WarehouseSystemAnalyst.DataTests\WarehouseSystemAnalyst.DataTests.csproj", "{4E686D55-DF73-4E0E-BD58-26D25CD21D29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehouseSystemAnalyst.Tests", "WarehouseSystemAnalyst\WarehouseSystemAnalyst.Tests\WarehouseSystemAnalyst.Tests.csproj", "{510E63B3-642E-4D1A-BF4C-0E38D20B1316}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +47,10 @@ Global
 		{81CFE7C1-41FE-4BB4-9610-BB9229814BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81CFE7C1-41FE-4BB4-9610-BB9229814BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81CFE7C1-41FE-4BB4-9610-BB9229814BCD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4E686D55-DF73-4E0E-BD58-26D25CD21D29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E686D55-DF73-4E0E-BD58-26D25CD21D29}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E686D55-DF73-4E0E-BD58-26D25CD21D29}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E686D55-DF73-4E0E-BD58-26D25CD21D29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{510E63B3-642E-4D1A-BF4C-0E38D20B1316}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{510E63B3-642E-4D1A-BF4C-0E38D20B1316}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{510E63B3-642E-4D1A-BF4C-0E38D20B1316}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{510E63B3-642E-4D1A-BF4C-0E38D20B1316}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

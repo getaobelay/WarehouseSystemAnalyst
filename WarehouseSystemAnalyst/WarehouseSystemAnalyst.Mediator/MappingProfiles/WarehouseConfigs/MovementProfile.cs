@@ -1,8 +1,4 @@
-﻿using AutoMapper;
-using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
-using WarehouseSystemAnalyst.Data.Models.Dtos.WarehouseDtos;
-
-namespace WarehouseSystemAnalyst.Mediator.MappingProfiles.WarehouseConfigs
+﻿namespace WarehouseSystemAnalyst.Mediator.MappingProfiles.WarehouseConfigs
 {
     /*
     public class MovementProfile : Profile

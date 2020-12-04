@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using WarehouseSystemAnalyst.Data.DataContext;
 using WarehouseSystemAnalyst.Data.Interfaces.Repositories;
 
 namespace WarehouseSystemAnalyst.Data.Implementation.Repositories
@@ -12,13 +12,17 @@ namespace WarehouseSystemAnalyst.Data.Implementation.Repositories
     {
         private bool _disposed;
         private IDbContextTransaction _objTransaction;
+
         public UnitOfWorkRepository()
         {
             Context = new TContext();
         }
 
-        public TContext Context { get; }
+
+        public TContext Context { get; set; }
+
         public async Task CommitAsync() => await _objTransaction.CommitAsync();
+
         public async Task CreateTransactionAsync() => _objTransaction = await Context.Database.BeginTransactionAsync();
 
         public async void Dispose()
@@ -40,7 +44,6 @@ namespace WarehouseSystemAnalyst.Data.Implementation.Repositories
             await _objTransaction.RollbackAsync();
             await _objTransaction.DisposeAsync();
         }
-
 
         public async Task SaveChangesAsync() => await Context.SaveChangesAsync();
     }

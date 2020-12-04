@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using WarehouseSystemAnalyst.Data.Models.Dtos.ProductDtos;
 
 namespace WarehouseSystemAnalyst.Data.Models.Dtos.ProductDtos
 {

@@ -7,8 +7,6 @@ namespace WarehouseSystemAnalyst.Data.Models.Dtos.InventoryDtos
 {
     public class InventoryDto
     {
-
-
         public string InventoryID { get; set; }
         public string ProductName { get; set; }
         public string BatchPallet { get; set; }
@@ -30,7 +28,6 @@ namespace WarehouseSystemAnalyst.Data.Models.Dtos.InventoryDtos
             {
                 foreach (var batch in Batches)
                 {
-
                     quanitity += batch.Quantity;
                 }
             }
@@ -49,7 +46,6 @@ namespace WarehouseSystemAnalyst.Data.Models.Dtos.InventoryDtos
             {
                 foreach (var product in Products)
                 {
-
                     quanitity += product.Quantity;
                 }
             }

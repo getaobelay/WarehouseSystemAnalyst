@@ -6,8 +6,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
 using WarehouseSystemAnalyst.Data.Entities.ContactEntities;
-using WarehouseSystemAnalyst.Data.Interfaces.Models;
 using WarehouseSystemAnalyst.Data.Entities.Enrollment;
 using WarehouseSystemAnalyst.Data.Entities.MissionEntites;
 using WarehouseSystemAnalyst.Data.Entities.PalletEntities;
@@ -15,9 +15,8 @@ using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
 using WarehouseSystemAnalyst.Data.Entities.StockEntites;
 using WarehouseSystemAnalyst.Data.Entities.SupplyChainEntities;
 using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
-using WarehouseSystemAnalyst.Data.Implementation.BaseEntites;
 using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes;
-using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
+using WarehouseSystemAnalyst.Data.Interfaces.Models;
 
 namespace WarehouseSystemAnalyst.Data.DataContext
 {
@@ -61,6 +60,7 @@ namespace WarehouseSystemAnalyst.Data.DataContext
         public DbSet<Order> Orders { get; set; }
         public DbSet<WarehouseItem> WarehouseItems { get; set; }
         public DbSet<Audit> Audits { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

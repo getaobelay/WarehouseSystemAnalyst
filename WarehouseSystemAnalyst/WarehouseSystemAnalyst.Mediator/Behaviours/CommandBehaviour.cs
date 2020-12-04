@@ -4,15 +4,17 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using WarehouseSystemAnalyst.Data.DataContext;
+using WarehouseSystemAnalyst.Data.Interfaces.Models;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Behaviours;
 
 namespace WarehouseSystemAnalyst.Mediator.Behaviours
 {
     public class CommandBehaviour<TRequest, TResponse, TModel> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : ICommandPipe<WarehouseDbContext, TModel>
-        where TModel : class, new()
+        where TModel : class, IBaseEntity, new()
     {
         private readonly ILogger<CommandBehaviour<TRequest, TResponse, TModel>> _logger;
+
         public CommandBehaviour(ILogger<CommandBehaviour<TRequest, TResponse, TModel>> logger)
         {
             _logger = logger ?? throw new ArgumentException(nameof(ILogger));
@@ -33,7 +35,6 @@ namespace WarehouseSystemAnalyst.Mediator.Behaviours
 
                 return response;
             }
-
             catch (Exception e)
             {
                 _logger.LogInformation($"Rollback transaction executed {typeof(TRequest).Name}");

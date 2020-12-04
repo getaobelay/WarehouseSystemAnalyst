@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using WarehouseSystemAnalyst.Mediator.Interfaces.Base;
+﻿using WarehouseSystemAnalyst.Mediator.Interfaces.Base;
 using WarehouseSystemAnalyst.Server.Interfaces.Base;
 
 namespace WarehouseSystemAnalyst.Server.Interfaces.Controllers

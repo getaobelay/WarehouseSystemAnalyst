@@ -1,5 +1,5 @@
 ﻿using System;
-using WarehouseSystemAnalyst.Mediator.Interfaces.Models;
+using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
 
 namespace WarehouseSystemAnalyst.Mediator.Models
 {

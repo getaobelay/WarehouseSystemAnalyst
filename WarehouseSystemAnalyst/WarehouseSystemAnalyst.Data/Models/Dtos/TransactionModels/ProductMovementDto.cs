@@ -1,5 +1,5 @@
-﻿using WarehouseSystemAnalyst.Data.Models.Dtos.WarehouseDtos;
-using WarehouseSystemAnalyst.Data.Models.Dtos.ProductDtos;
+﻿using WarehouseSystemAnalyst.Data.Models.Dtos.ProductDtos;
+using WarehouseSystemAnalyst.Data.Models.Dtos.WarehouseDtos;
 
 namespace WarehouseSystemAnalyst.Data.Models.Dtos.TransactionModels
 {

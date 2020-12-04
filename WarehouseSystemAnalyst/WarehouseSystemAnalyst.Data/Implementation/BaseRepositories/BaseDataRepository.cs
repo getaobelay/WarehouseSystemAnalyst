@@ -16,15 +16,17 @@ namespace WarehouseSystemAnalyst.Data.Implementation.BaseRepositories
         internal DbSet<TEntity> _entities { get; set; }
         private bool _isDisposed;
 
-        protected BaseDataRepository(IUnitOfWorkRepository<WarehouseDbContext> unitOfWork) : this(unitOfWork.Context)
+        public BaseDataRepository(IUnitOfWorkRepository<WarehouseDbContext> unitOfWork) : this(unitOfWork.Context)
         {
             UnitOfWork = unitOfWork;
         }
+
         public BaseDataRepository(WarehouseDbContext context)
         {
             _isDisposed = true;
             Context = context;
         }
+
         public WarehouseDbContext Context { get; set; }
 
         protected virtual DbSet<TEntity> Entities => _entities ??= Context.Set<TEntity>();
@@ -35,6 +37,7 @@ namespace WarehouseSystemAnalyst.Data.Implementation.BaseRepositories
         {
             return await Task.FromResult(_entities);
         }
+
         public virtual async Task<TEntity> GetByIdAsync(object Id)
         {
             if (Id == null)
@@ -94,7 +97,6 @@ namespace WarehouseSystemAnalyst.Data.Implementation.BaseRepositories
 
             if (entityToDelete == null)
                 throw new ArgumentNullException(nameof(entityToDelete));
-
             else
             {
                 if (Context == null || _isDisposed)
@@ -118,7 +120,6 @@ namespace WarehouseSystemAnalyst.Data.Implementation.BaseRepositories
                 await Context.DisposeAsync();
             _isDisposed = true;
         }
-
 
         public virtual async Task<IEnumerable<TEntity>> GetQuery(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includes = "")
         {

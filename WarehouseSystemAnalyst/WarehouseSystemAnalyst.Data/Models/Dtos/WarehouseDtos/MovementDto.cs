@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using WarehouseSystemAnalyst.Data.Models.Dtos.ProductDtos;
+﻿using WarehouseSystemAnalyst.Data.Models.Dtos.ProductDtos;
 using WarehouseSystemAnalyst.Data.Models.Dtos.UserModels;
 
 namespace WarehouseSystemAnalyst.Data.Models.Dtos.WarehouseDtos
 {
     public class MovementDto
     {
-
         public string MovementID { get; set; }
         public string ProductPallet { get; set; }
         public string BatchPallet { get; set; }
@@ -26,6 +24,5 @@ namespace WarehouseSystemAnalyst.Data.Models.Dtos.WarehouseDtos
         public ProductPackagesDto ProductPackage { get; set; }
         public BatchDto Batch { get; set; }
         public EmployeeDto Employee { get; set; }
-
     }
 }

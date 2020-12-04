@@ -19,7 +19,6 @@ namespace WarehouseSystemAnalyst.Data.Models.Dtos.ProductDtos
         public int StockQuantity { get; set; }
         public string UnitOfMesure { get; set; }
 
-
         public CategoryDto Category { get; set; }
         public SubCategoryDto SubCategory { get; set; }
         public InventoryDto Inventory { get; set; }

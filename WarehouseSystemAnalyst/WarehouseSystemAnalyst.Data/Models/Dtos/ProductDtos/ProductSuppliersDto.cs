@@ -4,7 +4,6 @@ namespace WarehouseSystemAnalyst.Data.Models.Dtos.ProductDtos
 {
     public class ProductSuppliersDto
     {
-
         public string ProductID { get; set; }
 
         public ProductDto Product { get; set; }

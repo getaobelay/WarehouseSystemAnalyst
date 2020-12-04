@@ -7,6 +7,5 @@ namespace WarehouseSystemAnalyst.Data.Models.Dtos.ProductDtos
         public string MesureID { get; set; }
         public string Measurement { get; set; }
         public IEnumerable<ProductMesuresDto> ProductMesures { get; set; }
-
     }
 }

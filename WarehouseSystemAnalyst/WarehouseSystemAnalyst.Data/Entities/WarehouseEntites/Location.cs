@@ -23,9 +23,9 @@ namespace WarehouseSystemAnalyst.Data.Entities.WarehouseEntites
 
         //public virtual Warehouse Warehouse { get; set; }
         public virtual ICollection<AllocationWarehouse> AllocationWarehouses { get; set; }
+
         public virtual ICollection<GoodsWarehouse> GoodsWarehouses { get; set; }
         public virtual ICollection<ShippingWarehouse> ShippingWarehouses { get; set; }
         public virtual ICollection<WarehouseItem> WarehouseItems { get; set; }
-
     }
 }
