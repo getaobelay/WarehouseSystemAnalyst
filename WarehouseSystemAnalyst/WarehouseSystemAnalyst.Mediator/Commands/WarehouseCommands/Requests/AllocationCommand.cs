@@ -6,11 +6,11 @@ using WarehouseSystemAnalyst.Mediator.Dtos.SupplyChainEntities;
 using WarehouseSystemAnalyst.Mediator.Dtos.WarehouseDtos;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
 
-namespace WarehouseSystemAnalyst.Mediator.Commands.StockCommands.Requests
+namespace WarehouseSystemAnalyst.Mediator.Commands.WarehouseCommands.Requests
 {
-    public class AlloactionRequest<TEntity, TDto> : IRequest<ICommandResponse<TDto>>
+    public class AllocationCommand<TEntity, TDto> : IRequest<ICommandResponse<TDto>>
         where TEntity : class, IBaseWarehouse, new()
-        where TDto : BaseDto, new()
+        where TDto : class, IBaseWarehouseDto, new()
     {
         public object Id { get; set; }
         public OrderDto OrderDto { get; set; }

@@ -5,7 +5,7 @@ namespace WarehouseSystemAnalyst.Mediator.Interfaces.Responses
 {
 
     public interface IListQueryResponse<TDto>
-      where TDto : BaseDto, new()
+        where TDto : class, IBaseDto, new()
     {
         public IEnumerable<TDto> ViewModelList { get; set; }
         public bool Error { get; set; }

@@ -2,10 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
-using WarehouseSystemAnalyst.Data.Implementation.BaseEntites;
 using WarehouseSystemAnalyst.Data.Implementation.Repositories;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
-using WarehouseSystemAnalyst.Mediator;
+using WarehouseSystemAnalyst.Mediator.Dtos;
 using WarehouseSystemAnalyst.Mediator.Helpers;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Base;
 using WarehouseSystemAnalyst.Server.Interfaces.Base;
@@ -15,7 +14,7 @@ namespace WarehouseSystemAnalyst.Server.BaseContollers
     public class BaseController<TRequestEntity, TResponseDto, TResponse, TRequest> : ControllerBase,
         IBaseController<TRequestEntity, TResponseDto, TResponse, TRequest>
         where TRequestEntity : class, IBaseEntity, new()
-        where TResponseDto : BaseDtoModel, new()
+        where TResponseDto : class, IBaseDto, new()
         where TResponse : class, IBaseResponse<TResponseDto>, new()
         where TRequest : class, IBaseRequest<TRequestEntity, TResponseDto>, new()
     {

@@ -1,16 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
+using WarehouseSystemAnalyst.Mediator.Dtos;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Base;
-using WarehouseSystemAnalyst.Mediator.Requests;
 using WarehouseSystemAnalyst.Server.Interfaces.Base;
 
 namespace WarehouseSystemAnalyst.Server.Interfaces.Controllers
 {
+    /// <summary>
+    /// cleaned
+    /// </summary>
+    /// <typeparam name="TRequestEntity"></typeparam>
+    /// <typeparam name="TResponseDto"></typeparam>
+    /// <typeparam name="TResponse"></typeparam>
+    /// <typeparam name="TRequest"></typeparam>
     public interface IIStockController<TRequestEntity, TResponseDto, TResponse, TRequest> :
         IBaseController<TRequestEntity, TResponseDto, TResponse, TRequest>
-        where TRequestEntity : class, new()
-        where TResponseDto : class, new()
+        where TRequestEntity : class, IBaseEntity, new()
+        where TResponseDto : class, IBaseDto, new()
         where TResponse : class, IBaseResponse<TResponseDto>, new()
         where TRequest : class, IBaseRequest<TRequestEntity, TResponseDto>, new()
     {

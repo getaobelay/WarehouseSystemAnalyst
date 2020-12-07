@@ -41,7 +41,6 @@ namespace WarehouseSystemAnalyst.Server
             services.AddAuthentication()
                 .AddIdentityServerJwt();
 
-            services.GetServices();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

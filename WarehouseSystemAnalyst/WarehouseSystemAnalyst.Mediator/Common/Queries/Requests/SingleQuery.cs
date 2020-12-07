@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Linq.Expressions;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
-using WarehouseSystemAnalyst.Interfaces.CQRS.Wrappers;
 using WarehouseSystemAnalyst.Mediator.Dtos;
+using WarehouseSystemAnalyst.Mediator.Interfaces.Wrappers;
 
-namespace WarehouseSystemAnalyst.Mediator.Queries.Requests
+namespace WarehouseSystemAnalyst.Mediator.Common.Queries.Requests
 {
     public class SingleQuery<TEntity, TDto> : IQueryRequest<TEntity, TDto>
         where TEntity : class, IBaseEntity, new()

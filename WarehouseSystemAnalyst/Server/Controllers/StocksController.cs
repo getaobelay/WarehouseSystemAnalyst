@@ -1,14 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using WarehouseSystemAnalyst.Data.Entities.StockEntites;
-using WarehouseSystemAnalyst.Data.Models.Dtos.InventoryDtos;
-using WarehouseSystemAnalyst.Mediator.Interfaces.Base;
 using WarehouseSystemAnalyst.Server.BaseContollers;
 using WarehouseSystemAnalyst.Server.Interfaces.Controllers;
-using WarehouseSystemAnalyst.Mediator.Requests;
 using System.Threading.Tasks;
 using WarehouseSystemAnalyst.Mediator.Dtos.InventoryDtos;
 using WarehouseSystemAnalyst.Data.Implementation.Repositories;
+using WarehouseSystemAnalyst.Mediator.Common.Requests;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

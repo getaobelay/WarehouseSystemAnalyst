@@ -6,11 +6,11 @@ using WarehouseSystemAnalyst.Data.Interfaces.Models;
 using WarehouseSystemAnalyst.Mediator.Dtos;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
 
-namespace WarehouseSystemAnalyst.Interfaces.CQRS.Wrappers
+namespace WarehouseSystemAnalyst.Mediator.Interfaces.Wrappers
 {
     public interface IListQueryRequest<TEntity, TDto> : IRequest<IListQueryResponse<TDto>>
        where TEntity : class, IBaseEntity, new()
-       where TDto : BaseDto, new()
+        where TDto : class, IBaseDto, new()
     {
         public Expression<Func<TEntity, bool>> Filter { get; set; }
         public Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> OrderBy { get; set; }

@@ -6,12 +6,12 @@ using WarehouseSystemAnalyst.Data.DataContext;
 using WarehouseSystemAnalyst.Data.Implementation.Repositories;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
 using WarehouseSystemAnalyst.Data.Interfaces.Repositories;
-using WarehouseSystemAnalyst.Interfaces.CQRS.Wrappers;
 using WarehouseSystemAnalyst.Mediator.Dtos;
 using WarehouseSystemAnalyst.Mediator.Helpers;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
+using WarehouseSystemAnalyst.Mediator.Interfaces.Wrappers;
 
-namespace WarehouseSystemAnalyst.Mediator.Queries.Handlers
+namespace WarehouseSystemAnalyst.Mediator.Common.Queries.Handlers
 {
     public class ListQueryHandler<TEntity, TDto, TQuery> : IRequestHandler<TQuery, IListQueryResponse<TDto>>
         where TEntity : class, IBaseEntity, new()

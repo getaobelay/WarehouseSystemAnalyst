@@ -4,12 +4,12 @@ using WarehouseSystemAnalyst.Data.Interfaces.Models;
 using WarehouseSystemAnalyst.Mediator.Dtos;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
 
-namespace WarehouseSystemAnalyst.Interfaces.CQRS.Wrappers
+namespace WarehouseSystemAnalyst.Mediator.Interfaces.Wrappers
 {
     public interface ICommandHandlerWrapper<TIn, TEntity, TDto> : IRequestHandler<TIn, ICommandResponse<TDto>>
         where TIn : ICommandRequest<TEntity, TDto>
         where TEntity : class, IBaseEntity, new()
-        where TDto : BaseDto, new()
+        where TDto : class, IBaseDto, new()
     {
         IDataContext<WarehouseDbContext, TEntity> WarehouseContext { get; set; }
     }

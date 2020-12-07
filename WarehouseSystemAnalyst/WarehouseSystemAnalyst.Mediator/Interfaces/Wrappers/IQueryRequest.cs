@@ -6,11 +6,11 @@ using WarehouseSystemAnalyst.Data.Interfaces.Models;
 using WarehouseSystemAnalyst.Mediator.Dtos;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
 
-namespace WarehouseSystemAnalyst.Interfaces.CQRS.Wrappers
+namespace WarehouseSystemAnalyst.Mediator.Interfaces.Wrappers
 {
     public interface IQueryRequest<TEntity, TDto> : IRequest<IQueryResponse<TDto>>
        where TEntity : class, IBaseEntity, new()
-       where TDto : BaseDto, new()
+        where TDto : class, IBaseDto, new()
     {
         public object Id { get; set; }
         public Expression<Func<TEntity, bool>> Filter { get; set; }

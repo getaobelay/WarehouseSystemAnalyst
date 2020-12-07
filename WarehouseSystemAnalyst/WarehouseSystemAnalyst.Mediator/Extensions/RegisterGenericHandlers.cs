@@ -1,15 +1,12 @@
 ﻿using Autofac;
 using MediatR;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
-using WarehouseSystemAnalyst.Mediator.Commands.Handlers.CreateCommands;
-using WarehouseSystemAnalyst.Mediator.Commands.Handlers.DeleteCommands;
-using WarehouseSystemAnalyst.Mediator.Commands.Handlers.UpdateCommands;
-using WarehouseSystemAnalyst.Mediator.Commands.Requests;
-using WarehouseSystemAnalyst.Mediator.Commands.Requests.CreateCommands;
+using WarehouseSystemAnalyst.Mediator.Common.Commands.Handlers;
+using WarehouseSystemAnalyst.Mediator.Common.Commands.Requests;
+using WarehouseSystemAnalyst.Mediator.Common.Queries.Handlers;
+using WarehouseSystemAnalyst.Mediator.Common.Queries.Requests;
 using WarehouseSystemAnalyst.Mediator.Dtos;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
-using WarehouseSystemAnalyst.Mediator.Queries.Handlers;
-using WarehouseSystemAnalyst.Mediator.Queries.Requests;
 
 namespace WarehouseSystemAnalyst.Mediator.Extensions
 {

@@ -6,12 +6,12 @@ using WarehouseSystemAnalyst.Data.DataContext;
 using WarehouseSystemAnalyst.Data.Implementation.Repositories;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
 using WarehouseSystemAnalyst.Data.Interfaces.Repositories;
-using WarehouseSystemAnalyst.Interfaces.CQRS.Wrappers;
+using WarehouseSystemAnalyst.Mediator.Common.Responses;
 using WarehouseSystemAnalyst.Mediator.Dtos;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
-using WarehouseSystemAnalyst.Mediator.Models;
+using WarehouseSystemAnalyst.Mediator.Interfaces.Wrappers;
 
-namespace WarehouseSystemAnalyst.Mediator.Commands.Handlers.DeleteCommands
+namespace WarehouseSystemAnalyst.Mediator.Common.Commands.Handlers
 {
     /// <summary>
     /// Generic mediator handler creates a new record in the database

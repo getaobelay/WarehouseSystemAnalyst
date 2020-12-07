@@ -1,10 +1,10 @@
 ﻿using WarehouseSystemAnalyst.Data.DataContext;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
-using WarehouseSystemAnalyst.Interfaces.CQRS.Wrappers;
 using WarehouseSystemAnalyst.Mediator.Dtos;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
+using WarehouseSystemAnalyst.Mediator.Interfaces.Wrappers;
 
-namespace WarehouseSystemAnalyst.Mediator.Commands.Requests.CreateCommands
+namespace WarehouseSystemAnalyst.Mediator.Common.Commands.Requests
 {
     /// <summary>
     /// this command creates source and destination entities

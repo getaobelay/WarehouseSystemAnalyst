@@ -14,7 +14,7 @@ using WarehouseSystemAnalyst.Mediator.Dtos.ProductDtos;
 using WarehouseSystemAnalyst.Mediator.Dtos.WarehouseDtos;
 using WarehouseSystemAnalyst.Mediator.Extensions;
 
-namespace WarehouseSystemAnalyst.MediatorContainer
+namespace WarehouseSystemAnalyst.Mediator.Helpers
 {
     public static class MediatorContainer
     {
