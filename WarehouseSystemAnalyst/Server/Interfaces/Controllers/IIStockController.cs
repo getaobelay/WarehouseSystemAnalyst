@@ -8,7 +8,7 @@ using WarehouseSystemAnalyst.Server.Interfaces.Base;
 namespace WarehouseSystemAnalyst.Server.Interfaces.Controllers
 {
     /// <summary>
-    /// cleaned
+    /// validation
     /// </summary>
     /// <typeparam name="TRequestEntity"></typeparam>
     /// <typeparam name="TResponseDto"></typeparam>

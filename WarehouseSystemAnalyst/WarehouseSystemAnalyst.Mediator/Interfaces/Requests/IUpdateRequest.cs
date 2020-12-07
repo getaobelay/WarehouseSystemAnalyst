@@ -3,9 +3,9 @@ using WarehouseSystemAnalyst.Data.Interfaces.Models;
 using WarehouseSystemAnalyst.Mediator.Dtos;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
 
-namespace WarehouseSystemAnalyst.Mediator.Interfaces.Wrappers
+namespace WarehouseSystemAnalyst.Mediator.Interfaces.Requests
 {
-    public interface ICommandRequest<TEntity, TDto> : IRequest<ICommandResponse<TDto>>
+    public interface IUpdateRequest<TEntity, TDto> : IRequest<ICommandResponse<TDto>>
         where TEntity : class, IBaseEntity, new()
         where TDto : class, IBaseDto, new()
     {

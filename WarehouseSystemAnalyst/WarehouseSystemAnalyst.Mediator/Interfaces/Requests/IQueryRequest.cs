@@ -6,7 +6,7 @@ using WarehouseSystemAnalyst.Data.Interfaces.Models;
 using WarehouseSystemAnalyst.Mediator.Dtos;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
 
-namespace WarehouseSystemAnalyst.Mediator.Interfaces.Wrappers
+namespace WarehouseSystemAnalyst.Mediator.Interfaces.Requests
 {
     public interface IQueryRequest<TEntity, TDto> : IRequest<IQueryResponse<TDto>>
        where TEntity : class, IBaseEntity, new()

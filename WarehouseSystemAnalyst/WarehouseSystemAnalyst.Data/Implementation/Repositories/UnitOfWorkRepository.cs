@@ -18,6 +18,11 @@ namespace WarehouseSystemAnalyst.Data.Implementation.Repositories
             Context = new TContext();
         }
 
+        public UnitOfWorkRepository(TContext context)
+        {
+            Context = context;
+        }
+
 
         public TContext Context { get; set; }
 

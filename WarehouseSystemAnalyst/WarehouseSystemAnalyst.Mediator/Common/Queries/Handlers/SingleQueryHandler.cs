@@ -6,8 +6,8 @@ using WarehouseSystemAnalyst.Data.Implementation.Repositories;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
 using WarehouseSystemAnalyst.Data.Interfaces.Repositories;
 using WarehouseSystemAnalyst.Mediator.Dtos;
+using WarehouseSystemAnalyst.Mediator.Interfaces.Requests;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
-using WarehouseSystemAnalyst.Mediator.Interfaces.Wrappers;
 
 namespace WarehouseSystemAnalyst.Mediator.Common.Queries.Handlers
 {

@@ -2,6 +2,7 @@
 using WarehouseSystemAnalyst.Data.DataContext;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
 using WarehouseSystemAnalyst.Mediator.Dtos;
+using WarehouseSystemAnalyst.Mediator.Interfaces.Requests;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
 
 namespace WarehouseSystemAnalyst.Mediator.Interfaces.Wrappers

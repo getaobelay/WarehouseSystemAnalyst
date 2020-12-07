@@ -9,8 +9,8 @@ using WarehouseSystemAnalyst.Data.Interfaces.Repositories;
 using WarehouseSystemAnalyst.Mediator.Common.Responses;
 using WarehouseSystemAnalyst.Mediator.Dtos;
 using WarehouseSystemAnalyst.Mediator.Helpers;
+using WarehouseSystemAnalyst.Mediator.Interfaces.Requests;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
-using WarehouseSystemAnalyst.Mediator.Interfaces.Wrappers;
 
 namespace WarehouseSystemAnalyst.Mediator.Common.Commands.Handlers
 {
@@ -22,7 +22,7 @@ namespace WarehouseSystemAnalyst.Mediator.Common.Commands.Handlers
     public class CreateCommandHandler<TEntity, TDto, TCommand> : IRequestHandler<TCommand, ICommandResponse<TDto>>
     where TEntity : class, IBaseEntity, new()
     where TDto : BaseDto, new()
-    where TCommand : class, ICommandRequest<TEntity, TDto>, new()
+    where TCommand : class, ICreateRequest<TEntity, TDto>, new()
     {
         private readonly IBaseRepository<TEntity> repository;
 

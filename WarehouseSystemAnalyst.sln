@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehouseSystemAnalyst.Data
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehouseSystemAnalyst.Mediator", "WarehouseSystemAnalyst\WarehouseSystemAnalyst.Mediator\WarehouseSystemAnalyst.Mediator.csproj", "{81CFE7C1-41FE-4BB4-9610-BB9229814BCD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseSystemAnalyst.DataTests", "WarehouseSystemAnalyst\WarehouseSystemAnalyst.DataTests\WarehouseSystemAnalyst.DataTests.csproj", "{049B2E71-B81A-42D3-A03C-2F2270BA4D5C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{81CFE7C1-41FE-4BB4-9610-BB9229814BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81CFE7C1-41FE-4BB4-9610-BB9229814BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81CFE7C1-41FE-4BB4-9610-BB9229814BCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{049B2E71-B81A-42D3-A03C-2F2270BA4D5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{049B2E71-B81A-42D3-A03C-2F2270BA4D5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{049B2E71-B81A-42D3-A03C-2F2270BA4D5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{049B2E71-B81A-42D3-A03C-2F2270BA4D5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
