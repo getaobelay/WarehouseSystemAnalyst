@@ -1,10 +1,10 @@
 ﻿namespace WarehouseSystemAnalyst.Data.DataContext
 {
-    public class WarehouseDbContextUserWrapper
+    public class WarehouseDbContextWrapper
     {
         public WarehouseDbContext Context;
 
-        public WarehouseDbContextUserWrapper(WarehouseDbContext context, ICurrentUser currentUser)
+        public WarehouseDbContextWrapper(WarehouseDbContext context, ICurrentUser currentUser)
         {
             context.CurrentUser = currentUser;
             this.Context = context;

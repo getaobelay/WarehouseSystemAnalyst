@@ -2,17 +2,16 @@
 using System;
 using System.Threading.Tasks;
 using WarehouseSystemAnalyst.Data.DataContext;
+using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
 using WarehouseSystemAnalyst.Data.Helpers.Repositories;
-using WarehouseSystemAnalyst.Data.Implementation.BaseRepositories;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
 using WarehouseSystemAnalyst.Data.Interfaces.Repositories;
 
 namespace WarehouseSystemAnalyst.Data.Implementation.Repositories
 {
-    public class WarehouseRepository<TSource, TDestension> :
-        BaseTransactionRepository<TSource, TDestension>, IWarehouseRepository<TSource, TDestension>
-        where TSource : class, IBaseWarehouse, new()
-        where TDestension : class, IBaseWarehouse, new()
+
+    public class WarehouseRepository<TEntity> : DataRepository<TEntity>, IWarehouseRepository<TEntity>
+       where TEntity : class, IBaseWarehouse, new()
     {
         public WarehouseRepository(IUnitOfWorkRepository<WarehouseDbContext> unitOfWork) : base(unitOfWork)
         {
@@ -22,27 +21,22 @@ namespace WarehouseSystemAnalyst.Data.Implementation.Repositories
         {
         }
 
-        public Task<TSource> SourceItemsAvailability(string productId, string batchId, int Quantity)
+        public Task<TEntity> MoveWarehouseItem(object Id, WarehouseItem item)
         {
             throw new NotImplementedException();
         }
 
-        public Task<TDestension> DestinationItemsAvailability(string productId, string batchId, int Quantity)
+        public Task<TEntity> ReturnAlloactionItem(object Id, WarehouseItem warehouseItems)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Transaction<TSource, TDestension>> TotalItemsAvailability(string productId, string batchId, int Quantity)
+        public Task<TEntity> ReturnWarehouseItem(object Id, WarehouseItem item)
         {
             throw new NotImplementedException();
         }
 
-        public Task<TDestension> MoveItemToDestination(string warehouseItemId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<TSource> MoveItemToSource<TSourceEntity>(string warehouseItemId)
+        public Task<TEntity> UpdateAlloaction(object Id, Allocation allocation)
         {
             throw new NotImplementedException();
         }

@@ -1,22 +1,16 @@
 ﻿using System.Threading.Tasks;
-using WarehouseSystemAnalyst.Data.Helpers.Repositories;
-using WarehouseSystemAnalyst.Data.Interfaces.Base;
+using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
+using WarehouseSystemAnalyst.Data.Interfaces.Repositories;
 
 namespace arehouseSystemAnalyst.Data.Interfaces.Repositories
 {
-    public interface IWarehouseRepository<TSource, TDestination> : ITransactionRepository<TSource, TDestination>
-        where TSource : class, IBaseWarehouse, new()
-        where TDestination : class, IBaseWarehouse, new()
+    public interface IWarehouseRepository<TEntity> : IDataRepository<TEntity>
+        where TEntity : class, IBaseWarehouse, new()
     {
-        Task<TSource> SourceItemsAvailability(string productId, string batchId, int Quantity);
-
-        Task<TDestination> DestinationItemsAvailability(string productId, string batchId, int Quantity);
-
-        Task<Transaction<TSource, TDestination>> TotalItemsAvailability(string productId, string batchId, int Quantity);
-
-        Task<TDestination> MoveItemToDestination(string warehouseItemId);
-
-        Task<TSource> MoveItemToSource<TSourceEntity>(string warehouseItemId);
+        Task<TEntity> ReturnWarehouseItem(object Id, WarehouseItem item);
+        Task<TEntity> MoveWarehouseItem(object Id, WarehouseItem item);
+        Task<TEntity> UpdateAlloaction(object Id, Allocation allocation);
+        Task<TEntity> ReturnAlloactionItem(object Id, WarehouseItem warehouseItems);
     }
 }

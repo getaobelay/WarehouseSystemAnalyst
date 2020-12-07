@@ -1,15 +1,16 @@
 ﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
 using WarehouseSystemAnalyst.Data.DataContext;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
+using WarehouseSystemAnalyst.Mediator.Dtos;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
 
 namespace WarehouseSystemAnalyst.Interfaces.CQRS.Wrappers
 {
-    public interface ICommandHandlerWrapper<TIn, TOut> : IRequestHandler<TIn, ICommandResponse<TOut>>
-        where TIn : ICommandWrapper<TOut>
-        where TOut : class, IBaseEntity, new()
+    public interface ICommandHandlerWrapper<TIn, TEntity, TDto> : IRequestHandler<TIn, ICommandResponse<TDto>>
+        where TIn : ICommandRequest<TEntity, TDto>
+        where TEntity : class, IBaseEntity, new()
+        where TDto : BaseDto, new()
     {
-        public IWarehouseContext<WarehouseDbContext, TOut> WarehouseContext { get; set; }
+        IDataContext<WarehouseDbContext, TEntity> WarehouseContext { get; set; }
     }
 }

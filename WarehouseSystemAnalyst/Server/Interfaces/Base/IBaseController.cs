@@ -4,11 +4,12 @@ using WarehouseSystemAnalyst.Mediator.Interfaces.Base;
 
 namespace WarehouseSystemAnalyst.Server.Interfaces.Base
 {
-    public interface IBaseController<TRequestModel, TResponseModel, TResponse, TRequest>
-        where TRequestModel : class, new()
-        where TResponseModel : class, new()
-        where TResponse : class, IBaseResponse<TResponseModel>, new()
-        where TRequest : class, IBaseRequest<TRequestModel, TResponseModel>, new()
+
+    public interface IBaseController<TRequestEntity, TResponseDto, TResponse, TRequest>
+         where TRequestEntity : class, new()
+         where TResponseDto : class, new()
+         where TResponse : class, IBaseResponse<TResponseDto>, new()
+         where TRequest : class, IBaseRequest<TRequestEntity, TResponseDto>, new()
     {
         Task<ActionResult<TResponse>> GetAsync(object Id);
 
@@ -19,10 +20,10 @@ namespace WarehouseSystemAnalyst.Server.Interfaces.Base
         Task<ActionResult<TResponse>> DeleteAsync(object Id);
 
         //Task<ActionResult<TResponse>> DeleteAsync(object Id, CancellationToken cancellationToken);
-        Task<ActionResult<TResponse>> PutAsync(object Id, TResponseModel entity);
+        Task<ActionResult<TResponse>> PutAsync(object Id, TResponseDto responseDto);
 
         //Task<ActionResult<TResponse>> PutAsync(object Id, TRequest entity, CancellationToken cancellationToken);
-        Task<ActionResult<TResponse>> PostAsync(TResponseModel entityToUpdate);
+        Task<ActionResult<TResponse>> PostAsync(TResponseDto responseDto);
 
         //Task<ActionResult<TResponse>> PostAsync(TRequest entityToUpdate, CancellationToken cancellationToken);
     }

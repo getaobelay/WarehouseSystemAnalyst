@@ -33,8 +33,6 @@ namespace WarehouseSystemAnalyst.Data.DataContext
 
         //public DbSet<Customer> Customers { get; set; }
 
-        public DbSet<BaseStock> BaseStocks { get; set; }
-        public DbSet<BaseWarehouse> Warehouses { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<CollectItem> CollectItems { get; set; }
         public DbSet<CollectProductItem> CollectProductItems { get; set; }
@@ -85,25 +83,26 @@ namespace WarehouseSystemAnalyst.Data.DataContext
 
             foreach (var changedEntity in ChangeTracker.Entries())
             {
-                if (changedEntity.Entity is IBaseEntity entity)
+                if (changedEntity.Entity is IBaseEntity baseEntity)
                 {
                     switch (changedEntity.State)
                     {
                         case EntityState.Added:
-                            entity.CreateDate = now;
-                            entity.ModifiedDate = now;
-                            entity.CreatedBy = CurrentUser.GetUsername();
-                            entity.ModifiedBy = CurrentUser.GetUsername();
+                            baseEntity.CreateDate = now;
+                            baseEntity.ModifiedDate = now;
+                            baseEntity.CreatedBy = "tester"; ///CurrentUser.GetUsername();
+                            baseEntity.ModifiedBy = "test";
                             break;
 
                         case EntityState.Modified:
-                            Entry(entity).Property(x => x.CreatedBy).IsModified = false;
-                            Entry(entity).Property(x => x.CreateDate).IsModified = false;
-                            entity.ModifiedDate = now;
-                            entity.ModifiedBy = CurrentUser.GetUsername();
+                            Entry(baseEntity).Property(x => x.CreatedBy).IsModified = false;
+                            Entry(baseEntity).Property(x => x.CreateDate).IsModified = false;
+                            baseEntity.ModifiedDate = now;
+                            baseEntity.ModifiedBy = "test";
                             break;
                     }
                 }
+
             }
         }
 

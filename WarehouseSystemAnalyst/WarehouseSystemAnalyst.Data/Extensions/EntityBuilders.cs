@@ -19,7 +19,7 @@ where TBasePallet : class, IBasePallet
             builder.BaseBuilder();
 
             builder.Property(e => e.ProductQuantity)
-                    .ValueGeneratedOnAddOrUpdate()
+                   .ValueGeneratedOnAddOrUpdate()
                    .HasColumnType("decimal(8,2)")
                    .IsRequired();
 
@@ -105,14 +105,11 @@ where TWarehouse : class, IBaseWarehouse
             builder.Property(e => e.CreatedBy)
                    .HasMaxLength(50)
                    .IsUnicode(true)
-                   .ValueGeneratedOnAddOrUpdate()
-                   .IsRequired();
-
+                   .ValueGeneratedOnAdd();
             builder.Property(e => e.ModifiedBy)
                    .HasMaxLength(50)
-                   .IsUnicode(true)
-                   .ValueGeneratedOnAddOrUpdate()
-                   .IsRequired();
+                   .IsUnicode(true);
+
 
             return builder;
         }

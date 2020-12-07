@@ -19,6 +19,60 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
+            modelBuilder.Entity("AllocationWarehouseLocation", b =>
+                {
+                    b.Property<int>("LocationsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AllocationWarehousesId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AllocationWarehousesPK")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LocationsId", "AllocationWarehousesId", "AllocationWarehousesPK");
+
+                    b.HasIndex("AllocationWarehousesId", "AllocationWarehousesPK");
+
+                    b.ToTable("AllocationWarehouseLocation");
+                });
+
+            modelBuilder.Entity("GoodsWarehouseLocation", b =>
+                {
+                    b.Property<int>("LocationsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GoodsWarehousesId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("GoodsWarehousesPK")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LocationsId", "GoodsWarehousesId", "GoodsWarehousesPK");
+
+                    b.HasIndex("GoodsWarehousesId", "GoodsWarehousesPK");
+
+                    b.ToTable("GoodsWarehouseLocation");
+                });
+
+            modelBuilder.Entity("LocationShippingWarehouse", b =>
+                {
+                    b.Property<int>("LocationsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShippingWarehousesId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ShippingWarehousesPK")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LocationsId", "ShippingWarehousesId", "ShippingWarehousesPK");
+
+                    b.HasIndex("ShippingWarehousesId", "ShippingWarehousesPK");
+
+                    b.ToTable("LocationShippingWarehouse");
+                });
+
             modelBuilder.Entity("MesureProductItem", b =>
                 {
                     b.Property<int>("ProductItemsId")
@@ -27,15 +81,15 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<string>("ProductItemsPK")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("UnitOfMeusreId")
+                    b.Property<int>("UnitOfMesureId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UnitOfMeusrePK")
+                    b.Property<string>("UnitOfMesurePK")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("ProductItemsId", "ProductItemsPK", "UnitOfMeusreId", "UnitOfMeusrePK");
+                    b.HasKey("ProductItemsId", "ProductItemsPK", "UnitOfMesureId", "UnitOfMesurePK");
 
-                    b.HasIndex("UnitOfMeusreId", "UnitOfMeusrePK");
+                    b.HasIndex("UnitOfMesureId", "UnitOfMesurePK");
 
                     b.ToTable("MesureProductItem");
                 });
@@ -334,10 +388,10 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("BaseWarehouseId")
+                    b.Property<int?>("AllocationWarehouseId")
                         .HasColumnType("int");
 
-                    b.Property<string>("BaseWarehousePK")
+                    b.Property<string>("AllocationWarehousePK")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreateDate")
@@ -345,15 +399,21 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int?>("GoodsWarehouseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("GoodsWarehousePK")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("InventoryId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
@@ -373,10 +433,13 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<string>("ProductSupplierID")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StockInID")
+                    b.Property<int?>("ShippingWarehouseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ShippingWarehousePK")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("StockOutID")
+                    b.Property<string>("StockId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("WarehouseItemID")
@@ -388,6 +451,8 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .IsUnique()
                         .HasFilter("[Id] IS NOT NULL");
 
+                    b.HasIndex("InventoryId");
+
                     b.HasIndex("PK")
                         .IsUnique()
                         .HasFilter("[PK] IS NOT NULL");
@@ -396,11 +461,13 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
                     b.HasIndex("ProductItemId");
 
-                    b.HasIndex("StockInID");
+                    b.HasIndex("StockId");
 
-                    b.HasIndex("StockOutID");
+                    b.HasIndex("AllocationWarehouseId", "AllocationWarehousePK");
 
-                    b.HasIndex("BaseWarehouseId", "BaseWarehousePK");
+                    b.HasIndex("GoodsWarehouseId", "GoodsWarehousePK");
+
+                    b.HasIndex("ShippingWarehouseId", "ShippingWarehousePK");
 
                     b.ToTable("Batches");
                 });
@@ -420,8 +487,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
@@ -430,8 +496,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
@@ -476,15 +540,12 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
@@ -526,15 +587,12 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
@@ -571,16 +629,16 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("BaseWarehouseId")
+                    b.Property<int?>("AllocationWarehouseId")
                         .HasColumnType("int");
 
-                    b.Property<string>("BaseWarehousePK")
+                    b.Property<string>("AllocationWarehousePK")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("BatchID")
+                    b.Property<string>("BatchAK")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CategoryID")
+                    b.Property<string>("CategoryAK")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int?>("CollectProductsId")
@@ -591,21 +649,24 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("ItemID")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("GoodsWarehouseId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("MesureID")
+                    b.Property<string>("GoodsWarehousePK")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("InventoryAK")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("MesureAK")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
@@ -613,27 +674,36 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PalletID")
+                    b.Property<string>("PalletAK")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductItemAK")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProductPackageID")
+                    b.Property<string>("ProductPackageAK")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProductSupplierID")
+                    b.Property<string>("ProductVendorAK")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StockInID")
+                    b.Property<int?>("ShippingWarehouseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ShippingWarehousePK")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("StockOutID")
+                    b.Property<string>("StockAK")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("WarehouseItemAK")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id", "PK");
 
-                    b.HasIndex("CategoryID");
+                    b.HasIndex("CategoryAK");
 
                     b.HasIndex("CollectProductsId");
 
@@ -641,15 +711,19 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .IsUnique()
                         .HasFilter("[Id] IS NOT NULL");
 
+                    b.HasIndex("InventoryAK");
+
                     b.HasIndex("PK")
                         .IsUnique()
                         .HasFilter("[PK] IS NOT NULL");
 
-                    b.HasIndex("StockInID");
+                    b.HasIndex("StockAK");
 
-                    b.HasIndex("StockOutID");
+                    b.HasIndex("AllocationWarehouseId", "AllocationWarehousePK");
 
-                    b.HasIndex("BaseWarehouseId", "BaseWarehousePK");
+                    b.HasIndex("GoodsWarehouseId", "GoodsWarehousePK");
+
+                    b.HasIndex("ShippingWarehouseId", "ShippingWarehousePK");
 
                     b.ToTable("Products");
                 });
@@ -664,10 +738,13 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("AllocationId")
+                    b.Property<string>("AllocationId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("AllocationId1")
                         .HasColumnType("int");
 
-                    b.Property<string>("BatcId")
+                    b.Property<string>("BatchId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("BuyPricePerUnit")
@@ -681,21 +758,18 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Mesure")
+                    b.Property<string>("MesureId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Metrial")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
@@ -720,7 +794,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
                     b.HasKey("Id", "PK");
 
-                    b.HasIndex("AllocationId");
+                    b.HasIndex("AllocationId1");
 
                     b.HasIndex("CollectProductItemId");
 
@@ -752,8 +826,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
@@ -765,8 +838,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
@@ -821,15 +892,12 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
@@ -884,8 +952,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
@@ -894,8 +961,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
@@ -919,6 +984,163 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasFilter("[PK] IS NOT NULL");
 
                     b.ToTable("SubCategory");
+                });
+
+            modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.StockEntites.Inventory", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PK")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AllocationWarehouseAK")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BatchID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("BatchQuantity")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("decimal(8,2)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("GoodsWarehousesAK")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsQuanityAvailable")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasMaxLength(50)
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("ProductQuantity")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("decimal(8,2)");
+
+                    b.Property<decimal>("ReorderLevel")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TotalUnitsQuantity")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("decimal(8,2)");
+
+                    b.Property<decimal>("UnitsInInventory")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("UnitsInOrder")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id", "PK");
+
+                    b.HasIndex("Id")
+                        .IsUnique()
+                        .HasFilter("[Id] IS NOT NULL");
+
+                    b.HasIndex("PK")
+                        .IsUnique()
+                        .HasFilter("[PK] IS NOT NULL");
+
+                    b.ToTable("Inventories");
+                });
+
+            modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.StockEntites.Stock", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PK")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AllocationWarehouseAK")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BatchID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("BatchQuantity")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("decimal(8,2)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IsQuanityAvailable")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasMaxLength(50)
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("ProductQuantity")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("decimal(8,2)");
+
+                    b.Property<decimal>("ReorderLevel")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ShippingWarehousesAK")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalUnitsQuantity")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("decimal(8,2)");
+
+                    b.Property<decimal>("UnitsInStock")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id", "PK");
+
+                    b.HasIndex("Id")
+                        .IsUnique()
+                        .HasFilter("[Id] IS NOT NULL");
+
+                    b.HasIndex("PK")
+                        .IsUnique()
+                        .HasFilter("[PK] IS NOT NULL");
+
+                    b.ToTable("Stocks");
                 });
 
             modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.SupplyChainEntities.Order", b =>
@@ -976,15 +1198,12 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
@@ -1055,9 +1274,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("AllocationId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
@@ -1077,7 +1293,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("OrderID")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PK")
                         .IsRequired()
@@ -1088,7 +1304,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AllocationId");
+                    b.HasIndex("OrderID");
 
                     b.ToTable("Allocations");
                 });
@@ -1100,16 +1316,16 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int?>("BaseWarehouseId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("BaseWarehousePK")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("AllocationWarehouseID")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GoodsWarehouseID")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LocationColum")
@@ -1131,15 +1347,13 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("WarehouseID")
+                    b.Property<string>("ShippingWarehouseID")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WarehouseItemID")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BaseWarehouseId", "BaseWarehousePK");
 
                     b.ToTable("Locations");
                 });
@@ -1171,8 +1385,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
@@ -1187,17 +1400,12 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("PalletNumber")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductID")
                         .HasColumnType("nvarchar(450)");
@@ -1216,9 +1424,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
                     b.Property<string>("ShippingWarhouseId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("WarehouseItemID")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id", "PK");
 
@@ -1255,7 +1460,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.ToTable("WarehouseItems");
                 });
 
-            modelBuilder.Entity("WarehouseSystemAnalyst.Data.Implementation.BaseEntites.BaseStock", b =>
+            modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.AllocationWarehouse", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int");
@@ -1268,31 +1473,26 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<string>("BatchID")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("BatchQuantity")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("decimal(8,2)");
-
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
+                    b.Property<int?>("InventoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("InventoryPK")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LocationID")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsQuanityAvailable")
-                        .HasColumnType("bit");
-
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
@@ -1303,16 +1503,21 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<string>("ProductID")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("ProductQuantity")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("decimal(8,2)");
+                    b.Property<int?>("StockId")
+                        .HasColumnType("int");
 
-                    b.Property<decimal>("TotalUnitsQuantity")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("decimal(8,2)");
+                    b.Property<string>("StockPK")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("WarehouseID")
+                    b.Property<string>("WarehouseItemID")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WarehouseName")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id", "PK");
 
@@ -1324,12 +1529,14 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .IsUnique()
                         .HasFilter("[PK] IS NOT NULL");
 
-                    b.ToTable("BaseStocks");
+                    b.HasIndex("InventoryId", "InventoryPK");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("BaseStock");
+                    b.HasIndex("StockId", "StockPK");
+
+                    b.ToTable("AllocationWarehouses");
                 });
 
-            modelBuilder.Entity("WarehouseSystemAnalyst.Data.Implementation.BaseEntites.BaseWarehouse", b =>
+            modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.GoodsWarehouse", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int");
@@ -1347,22 +1554,21 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("InventoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("InventoryPK")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LocationID")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
@@ -1393,72 +1599,122 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .IsUnique()
                         .HasFilter("[PK] IS NOT NULL");
 
-                    b.ToTable("Warehouses");
+                    b.HasIndex("InventoryId", "InventoryPK");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("BaseWarehouse");
-                });
-
-            modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.StockEntites.Inventory", b =>
-                {
-                    b.HasBaseType("WarehouseSystemAnalyst.Data.Implementation.BaseEntites.BaseStock");
-
-                    b.Property<decimal>("ReorderLevel")
-                        .HasColumnType("decimal(18,2)")
-                        .HasColumnName("Inventory_ReorderLevel");
-
-                    b.Property<decimal>("UnitsInOrder")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("UnitsInStock")
-                        .HasColumnType("decimal(18,2)")
-                        .HasColumnName("Inventory_UnitsInStock");
-
-                    b.HasDiscriminator().HasValue("Inventory");
-                });
-
-            modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.StockEntites.Stock", b =>
-                {
-                    b.HasBaseType("WarehouseSystemAnalyst.Data.Implementation.BaseEntites.BaseStock");
-
-                    b.Property<decimal>("ReorderLevel")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("UnitsInStock")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasDiscriminator().HasValue("Stock");
-                });
-
-            modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.AllocationWarehouse", b =>
-                {
-                    b.HasBaseType("WarehouseSystemAnalyst.Data.Implementation.BaseEntites.BaseWarehouse");
-
-                    b.Property<int?>("LocationId")
-                        .HasColumnType("int")
-                        .HasColumnName("AllocationWarehouse_LocationId");
-
-                    b.HasIndex("LocationId");
-
-                    b.HasDiscriminator().HasValue("AllocationWarehouse");
-                });
-
-            modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.GoodsWarehouse", b =>
-                {
-                    b.HasBaseType("WarehouseSystemAnalyst.Data.Implementation.BaseEntites.BaseWarehouse");
-
-                    b.HasDiscriminator().HasValue("GoodsWarehouse");
+                    b.ToTable("GoodsWarehouses");
                 });
 
             modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.ShippingWarehouse", b =>
                 {
-                    b.HasBaseType("WarehouseSystemAnalyst.Data.Implementation.BaseEntites.BaseWarehouse");
-
-                    b.Property<int?>("LocationId")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.HasIndex("LocationId");
+                    b.Property<string>("PK")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasDiscriminator().HasValue("ShippingWarehouse");
+                    b.Property<string>("BatchID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("LocationID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasMaxLength(50)
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ProductID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("StockId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StockPK")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("WarehouseItemID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WarehouseName")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id", "PK");
+
+                    b.HasIndex("Id")
+                        .IsUnique()
+                        .HasFilter("[Id] IS NOT NULL");
+
+                    b.HasIndex("PK")
+                        .IsUnique()
+                        .HasFilter("[PK] IS NOT NULL");
+
+                    b.HasIndex("StockId", "StockPK");
+
+                    b.ToTable("ShippingWarehouses");
+                });
+
+            modelBuilder.Entity("AllocationWarehouseLocation", b =>
+                {
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.Location", null)
+                        .WithMany()
+                        .HasForeignKey("LocationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.AllocationWarehouse", null)
+                        .WithMany()
+                        .HasForeignKey("AllocationWarehousesId", "AllocationWarehousesPK")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("GoodsWarehouseLocation", b =>
+                {
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.Location", null)
+                        .WithMany()
+                        .HasForeignKey("LocationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.GoodsWarehouse", null)
+                        .WithMany()
+                        .HasForeignKey("GoodsWarehousesId", "GoodsWarehousesPK")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("LocationShippingWarehouse", b =>
+                {
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.Location", null)
+                        .WithMany()
+                        .HasForeignKey("LocationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.ShippingWarehouse", null)
+                        .WithMany()
+                        .HasForeignKey("ShippingWarehousesId", "ShippingWarehousesPK")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MesureProductItem", b =>
@@ -1471,7 +1727,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.ProductEntities.Mesure", null)
                         .WithMany()
-                        .HasForeignKey("UnitOfMeusreId", "UnitOfMeusrePK")
+                        .HasForeignKey("UnitOfMesureId", "UnitOfMesurePK")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -1525,6 +1781,11 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
             modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.ProductEntities.Batch", b =>
                 {
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.StockEntites.Inventory", "Inventory")
+                        .WithMany("Batches")
+                        .HasForeignKey("InventoryId")
+                        .HasPrincipalKey("PK");
+
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.ProductEntities.Product", "Product")
                         .WithMany("Batches")
                         .HasForeignKey("ProductID")
@@ -1535,66 +1796,77 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasForeignKey("ProductItemId")
                         .HasPrincipalKey("PK");
 
-                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.StockEntites.Stock", "StockIn")
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.StockEntites.Stock", "Stock")
                         .WithMany("Batches")
-                        .HasForeignKey("StockInID")
+                        .HasForeignKey("StockId")
                         .HasPrincipalKey("PK");
 
-                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.StockEntites.Inventory", "StockOut")
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.AllocationWarehouse", null)
                         .WithMany("Batches")
-                        .HasForeignKey("StockOutID")
-                        .HasPrincipalKey("PK");
+                        .HasForeignKey("AllocationWarehouseId", "AllocationWarehousePK");
 
-                    b.HasOne("WarehouseSystemAnalyst.Data.Implementation.BaseEntites.BaseWarehouse", null)
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.GoodsWarehouse", null)
                         .WithMany("Batches")
-                        .HasForeignKey("BaseWarehouseId", "BaseWarehousePK");
+                        .HasForeignKey("GoodsWarehouseId", "GoodsWarehousePK");
+
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.ShippingWarehouse", null)
+                        .WithMany("Batches")
+                        .HasForeignKey("ShippingWarehouseId", "ShippingWarehousePK");
+
+                    b.Navigation("Inventory");
 
                     b.Navigation("Product");
 
                     b.Navigation("ProductItem");
 
-                    b.Navigation("StockIn");
-
-                    b.Navigation("StockOut");
+                    b.Navigation("Stock");
                 });
 
             modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.ProductEntities.Product", b =>
                 {
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.ProductEntities.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryID")
+                        .HasForeignKey("CategoryAK")
                         .HasPrincipalKey("PK");
 
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.MissionEntites.CollectProducts", null)
                         .WithMany("Items")
                         .HasForeignKey("CollectProductsId");
 
-                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.StockEntites.Stock", "StockIn")
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.StockEntites.Inventory", "Inventory")
                         .WithMany("Products")
-                        .HasForeignKey("StockInID")
+                        .HasForeignKey("InventoryAK")
                         .HasPrincipalKey("PK");
 
-                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.StockEntites.Inventory", "StockOut")
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.StockEntites.Stock", "Stock")
                         .WithMany("Products")
-                        .HasForeignKey("StockOutID")
+                        .HasForeignKey("StockAK")
                         .HasPrincipalKey("PK");
 
-                    b.HasOne("WarehouseSystemAnalyst.Data.Implementation.BaseEntites.BaseWarehouse", null)
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.AllocationWarehouse", null)
                         .WithMany("Products")
-                        .HasForeignKey("BaseWarehouseId", "BaseWarehousePK");
+                        .HasForeignKey("AllocationWarehouseId", "AllocationWarehousePK");
+
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.GoodsWarehouse", null)
+                        .WithMany("Products")
+                        .HasForeignKey("GoodsWarehouseId", "GoodsWarehousePK");
+
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.ShippingWarehouse", null)
+                        .WithMany("Products")
+                        .HasForeignKey("ShippingWarehouseId", "ShippingWarehousePK");
 
                     b.Navigation("Category");
 
-                    b.Navigation("StockIn");
+                    b.Navigation("Inventory");
 
-                    b.Navigation("StockOut");
+                    b.Navigation("Stock");
                 });
 
             modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.ProductEntities.ProductItem", b =>
                 {
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.Allocation", "Allocation")
                         .WithMany()
-                        .HasForeignKey("AllocationId");
+                        .HasForeignKey("AllocationId1");
 
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.MissionEntites.CollectProductItem", null)
                         .WithMany("Items")
@@ -1654,7 +1926,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
             modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.SupplyChainEntities.ProductVendor", b =>
                 {
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.ProductEntities.Product", "Product")
-                        .WithMany("ProductSuppliers")
+                        .WithMany("ProductVendors")
                         .HasForeignKey("ProductID")
                         .HasPrincipalKey("PK");
 
@@ -1678,17 +1950,10 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.SupplyChainEntities.Order", "Order")
                         .WithMany("Allocations")
-                        .HasForeignKey("AllocationId")
+                        .HasForeignKey("OrderID")
                         .HasPrincipalKey("PK");
 
                     b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.Location", b =>
-                {
-                    b.HasOne("WarehouseSystemAnalyst.Data.Implementation.BaseEntites.BaseWarehouse", null)
-                        .WithMany("Locations")
-                        .HasForeignKey("BaseWarehouseId", "BaseWarehousePK");
                 });
 
             modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseItem", b =>
@@ -1769,16 +2034,27 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
             modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.AllocationWarehouse", b =>
                 {
-                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.Location", null)
-                        .WithMany("GoodsPickings")
-                        .HasForeignKey("LocationId");
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.StockEntites.Inventory", null)
+                        .WithMany("AllocationWarehouses")
+                        .HasForeignKey("InventoryId", "InventoryPK");
+
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.StockEntites.Stock", null)
+                        .WithMany("AllocationWarehouses")
+                        .HasForeignKey("StockId", "StockPK");
+                });
+
+            modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.GoodsWarehouse", b =>
+                {
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.StockEntites.Inventory", null)
+                        .WithMany("GoodsWarehouses")
+                        .HasForeignKey("InventoryId", "InventoryPK");
                 });
 
             modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.ShippingWarehouse", b =>
                 {
-                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.Location", null)
-                        .WithMany("GoodsShippings")
-                        .HasForeignKey("LocationId");
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.StockEntites.Stock", null)
+                        .WithMany("ShippingWarehouses")
+                        .HasForeignKey("StockId", "StockPK");
                 });
 
             modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.ContactEntities.Employee", b =>
@@ -1837,7 +2113,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
                     b.Navigation("ProductPackages");
 
-                    b.Navigation("ProductSuppliers");
+                    b.Navigation("ProductVendors");
 
                     b.Navigation("WarehouseItems");
                 });
@@ -1852,6 +2128,28 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Navigation("ProductItems");
 
                     b.Navigation("WarehouseItems");
+                });
+
+            modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.StockEntites.Inventory", b =>
+                {
+                    b.Navigation("AllocationWarehouses");
+
+                    b.Navigation("Batches");
+
+                    b.Navigation("GoodsWarehouses");
+
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.StockEntites.Stock", b =>
+                {
+                    b.Navigation("AllocationWarehouses");
+
+                    b.Navigation("Batches");
+
+                    b.Navigation("Products");
+
+                    b.Navigation("ShippingWarehouses");
                 });
 
             modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.SupplyChainEntities.Order", b =>
@@ -1871,48 +2169,33 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
             modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.Location", b =>
                 {
-                    b.Navigation("GoodsPickings");
-
-                    b.Navigation("GoodsShippings");
-
                     b.Navigation("WarehouseItems");
-                });
-
-            modelBuilder.Entity("WarehouseSystemAnalyst.Data.Implementation.BaseEntites.BaseWarehouse", b =>
-                {
-                    b.Navigation("Batches");
-
-                    b.Navigation("Locations");
-
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.StockEntites.Inventory", b =>
-                {
-                    b.Navigation("Batches");
-
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.StockEntites.Stock", b =>
-                {
-                    b.Navigation("Batches");
-
-                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.AllocationWarehouse", b =>
                 {
+                    b.Navigation("Batches");
+
+                    b.Navigation("Products");
+
                     b.Navigation("WarehouseItems");
                 });
 
             modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.GoodsWarehouse", b =>
                 {
+                    b.Navigation("Batches");
+
+                    b.Navigation("Products");
+
                     b.Navigation("WarehouseItems");
                 });
 
             modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.ShippingWarehouse", b =>
                 {
+                    b.Navigation("Batches");
+
+                    b.Navigation("Products");
+
                     b.Navigation("WarehouseItems");
                 });
 #pragma warning restore 612, 618

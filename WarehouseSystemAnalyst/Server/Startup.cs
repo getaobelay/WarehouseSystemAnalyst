@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WarehouseSystemAnalyst.Data;
+using WarehouseSystemAnalyst.Data.DataContext;
 using WarehouseSystemAnalyst.Server.Data;
 using WarehouseSystemAnalyst.Server.Models;
 
@@ -36,6 +37,7 @@ namespace WarehouseSystemAnalyst.Server
             services.AddIdentityServer()
                 .AddApiAuthorization<ApplicationUser, UserDbContext>();
 
+            services.AddDbContext<WarehouseDbContext>();
             services.AddAuthentication()
                 .AddIdentityServerJwt();
 

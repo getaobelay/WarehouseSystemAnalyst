@@ -1,10 +1,13 @@
-﻿namespace WarehouseSystemAnalyst.Mediator.Interfaces.Responses
+﻿using System.Collections.Generic;
+using WarehouseSystemAnalyst.Mediator.Dtos;
+
+namespace WarehouseSystemAnalyst.Mediator.Interfaces.Responses
 {
-    public interface ICommandResponse<TModel>
-        where TModel : class, new()
+    public interface ICommandResponse<TDto>
+        where TDto : BaseDto, new()
     {
-        public TModel Model { get; set; }
+        public TDto Dto { get; set; }
         public bool Error { get; set; }
-        string Message { get; set; }
+        List<string> Messages { get; set; }
     }
 }

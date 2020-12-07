@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using System;
-using WarehouseSystemAnalyst.Mediator.MappingProfiles.InventoryConfigs;
-using WarehouseSystemAnalyst.Mediator.MappingProfiles.ProductConfigs;
-using WarehouseSystemAnalyst.Mediator.MappingProfiles.WarehouseConfigs;
+using WarehouseSystemAnalyst.Mediator.Mapping;
 
 namespace WarehouseSystemAnalyst.Mediator.Helpers
 {
@@ -22,18 +20,11 @@ namespace WarehouseSystemAnalyst.Mediator.Helpers
                 // This line ensures that internal properties are also mapped over.
                 cfg.ShouldMapProperty = p => p.GetMethod.IsPublic || p.GetMethod.IsAssembly;
 
-                cfg.AddProfile(typeof(InventoryProfile));
-                cfg.AddProfile(typeof(StockProfile));
+                cfg.AddProfile(typeof(MappingProfile));
 
-                cfg.AddProfile(typeof(BatchProfile));
-                cfg.AddProfile(typeof(ProductMesureProfile));
-                cfg.AddProfile(typeof(ProductPackageProfile));
-                cfg.AddProfile(typeof(ProductProfile));
-                cfg.AddProfile(typeof(RelatedProductProfiles));
-
-                cfg.AddProfile(typeof(LocationProfile));
-                ///cfg.AddProfile(typeof(MovementProfile));
-                cfg.AddProfile(typeof(WarehouseProfile));
+                //cfg.AddProfile(typeof(InventoryProfiles));
+                //cfg.AddProfile(typeof(ProductProfiles));
+                // cfg.AddProfile(typeof(WarehouseProfiles));
             });
 
             return config.CreateMapper();

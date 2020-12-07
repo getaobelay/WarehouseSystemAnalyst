@@ -5,6 +5,5 @@
         where TRequestModel : class, new()
     {
         public object Id { get; set; }
-        public TResponseModel Data { get; set; }
     }
 }
