@@ -8,7 +8,6 @@ using WarehouseSystemAnalyst.Mediator.Dtos.InventoryDtos;
 using WarehouseSystemAnalyst.Mediator.Dtos.PalletDtos;
 using WarehouseSystemAnalyst.Mediator.Dtos.SupplyChainEntities;
 
-;
 
 namespace WarehouseSystemAnalyst.Mediator.Dtos.MappingProfiles
 {
