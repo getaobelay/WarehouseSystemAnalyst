@@ -34,7 +34,7 @@ where TBasePallet : class, IBasePallet
         }
 
         public static EntityTypeBuilder BaseMissionBuilder<TMission, TItem>(this EntityTypeBuilder<TMission> builder)
-    where TMission : class, IBaseMission<TItem>
+            where TMission : class, IBaseMission<TItem>
             where TItem : class, IBaseEntity
         {
             builder.BaseBuilder();
@@ -48,23 +48,9 @@ where TBasePallet : class, IBasePallet
             return builder;
         }
 
-        public static EntityTypeBuilder BaseProductBuilder<TProduct>(this EntityTypeBuilder<TProduct> builder)
-            where TProduct : class, IBaseProduct
-        {
-            builder.BaseBuilder();
-            return builder;
-        }
-
-        public static EntityTypeBuilder BaseTransactionBuilder<TTransaction>(this EntityTypeBuilder<TTransaction> builder)
-   where TTransaction : class, IBaseTransaction
-        {
-            builder.BaseBuilder();
-
-            return builder;
-        }
 
         public static EntityTypeBuilder BaseWarehouseBuilder<TWarehouse>(this EntityTypeBuilder<TWarehouse> builder)
-where TWarehouse : class, IBaseWarehouse
+            where TWarehouse : class, IBaseWarehouse
 
         {
             builder.BaseBuilder();

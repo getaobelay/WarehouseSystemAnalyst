@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Microsoft.EntityFrameworkCore
 {
-    public static partial class QueryGenericInclude
+    public static partial class QueryInclude
     {
         public static IQueryable<T> Include<T>(this IQueryable<T> source, IEnumerable<string> navigationPropertyPaths)
             where T : class
