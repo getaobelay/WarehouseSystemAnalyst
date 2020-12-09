@@ -10,13 +10,13 @@ using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
 
 namespace WarehouseSystemAnalyst.Data.Context
 {
-    public class DataContext<TEntity> : IDataContext<WarehouseDbContext, TEntity>
-        where TEntity : class, IBaseEntity, new()
+    public class DataContext : IDataContext
     {
         public DataContext(IUnitOfWorkRepository<WarehouseDbContext> unitOfWork)
         {
             UnitOfWork = unitOfWork;
         }
         public IUnitOfWorkRepository<WarehouseDbContext> UnitOfWork { get; set; }
+        public ICurrentUser currentUser { get; set; }
     }
 }

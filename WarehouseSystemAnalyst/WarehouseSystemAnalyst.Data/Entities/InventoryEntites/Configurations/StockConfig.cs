@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using WarehouseSystemAnalyst.Data.Entities.StockEntites;
-using WarehouseSystemAnalyst.Data.Extensions;
+using WarehouseSystemAnalyst.Data.Helpers;
 
 namespace WarehouseSystemAnalyst.Data.Entities.InventoryEntites.Configurations
 {
@@ -18,7 +18,7 @@ namespace WarehouseSystemAnalyst.Data.Entities.InventoryEntites.Configurations
 
             builder.HasMany(d => d.Products)
                 .WithOne(p => p.Stock)
-                .HasForeignKey(d => d.StockAK)
+                .HasForeignKey(d => d.StockId)
                 .HasPrincipalKey(c => c.PK);
         }
     }

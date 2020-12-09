@@ -9,12 +9,12 @@ namespace WarehouseSystemAnalyst.Data.Entities.PalletEntities.Configurations
         {
             builder.HasOne(d => d.Product)
                     .WithMany(p => p.Pallets)
-                    .HasForeignKey(d => d.ProductID)
+                    .HasForeignKey(d => d.ProductId)
                     .HasPrincipalKey(p => p.PK);
 
             builder.HasOne(d => d.Batch)
                     .WithMany(p => p.Pallets)
-                    .HasForeignKey(d => d.BatcID)
+                    .HasForeignKey(d => d.BatchId)
                     .HasPrincipalKey(p => p.PK);
         }
     }

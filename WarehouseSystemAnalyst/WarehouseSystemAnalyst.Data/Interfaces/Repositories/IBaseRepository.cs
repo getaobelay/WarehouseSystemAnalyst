@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
 
@@ -7,18 +9,13 @@ namespace WarehouseSystemAnalyst.Data.Interfaces.Repositories
     public interface IBaseRepository<TEntity>
         where TEntity : IBaseEntity, new()
     {
-        Task<object> GetNewId(object Id);
-
-        Task<TEntity> GetByIdAsync(object Id);
 
         Task<IEnumerable<TEntity>> GetAllAsync();
-
+        Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> expression);
+        Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> expression);
         Task<bool> DeleteAsync(TEntity entityToDelete);
-
         Task<bool> DeleteAsync(object Id);
-
         Task<TEntity> InsertAsync(TEntity entity);
-
         Task<TEntity> UpdateAsync(TEntity entityToUpdate);
     }
 }

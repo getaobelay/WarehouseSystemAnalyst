@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using WarehouseSystemAnalyst.Data.DataContext;
 
 namespace WarehouseSystemAnalyst.Data.Interfaces.Repositories
 {

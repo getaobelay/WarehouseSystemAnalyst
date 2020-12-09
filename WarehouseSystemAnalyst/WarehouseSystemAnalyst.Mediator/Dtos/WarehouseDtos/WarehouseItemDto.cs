@@ -1,12 +1,18 @@
-﻿using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
+﻿using System;
+using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
 using WarehouseSystemAnalyst.Mediator.Dtos.ContactDtos;
 using WarehouseSystemAnalyst.Mediator.Dtos.ProductDtos;
 using WarehouseSystemAnalyst.Mediator.Mapping;
 
 namespace WarehouseSystemAnalyst.Mediator.Dtos.WarehouseDtos
 {
-    public class WarehouseItemDto : BaseDto, IMapFrom<WarehouseItem>
+    public class WarehouseItemDto : IBaseDto, IMapFrom<WarehouseItem>
     {
+        public string PK { get; set; }
+        public string CreatedBy { get; set; }
+        public string ModifiedBy { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime ModifiedDate { get; set; }
         public ProductDto Product { get; set; }
         public AllocationWarehouseDto AllocationWarehouse { get; set; }
         public GoodsWarehouseDto GoodsWarehouse { get; set; }

@@ -11,12 +11,10 @@ namespace WarehouseSystemAnalyst.Data.Interfaces.Models
         public decimal TotalUnitsQuantity { get; set; }
         public decimal ProductQuantity { get; set; }
         public decimal BatchQuantity { get; set; }
-        public string ProductID { get; set; }
-        public string BatchID { get; set; }
+        public string ProductId { get; set; }
+        public string BatchId { get; set; }
 
-        //public ICollection<Warehouse> Warehouses { get; set; }
         public ICollection<Product> Products { get; set; }
-
         public ICollection<Batch> Batches { get; set; }
     }
 }

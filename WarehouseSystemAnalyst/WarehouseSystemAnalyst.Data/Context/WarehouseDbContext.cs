@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,8 +65,6 @@ namespace WarehouseSystemAnalyst.Data.DataContext
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer("Data Source=DESKTOP-QHFHS9D;Initial Catalog=WarehouseDb;Integrated Security=True;MultipleActiveResultSets=true");
-
-                //optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=WarehouseProjectDb;Trusted_Connection=True;MultipleActiveResultSets=true");
             }
         }
 
@@ -74,8 +73,6 @@ namespace WarehouseSystemAnalyst.Data.DataContext
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
-
-        public ICurrentUser CurrentUser;
 
         private void BaseEntitySaving()
         {
@@ -106,7 +103,7 @@ namespace WarehouseSystemAnalyst.Data.DataContext
             }
         }
 
-        public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
+        public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
             BaseEntitySaving();
             var auditEntries = OnBeforeSaveChanges();
@@ -125,7 +122,7 @@ namespace WarehouseSystemAnalyst.Data.DataContext
                     continue;
 
                 var auditEntry = new AuditEntry(entry);
-                auditEntry.TableName = entry.Metadata.GetTableName(); // EF Core 3.1: entry.Metadata.GetTableName();
+                auditEntry.TableName = entry.Metadata.GetTableName();
                 auditEntries.Add(auditEntry);
 
                 foreach (var property in entry.Properties)

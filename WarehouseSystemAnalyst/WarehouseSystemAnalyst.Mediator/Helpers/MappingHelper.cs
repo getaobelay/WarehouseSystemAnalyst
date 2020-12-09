@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using System;
+using WarehouseSystemAnalyst.Mediator.Dtos.MappingProfiles;
 using WarehouseSystemAnalyst.Mediator.Mapping;
 
 namespace WarehouseSystemAnalyst.Mediator.Helpers
@@ -21,10 +22,6 @@ namespace WarehouseSystemAnalyst.Mediator.Helpers
                 cfg.ShouldMapProperty = p => p.GetMethod.IsPublic || p.GetMethod.IsAssembly;
 
                 cfg.AddProfile(typeof(MappingProfile));
-
-                //cfg.AddProfile(typeof(InventoryProfiles));
-                //cfg.AddProfile(typeof(ProductProfiles));
-                // cfg.AddProfile(typeof(WarehouseProfiles));
             });
 
             return config.CreateMapper();

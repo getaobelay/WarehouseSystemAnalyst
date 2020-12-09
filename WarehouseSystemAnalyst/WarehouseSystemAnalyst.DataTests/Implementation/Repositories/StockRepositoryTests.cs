@@ -1,83 +1,77 @@
 using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System.Threading.Tasks;
+using WarehouseSystemAnalyst.Data.DataContext;
 using WarehouseSystemAnalyst.Data.Entities.StockEntites;
-using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
 using WarehouseSystemAnalyst.Data.Implementation.Repositories;
+using WarehouseSystemAnalyst.Data.Interfaces.Repositories;
 using Xunit;
 
 namespace WarehouseSystemAnalyst.DataTests.Implementation.Repositories
 {
-    public class StockRepositoryTests : BaseRespositoryTest
+    public class StockRepositoryTests
     {
 
-        public StockRepository<Inventory> GetStockRepository(string database)
+        public WarehouseDbContext GetWarehouseDbContext()
         {
-            return new StockRepository<Inventory>(GetUnitOfWork(database));
+            var serviceProvider = new ServiceCollection()
+                .AddEntityFrameworkInMemoryDatabase()
+                .BuildServiceProvider();
+
+            var options = new DbContextOptionsBuilder<WarehouseDbContext>()
+                .UseInMemoryDatabase(databaseName: nameof(StockRepositoryTests))
+                .UseInternalServiceProvider(serviceProvider)
+                .Options;
+
+            return new WarehouseDbContext(options);
+
         }
 
+        private TransactionRepository<Inventory, Stock> CreateStockRepository()
+        {
+            return new TransactionRepository<Inventory, Stock>(new WarehouseDbContext());
+        }
+
+
         [Fact]
-        public async Task ReturnAlloactionItem_StateUnderTest_ExpectedBehavior()
+        public async Task CreateInventoryAndStock_ShouldReturnTrue_WhenCreated()
         {
             // Arrange
-            var stockRepository = GetStockRepository(nameof(ReturnAlloactionItem_StateUnderTest_ExpectedBehavior));
-            object Id = null;
-            WarehouseItem warehouseItems = null;
+            var stockRepository = CreateStockRepository();
+            object sourceId = "test";
+            object destinationId = "test";
+            string inventoryName = "test";
 
             // Act
-            var result = await stockRepository.ReturnAlloactionItem(
-                Id,
-                warehouseItems);
+            var result = await stockRepository.CreateInventoryAndStock(
+                sourceId,
+                destinationId,
+                inventoryName);
 
             // Assert
-            result.Should().NotBeNull();
+            result.source.Should().NotBeNull();
+            result.Destination.Should().NotBeNull();
+            result.source.Name.Should().BeEquivalentTo(inventoryName);
+            result.Destination.Should().BeEquivalentTo(inventoryName);
         }
 
         [Fact]
-        public async Task ReturnWarehouseItem_StateUnderTest_ExpectedBehavior()
+        public async Task UpdateQuantity_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
-            var stockRepository = GetStockRepository(nameof(ReturnWarehouseItem_StateUnderTest_ExpectedBehavior));
-            object Id = null;
-            WarehouseItem warehouseItems = null;
+            var stockRepository = CreateStockRepository();
+            object sourceId = "test";
+            object destinationId = "test";
+            int quantity = 0;
 
             // Act
-            var result = await stockRepository.ReturnWarehouseItem(
-                Id,
-                warehouseItems);
-
-            // Assert
-            result.Should().NotBeNull();
-        }
-
-        [Fact]
-        public async Task UpdateAlloaction_StateUnderTest_ExpectedBehavior()
-        {
-            // Arrange
-            var stockRepository = GetStockRepository(nameof(UpdateAlloaction_StateUnderTest_ExpectedBehavior));
-            object Id = null;
-            Allocation allocation = null;
-
-            // Act
-            var result = await stockRepository.UpdateAlloaction(
-                Id,
-                allocation);
-
-            // Assert
-            result.Should().NotBeNull();
-        }
-
-        [Fact]
-        public async Task UpdateWarehouseItem_StateUnderTest_ExpectedBehavior()
-        {
-            // Arrange
-            var stockRepository = GetStockRepository(nameof(UpdateWarehouseItem_StateUnderTest_ExpectedBehavior));
-            object Id = null;
-            WarehouseItem item = null;
-
-            // Act
-            var result = await stockRepository.UpdateWarehouseItem(
-                Id,
-                item);
+            var result = await stockRepository.UpdateQuantity(
+                sourceId,
+                destinationId,
+                quantity);
 
             // Assert
             result.Should().NotBeNull();

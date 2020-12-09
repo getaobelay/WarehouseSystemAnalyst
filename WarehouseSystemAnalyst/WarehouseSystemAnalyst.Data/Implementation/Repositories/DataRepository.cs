@@ -16,90 +16,136 @@ namespace WarehouseSystemAnalyst.Data.Implementation.Repositories
         private DbSet<TEntity> _entities;
         private bool _isDisposed;
 
-        public DataRepository(IUnitOfWorkRepository<WarehouseDbContext> unitOfWork) : this(unitOfWork.Context)
+        public DataRepository(IUnitOfWorkRepository<WarehouseDbContext> unitOfWork)
+            : this(unitOfWork.Context)
         {
             UnitOfWork = unitOfWork;
         }
 
         public DataRepository(WarehouseDbContext context)
         {
-
             _isDisposed = true;
             Context = context;
         }
 
         public WarehouseDbContext Context { get; set; }
 
+        /// <summary>
+        ///
+        /// </summary>
         protected virtual DbSet<TEntity> Entities => _entities ??= Context.Set<TEntity>();
 
+        /// <summary>
+        ///
+        /// </summary>
+        public virtual IQueryable<TEntity> Table => Entities;
+
         public IUnitOfWorkRepository<WarehouseDbContext> UnitOfWork { get; }
-        public virtual IQueryable<TEntity> Table
-        {
-            get { return Entities; }
-        }
 
-        public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
-        {
-            return await Task.FromResult(Entities);
-        }
-
-        public virtual async Task<TEntity> GetByIdAsync(object Id)
-        {
-
-            if (Id == null)
-                throw new ArgumentNullException(nameof(Id));
-
-            return await Entities.FindAsync(Id);
-        }
-
-        public virtual async Task<TEntity> InsertAsync(TEntity entity)
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public async Task<TEntity> InsertAsync(TEntity entity)
         {
             try
             {
-                entity.CreatedBy = "tester";
-                entity.ModifiedBy = "tester";
+                if (entity != null)
+                {
+                    Context.Entry(entity).State = EntityState.Added;
+                    await Entities.AddAsync(entity);
 
-                if (entity == null)
-                    throw new ArgumentNullException(nameof(entity));
+                    if (Context == null || _isDisposed)
+                        Context = new WarehouseDbContext();
 
-                await Entities.AddAsync(entity);
-                if (Context == null || _isDisposed)
-                    Context = new WarehouseDbContext();
-
-                return entity;
+                    return entity;
+                }
+                else
+                    throw new ArgumentNullException("object is not set");
             }
             catch (Exception)
             {
 
                 throw;
             }
+
+
         }
 
-        public virtual async Task<TEntity> UpdateAsync(TEntity entityToUpdate)
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="entities"></param>
+        /// <returns></returns>
+        public async Task BulkInsertAsync(IEnumerable<TEntity> entities)
+        {
+            if (entities == null)
+            {
+                throw new ArgumentNullException("object is not set");
+            }
+            else
+            {
+                using (var entity = entities.GetEnumerator())
+                {
+                    while (entity.MoveNext())
+                    {
+                        Context.Entry(entity.Current).State = EntityState.Added;
+                    }
+                }
+
+                Context.Set<TEntity>().AddRange(entities);
+                await Context.SaveChangesAsync();
+            }
+
+        }
+
+
+        public async void Dispose()
+        {
+            if (Context != null)
+                await Context.DisposeAsync();
+            _isDisposed = true;
+        }
+
+        [Obsolete]
+        public async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> expression)
+        {
+            return await Entities.Include(Context.GetIncludePaths(typeof(TEntity))).Where(expression).ToListAsync();
+        }
+
+        [Obsolete]
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        {
+            return await Entities.Include(Context.GetIncludePaths(typeof(TEntity))).ToListAsync();
+        }
+        public async Task<TEntity> GetAsync(object Id) => await Entities.FindAsync(Id);
+        public async Task<TEntity> UpdateAsync(TEntity entityUpdate)
         {
             try
             {
-                if (entityToUpdate == null)
-                    throw new ArgumentNullException(nameof(entityToUpdate));
+                if (entityUpdate == null)
+                    throw new ArgumentNullException($"{nameof(TEntity)} not found ");
 
                 if (Context == null || _isDisposed)
                     Context = new WarehouseDbContext();
 
                 var dbSet = Context.Set<TEntity>();
-                dbSet.Attach(entityToUpdate);
-                Context.Entry(entityToUpdate).State = EntityState.Modified;
+                dbSet.Attach(entityUpdate);
+                Context.Entry(entityUpdate).State = EntityState.Modified;
 
-                return await Task.FromResult(entityToUpdate);
+                return await Task.FromResult(entityUpdate);
             }
-            catch (Exception)
+            catch (DbUpdateConcurrencyException)
             {
-
-                throw;
+                throw new DbUpdateConcurrencyException();
             }
-
         }
-
-        public virtual async Task<bool> DeleteAsync(TEntity entityToDelete)
+        public async Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> expression)
+        {
+            return await Entities.Where(expression).SingleOrDefaultAsync();
+        }
+        public async Task<bool> DeleteAsync(TEntity entityToDelete)
         {
             try
             {
@@ -121,15 +167,14 @@ namespace WarehouseSystemAnalyst.Data.Implementation.Repositories
             }
 
         }
-
-        public virtual async Task<bool> DeleteAsync(object Id)
+        public async Task<bool> DeleteAsync(object Id)
         {
             try
             {
                 if (Id == null)
                     throw new ArgumentNullException(nameof(Id));
 
-                TEntity entityToDelete = await Entities.FindAsync(Id);
+                TEntity entityToDelete = await SingleOrDefaultAsync(e => e.PK == Id.ToString());
 
                 if (entityToDelete == null)
                     throw new ArgumentNullException(nameof(entityToDelete));
@@ -148,23 +193,7 @@ namespace WarehouseSystemAnalyst.Data.Implementation.Repositories
             }
 
         }
-
-        public virtual Task<object> GetNewId(object Id)
-        {
-            if (Id == null)
-                throw new ArgumentNullException(nameof(Id));
-
-            throw new NotImplementedException();
-        }
-
-        public async void Dispose()
-        {
-            if (Context != null)
-                await Context.DisposeAsync();
-            _isDisposed = true;
-        }
-
-        public virtual async Task<IEnumerable<TEntity>> GetQuery(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includes = "")
+        public async Task<IEnumerable<TEntity>> GetQuery(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includes = "")
         {
             try
             {
@@ -197,22 +226,14 @@ namespace WarehouseSystemAnalyst.Data.Implementation.Repositories
                 throw;
             }
         }
-
-        public virtual async Task<TEntity> GetSingleQuery(Expression<Func<TEntity, bool>> filter, string includes = "")
+        public async Task<TEntity> GetSingleQuery(Expression<Func<TEntity, bool>> filter, string includes = null)
         {
             if (filter == null)
                 throw new ArgumentNullException(nameof(filter));
 
             try
             {
-
-                if (includes != null)
-                {
-                    return await Entities.Where(filter).Include(includes).SingleOrDefaultAsync();
-                }
-
                 return await Entities.Where(filter).SingleOrDefaultAsync();
-
             }
             catch (Exception)
             {

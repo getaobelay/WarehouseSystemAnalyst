@@ -16,8 +16,8 @@ namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities
         public decimal QuantityPerUnit { get; set; }
         public decimal Weight { get; set; }
         public decimal Height { get; set; }
-        public string ProductID { get; set; }
-        public string MesureID { get; set; }
+        public string ProductId { get; set; }
+        public string MesureId { get; set; }
         public Product Product { get; set; }
         public Mesure Mesure { get; set; }
     }

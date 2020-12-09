@@ -1,18 +1,20 @@
-﻿using arehouseSystemAnalyst.Data.Interfaces.Repositories;
-using Autofac;
+﻿using Autofac;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
-using WarehouseSystemAnalyst.Data.DataContext;
+using WarehouseSystemAnalyst.Data.Context;
 using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
 using WarehouseSystemAnalyst.Data.Entities.StockEntites;
 using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes;
 using WarehouseSystemAnalyst.Data.Implementation.Repositories;
 using WarehouseSystemAnalyst.Data.Interfaces.Repositories;
+using WarehouseSystemAnalyst.Mediator.Commands.Behaviours;
+using WarehouseSystemAnalyst.Mediator.Common.Behaviours;
 using WarehouseSystemAnalyst.Mediator.Dtos.InventoryDtos;
 using WarehouseSystemAnalyst.Mediator.Dtos.ProductDtos;
 using WarehouseSystemAnalyst.Mediator.Dtos.WarehouseDtos;
 using WarehouseSystemAnalyst.Mediator.Extensions;
+using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
 
 namespace WarehouseSystemAnalyst.Mediator.Helpers
 {
@@ -23,21 +25,20 @@ namespace WarehouseSystemAnalyst.Mediator.Helpers
             var builder = new ContainerBuilder();
 
             builder.RegisterAssemblyTypes(typeof(IMediator).GetTypeInfo().Assembly).AsImplementedInterfaces();
-
             builder.RegisterHandlers<Product, ProductDto>();
             builder.RegisterHandlers<ProductItem, ProductItemDto>();
             builder.RegisterHandlers<Stock, StockDto>();
             builder.RegisterHandlers<Inventory, InventoryDto>();
-            builder.RegisterHandlers<Stock, InventoryDto>();
-            builder.RegisterHandlers<ShippingWarehouse, ShippingWarehouseDto>();
             builder.RegisterHandlers<GoodsWarehouse, GoodsWarehouseDto>();
-            builder.RegisterHandlers<AllocationWarehouse, AllocationWarehouseDto>();
+            builder.RegisterInventoryHandlers<Inventory, InventoryDto, Stock, StockDto>();
+            builder.RegisterWarehouseHandlers<GoodsWarehouse, GoodsWarehouseDto, AllocationWarehouse, AllocationWarehouseDto>();
+            builder.RegisterWarehouseHandlers<AllocationWarehouse, AllocationWarehouseDto, ShippingWarehouse, ShippingWarehouseDto>();
 
-            builder.RegisterGeneric(typeof(WarehouseRepository<>)).As(typeof(IWarehouseRepository<>));
-            builder.RegisterGeneric(typeof(StockRepository<>)).As(typeof(IStockRepository<>));
-            builder.RegisterGeneric(typeof(DataRepository<>)).As(typeof(IBaseRepository<>));
+            builder.RegisterGeneric(typeof(CommandBehaviour<,,,>)).As(typeof(IPipelineBehavior<,>));
+            builder.RegisterGeneric(typeof(TransacitonCommandBehaviour<,,,,,>)).As(typeof(IPipelineBehavior<,>));
+
+            builder.RegisterType(typeof(DataContext)).As(typeof(IDataContext));
             builder.RegisterGeneric(typeof(UnitOfWorkRepository<>)).As(typeof(IUnitOfWorkRepository<>));
-            builder.RegisterType<WarehouseDbContext>();
 
             builder.RegisterType<LoggerFactory>()
                .As<ILoggerFactory>()
@@ -57,9 +58,7 @@ namespace WarehouseSystemAnalyst.Mediator.Helpers
 
             var container = builder.Build();
 
-            var mediator = container.ResolveOptional<IMediator>();
-
-            return mediator;
+            return container.ResolveOptional<IMediator>();
         }
     }
 }

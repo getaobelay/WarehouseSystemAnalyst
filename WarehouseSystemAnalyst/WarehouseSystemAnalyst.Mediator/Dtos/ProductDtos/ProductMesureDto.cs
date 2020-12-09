@@ -1,10 +1,16 @@
-﻿using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
+﻿using System;
+using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
 using WarehouseSystemAnalyst.Mediator.Mapping;
 
 namespace WarehouseSystemAnalyst.Mediator.Dtos.ProductDtos
 {
-    public class ProductMesureDto : BaseDto, IMapFrom<ProductMesures>
+    public class ProductMesureDto : IBaseDto, IMapFrom<ProductMesures>
     {
+        public string PK { get; set; }
+        public string CreatedBy { get; set; }
+        public string ModifiedBy { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime ModifiedDate { get; set; }
         public decimal UnitBuyPrice { get; set; }
         public decimal UnitSellPrice { get; set; }
         public decimal QuantityPerUnit { get; set; }

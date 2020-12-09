@@ -19,14 +19,14 @@ namespace WarehouseSystemAnalyst.Data.Entities.StockEntites
         public decimal TotalUnitsQuantity { get; set; }
         public decimal ProductQuantity { get; set; }
         public decimal BatchQuantity { get; set; }
-        public string ProductID { get; set; }
-        public string BatchID { get; set; }
+        public string ProductId { get; set; }
+        public string BatchId { get; set; }
         public ICollection<Product> Products { get; set; }
         public ICollection<Batch> Batches { get; set; }
         public decimal UnitsInStock { get; set; }
         public decimal ReorderLevel { get; set; }
-        public string AllocationWarehouseAK { get; set; }
-        public string ShippingWarehousesAK { get; set; }
+        public string AllocationWarehouseId { get; set; }
+        public string ShippingWarehousesId { get; set; }
         public ICollection<AllocationWarehouse> AllocationWarehouses { get; set; }
         public ICollection<ShippingWarehouse> ShippingWarehouses { get; set; }
     }

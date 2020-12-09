@@ -13,7 +13,7 @@ namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities
         public DateTime CreateDate { get; set; }
         public DateTime ModifiedDate { get; set; }
         public string Type { get; set; }
-        public string ProductPackageID { get; set; }
+        public string ProductPackageId { get; set; }
         public virtual ICollection<ProductPackages> ProductPackages { get; set; } = new HashSet<ProductPackages>();
     }
 }

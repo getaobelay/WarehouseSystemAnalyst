@@ -1,4 +1,4 @@
-﻿using MediatR;
+﻿/*using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -54,7 +54,7 @@ namespace WarehouseSystemAnalyst.Server.BaseContollers
         {
             try
             {
-                var result = await _repository.GetByIdAsync(Id);
+                var result = await _repository.GetAsync(Id);
 
                 if (result != null)
                 {
@@ -196,3 +196,4 @@ namespace WarehouseSystemAnalyst.Server.BaseContollers
         }
     }
 }
+*/

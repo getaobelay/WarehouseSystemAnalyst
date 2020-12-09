@@ -17,22 +17,16 @@ namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities
         public DateTime CreateDate { get; set; }
         public DateTime ModifiedDate { get; set; }
         public string ProductName { get; set; }
-
-        #region Keys
-
-        public string CategoryAK { get; set; }
-        public string StockAK { get; set; }
-        public string InventoryAK { get; set; }
-        public string ProductItemAK { get; set; }
-        public string WarehouseItemAK { get; set; }
-        public string PalletAK { get; set; }
-        public string MesureAK { get; set; }
-        public string BatchAK { get; set; }
-        public string ProductVendorAK { get; set; }
-        public string ProductPackageAK { get; set; }
-
-        #endregion Keys
-
+        public string CategoryId { get; set; }
+        public string StockId { get; set; }
+        public string InventoryId { get; set; }
+        public string ProductItemId { get; set; }
+        public string WarehouseItemId { get; set; }
+        public string PalletId { get; set; }
+        public string MesureId { get; set; }
+        public string BatchId { get; set; }
+        public string ProductVendorId { get; set; }
+        public string ProductPackageId { get; set; }
         public virtual Category Category { get; set; }
         public virtual Stock Stock { get; set; }
         public virtual Inventory Inventory { get; set; }

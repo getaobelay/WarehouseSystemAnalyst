@@ -5,11 +5,16 @@ using WarehouseSystemAnalyst.Mediator.Dtos.PalletDtos;
 using WarehouseSystemAnalyst.Mediator.Dtos.SupplyChainEntities;
 using WarehouseSystemAnalyst.Mediator.Dtos.WarehouseDtos;
 using WarehouseSystemAnalyst.Mediator.Mapping;
-
+using System;
 namespace WarehouseSystemAnalyst.Mediator.Dtos.ProductDtos
 {
-    public class ProductDto : BaseDto, IMapFrom<Product>
+    public class ProductDto : IBaseDto, IMapFrom<Product>
     {
+        public string PK { get; set; }
+        public string CreatedBy { get; set; }
+        public string ModifiedBy { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime ModifiedDate { get; set; }
         public string ProductName { get; set; }
         public Category Category { get; set; }
         public Stock Stock { get; set; }

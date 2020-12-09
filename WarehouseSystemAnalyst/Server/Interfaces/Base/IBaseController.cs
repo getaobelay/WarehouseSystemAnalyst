@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using WarehouseSystemAnalyst.Data.Interfaces.Models;
 using WarehouseSystemAnalyst.Mediator.Dtos;
-using WarehouseSystemAnalyst.Mediator.Interfaces.Base;
 
 namespace WarehouseSystemAnalyst.Server.Interfaces.Base
 {

@@ -15,8 +15,8 @@ namespace WarehouseSystemAnalyst.Data.Entities.PalletEntities
         public string ModifiedBy { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime ModifiedDate { get; set; }
-        public string ProductID { get; set; }
-        public string BatcID { get; set; }
+        public string ProductId { get; set; }
+        public string BatchId { get; set; }
 
         public Product Product { get; set; }
         public Batch Batch { get; set; }

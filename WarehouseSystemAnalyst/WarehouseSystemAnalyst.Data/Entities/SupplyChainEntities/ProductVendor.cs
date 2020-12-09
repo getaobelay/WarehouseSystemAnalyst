@@ -12,8 +12,8 @@ namespace WarehouseSystemAnalyst.Data.Entities.SupplyChainEntities
         public string ModifiedBy { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime ModifiedDate { get; set; }
-        public string ProductID { get; set; }
-        public string VendorID { get; set; }
+        public string ProductId { get; set; }
+        public string VendorId { get; set; }
         public Product Product { get; set; }
         public Batch Batch { get; set; }
 

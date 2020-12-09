@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using WarehouseSystemAnalyst.Data.Extensions;
+using WarehouseSystemAnalyst.Data.Helpers;
 
 namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities.Configurations
 {

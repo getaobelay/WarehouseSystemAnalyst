@@ -16,12 +16,12 @@ namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities
         public string ModifiedBy { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime ModifiedDate { get; set; }
-        public string ProductID { get; set; }
+        public string ProductId { get; set; }
         public string InventoryId { get; set; }
         public string StockId { get; set; }
-        public string ProductSupplierID { get; set; }
-        public string PalletID { get; set; }
-        public string WarehouseItemID { get; set; }
+        public string ProductSupplierId { get; set; }
+        public string PalletId { get; set; }
+        public string WarehouseItemId { get; set; }
         public string ProductItemId { get; set; }
         public virtual Product Product { get; set; }
         public virtual ProductItem ProductItem { get; set; }

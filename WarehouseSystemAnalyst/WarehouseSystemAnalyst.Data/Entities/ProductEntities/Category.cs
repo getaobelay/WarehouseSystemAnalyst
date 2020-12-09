@@ -14,8 +14,8 @@ namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities
         public DateTime ModifiedDate { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string ProductID { get; set; }
-        public string SubCategoryID { get; set; }
+        public string ProductId { get; set; }
+        public string SubCategoryId { get; set; }
 
         public virtual ICollection<SubCategory> SubCategories { get; set; } = new HashSet<SubCategory>();
         public virtual ICollection<Product> Products { get; set; } = new HashSet<Product>();
