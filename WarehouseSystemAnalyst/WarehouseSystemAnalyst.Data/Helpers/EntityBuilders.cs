@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using WarehouseSystemAnalyst.Data.Interfaces.Models;
+using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
 
 namespace WarehouseSystemAnalyst.Data.Helpers
 {

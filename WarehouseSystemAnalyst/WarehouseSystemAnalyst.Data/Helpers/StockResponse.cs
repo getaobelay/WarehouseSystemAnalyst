@@ -31,12 +31,12 @@ namespace WarehouseSystemAnalyst.Data.Helpers
     {
         public TransactionResponse(TSource source, TDests destination, List<string> errorMessages)
         {
-            this.source = source;
+            this.Source = source;
             Destination = destination;
             ErrorMessages = errorMessages;
         }
 
-        public TSource source { get; set; }
+        public TSource Source { get; set; }
        public TDests Destination { get; set; }
        public List<string> ErrorMessages { get; set; }
     }

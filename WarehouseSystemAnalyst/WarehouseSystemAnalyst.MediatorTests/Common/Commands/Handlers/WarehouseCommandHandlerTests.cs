@@ -1,18 +1,10 @@
 ﻿using Xunit;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using WarehouseSystemAnalyst.Mediator.Helpers;
-using MediatR;
 using Xunit.Priority;
-using WarehouseSystemAnalyst.Mediator.Common.Commands.Requests;
 using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes;
 using WarehouseSystemAnalyst.Mediator.Dtos.WarehouseDtos;
 using FluentAssertions;
-using WarehouseSystemAnalyst.Data.Implementation.Repositories;
-using WarehouseSystemAnalyst.Data.DataContext;
+using WarehouseSystemAnalyst.Mediator.Commands.Requests.CommonRequests;
 
 namespace WarehouseSystemAnalyst.MediatorTests.Common.Commands.Handlers
 {

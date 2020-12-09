@@ -17,7 +17,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\WarehouseCommands\Handlers\" />
+    <Folder Include="Commands\Responses\InventoryResponses\" />
+    <Folder Include="Commands\Responses\WarehouseResponses\" />
+    <Folder Include="Queries\Handlers\InventoryHandlers\" />
+    <Folder Include="Queries\Handlers\WarehouseHandlers\" />
+    <Folder Include="Queries\Requests\InventoryRequests\" />
+    <Folder Include="Queries\Requests\WarehouseRequests\" />
+    <Folder Include="Queries\Responses\InventoryResponses\" />
+    <Folder Include="Queries\Responses\WarehouseResponses\" />
   </ItemGroup>
 
 

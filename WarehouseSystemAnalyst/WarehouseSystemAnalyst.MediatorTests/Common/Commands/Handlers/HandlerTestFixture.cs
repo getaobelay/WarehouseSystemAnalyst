@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WarehouseSystemAnalyst.Data.DataContext;
-using WarehouseSystemAnalyst.Data.Implementation.Repositories;
-using WarehouseSystemAnalyst.Data.Interfaces.Models;
+using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
+using WarehouseSystemAnalyst.Data.Implementation;
 using WarehouseSystemAnalyst.Data.Interfaces.Repositories;
+using WarehouseSystemAnalyst.Mediator.Containers;
 using WarehouseSystemAnalyst.Mediator.Dtos.InventoryDtos;
 using WarehouseSystemAnalyst.Mediator.Dtos.WarehouseDtos;
-using WarehouseSystemAnalyst.Mediator.Helpers;
 
 namespace WarehouseSystemAnalyst.MediatorTests.Common.Commands.Handlers
 {

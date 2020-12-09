@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
 using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes;
-using WarehouseSystemAnalyst.Data.Interfaces.Models;
 
 namespace WarehouseSystemAnalyst.Data.Entities.WarehouseEntites
 {

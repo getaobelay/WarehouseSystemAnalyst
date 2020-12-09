@@ -1,8 +1,8 @@
 ﻿using System;
+using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
 using WarehouseSystemAnalyst.Data.Entities.ContactEntities;
 using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
 using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes;
-using WarehouseSystemAnalyst.Data.Interfaces.Models;
 
 namespace WarehouseSystemAnalyst.Data.Entities.WarehouseEntites
 {

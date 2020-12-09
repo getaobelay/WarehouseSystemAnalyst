@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using WarehouseSystemAnalyst.Data.Interfaces.Models;
 
 namespace WarehouseSystemAnalyst.Data.Entities.BaseEntites
 {

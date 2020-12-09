@@ -1,5 +1,5 @@
 ﻿using System;
-using WarehouseSystemAnalyst.Data.Interfaces.Models;
+using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
 
 namespace WarehouseSystemAnalyst.Data.Entities.ContactEntities
 {

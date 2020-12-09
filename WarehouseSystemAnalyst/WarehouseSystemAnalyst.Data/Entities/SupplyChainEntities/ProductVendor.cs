@@ -1,6 +1,6 @@
 ﻿using System;
+using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
 using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
-using WarehouseSystemAnalyst.Data.Interfaces.Models;
 
 namespace WarehouseSystemAnalyst.Data.Entities.SupplyChainEntities
 {

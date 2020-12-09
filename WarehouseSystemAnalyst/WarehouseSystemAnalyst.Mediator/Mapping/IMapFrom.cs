@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using WarehouseSystemAnalyst.Data.Interfaces.Models;
+using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
 
 namespace WarehouseSystemAnalyst.Mediator.Mapping
 {
