@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using FluentValidation;
 using MediatR;
 using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
 using WarehouseSystemAnalyst.Data.Helpers;
@@ -8,6 +9,7 @@ using WarehouseSystemAnalyst.Mediator.Commands.Handlers.WarehouseHandlers;
 using WarehouseSystemAnalyst.Mediator.Commands.Requests.CommonRequests;
 using WarehouseSystemAnalyst.Mediator.Commands.Requests.InventoryRequests;
 using WarehouseSystemAnalyst.Mediator.Commands.Responses.CommonResponses;
+using WarehouseSystemAnalyst.Mediator.Commands.Validation.CommonValidation;
 using WarehouseSystemAnalyst.Mediator.Dtos;
 using WarehouseSystemAnalyst.Mediator.Queries.Handlers.CommonHandlers;
 using WarehouseSystemAnalyst.Mediator.Queries.Requests.CommonRequests;
@@ -36,6 +38,10 @@ namespace WarehouseSystemAnalyst.Mediator.Containers
 
             builder.RegisterType<ListQueryHandler<TEntity, TDto, ListQueryRequest<TEntity, TDto>>>()
                    .As<IRequestHandler<ListQueryRequest<TEntity, TDto>, ListQueryResponse<TDto>>>();
+
+            builder.RegisterType<CreateCommandValidator<TEntity, TDto>>().As<IValidator<CreateCommandValidator<TEntity, TDto>>>();
+            builder.RegisterType<UpdateCommandValidator<TEntity, TDto>>().As<IValidator<UpdateCommandValidator<TEntity, TDto>>>();
+            builder.RegisterType<DeleteCommandValidator<TEntity, TDto>>().As<IValidator<DeleteCommandRequest<TEntity, TDto>>>();
 
             return builder;
         }

@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
@@ -9,6 +10,7 @@ using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes;
 using WarehouseSystemAnalyst.Data.Implementation;
 using WarehouseSystemAnalyst.Data.Interfaces.Repositories;
 using WarehouseSystemAnalyst.Mediator.Commands.Behaviours.CommonBehaviours;
+using WarehouseSystemAnalyst.Mediator.Commands.Validation.CommonValidation;
 using WarehouseSystemAnalyst.Mediator.Dtos.InventoryDtos;
 using WarehouseSystemAnalyst.Mediator.Dtos.ProductDtos;
 using WarehouseSystemAnalyst.Mediator.Dtos.WarehouseDtos;
@@ -16,8 +18,10 @@ using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
 
 namespace WarehouseSystemAnalyst.Mediator.Containers
 {
+
     public static class MediatorContainer
     {
+
         public static IMediator BuildMediator()
         {
             var builder = new ContainerBuilder();

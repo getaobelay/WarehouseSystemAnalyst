@@ -9,8 +9,8 @@ using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
 namespace WarehouseSystemAnalyst.Data.Implementation
 {
     public class TransactionRepository<TSource, TDestination> : DataRepository<TSource>, ITransactionRepository<TSource, TDestination>
-        where TSource : class, IBaseStock, new()
-        where TDestination : class, IBaseStock, new()
+        where TSource : class, IBaseEntity, new()
+        where TDestination : class, IBaseEntity, new()
     {
         private DataRepository<TDestination> destRepository;
 
@@ -24,9 +24,9 @@ namespace WarehouseSystemAnalyst.Data.Implementation
         {
         }
 
-        public DataRepository<TDestination> DestRepository => destRepository ??= new DataRepository<TDestination>(UnitOfWork);
+        public virtual DataRepository<TDestination> DestRepository => destRepository ??= new DataRepository<TDestination>(UnitOfWork);
 
-        public async Task<bool> DeleteAsync(TSource source, TDestination destination)
+        public virtual async Task<bool> DeleteAsync(TSource source, TDestination destination)
         {
             if (source is null)
             {
@@ -44,7 +44,7 @@ namespace WarehouseSystemAnalyst.Data.Implementation
             return await Task.FromResult(sourceResult && destResult);
         }
 
-        public async Task<TransactionResponse<TSource, TDestination>> DeleteAsync(object sourceId, object destinationId)
+        public virtual async Task<TransactionResponse<TSource, TDestination>> DeleteAsync(object sourceId, object destinationId)
         {
             if (sourceId is null)
             {
@@ -64,7 +64,7 @@ namespace WarehouseSystemAnalyst.Data.Implementation
                 var result = await DeleteAsync(source, destination);
                 if (result)
                 {
-                    return await Task.FromResult(TransactionResponse.Success<TSource, TDestination>(default, default));
+                    return await Task.FromResult(TransactionResponse.Success<TSource, TDestination>(null, null));
                 }
             }
 
@@ -73,7 +73,7 @@ namespace WarehouseSystemAnalyst.Data.Implementation
 
         }
 
-        public async Task<TransactionResponse<TSource, TDestination>> InsertAsync(TSource source, TDestination destination)
+        public virtual async Task<TransactionResponse<TSource, TDestination>> InsertAsync(TSource source, TDestination destination)
         {
             if (source is null)
             {
@@ -96,7 +96,7 @@ namespace WarehouseSystemAnalyst.Data.Implementation
             return await Task.FromResult(TransactionResponse.Success(sourceResult, destResult));
         }
 
-        public async Task<TransactionResponse<TSource, TDestination>> UpdateAsync(TSource source, TDestination destination)
+        public virtual async Task<TransactionResponse<TSource, TDestination>> UpdateAsync(TSource source, TDestination destination)
         {
             if (source is null)
             {

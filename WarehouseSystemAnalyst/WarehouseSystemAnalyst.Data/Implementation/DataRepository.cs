@@ -29,7 +29,7 @@ namespace WarehouseSystemAnalyst.Data.Implementation
             Context = context;
         }
 
-        public WarehouseDbContext Context { get; set; }
+        public virtual WarehouseDbContext Context { get; set; }
 
         /// <summary>
         ///
@@ -41,14 +41,14 @@ namespace WarehouseSystemAnalyst.Data.Implementation
         /// </summary>
         public virtual IQueryable<TEntity> Table => Entities;
 
-        public IUnitOfWorkRepository<WarehouseDbContext> UnitOfWork { get; }
+        public virtual IUnitOfWorkRepository<WarehouseDbContext> UnitOfWork { get; }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public async Task<TEntity> InsertAsync(TEntity entity)
+        public virtual async Task<TEntity> InsertAsync(TEntity entity)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace WarehouseSystemAnalyst.Data.Implementation
         /// </summary>
         /// <param name="entities"></param>
         /// <returns></returns>
-        public async Task BulkInsertAsync(IEnumerable<TEntity> entities)
+        public virtual async Task BulkInsertAsync(IEnumerable<TEntity> entities)
         {
             if (entities == null)
             {
@@ -101,8 +101,7 @@ namespace WarehouseSystemAnalyst.Data.Implementation
 
         }
 
-
-        public async void Dispose()
+        public virtual async void Dispose()
         {
             if (Context != null)
                 await Context.DisposeAsync();
@@ -110,7 +109,7 @@ namespace WarehouseSystemAnalyst.Data.Implementation
         }
 
         [Obsolete]
-        public async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> expression)
+        public virtual async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> expression)
         {
             return await Entities.Include(Context.GetIncludePaths(typeof(TEntity))).Where(expression).ToListAsync();
         }
@@ -120,8 +119,10 @@ namespace WarehouseSystemAnalyst.Data.Implementation
         {
             return await Entities.Include(Context.GetIncludePaths(typeof(TEntity))).ToListAsync();
         }
-        public async Task<TEntity> GetAsync(object Id) => await Entities.FindAsync(Id);
-        public async Task<TEntity> UpdateAsync(TEntity entityUpdate)
+
+        public virtual async Task<TEntity> GetAsync(object Id) => await Entities.FindAsync(Id);
+
+        public virtual async Task<TEntity> UpdateAsync(TEntity entityUpdate)
         {
             try
             {
@@ -142,11 +143,13 @@ namespace WarehouseSystemAnalyst.Data.Implementation
                 throw new DbUpdateConcurrencyException();
             }
         }
-        public async Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> expression)
+
+        public virtual async Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> expression)
         {
             return await Entities.Where(expression).SingleOrDefaultAsync();
         }
-        public async Task<bool> DeleteAsync(TEntity entityToDelete)
+
+        public virtual async Task<bool> DeleteAsync(TEntity entityToDelete)
         {
             try
             {
@@ -168,7 +171,8 @@ namespace WarehouseSystemAnalyst.Data.Implementation
             }
 
         }
-        public async Task<bool> DeleteAsync(object Id)
+
+        public virtual async Task<bool> DeleteAsync(object Id)
         {
             try
             {
@@ -194,7 +198,8 @@ namespace WarehouseSystemAnalyst.Data.Implementation
             }
 
         }
-        public async Task<IEnumerable<TEntity>> GetQuery(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includes = "")
+
+        public virtual async Task<IEnumerable<TEntity>> GetQuery(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includes = "")
         {
             try
             {
@@ -227,7 +232,8 @@ namespace WarehouseSystemAnalyst.Data.Implementation
                 throw;
             }
         }
-        public async Task<TEntity> GetSingleQuery(Expression<Func<TEntity, bool>> filter, string includes = null)
+
+        public virtual async Task<TEntity> GetSingleQuery(Expression<Func<TEntity, bool>> filter, string includes = null)
         {
             if (filter == null)
                 throw new ArgumentNullException(nameof(filter));

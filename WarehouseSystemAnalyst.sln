@@ -17,6 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehouseSystemAnalyst.Medi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehouseSystemAnalyst.MediatorTests", "WarehouseSystemAnalyst\WarehouseSystemAnalyst.MediatorTests\WarehouseSystemAnalyst.MediatorTests.csproj", "{2E285806-7FA1-4668-AD55-4C469B4194A4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehouseSystemAnalyst.DataTests", "WarehouseSystemAnalyst\WarehouseSystemAnalyst.DataTests\WarehouseSystemAnalyst.DataTests.csproj", "{29974AA8-DAF8-4032-A972-8D4D8CACCCAF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2DA7E0BA-0CA0-4806-B741-DF27B54E0E43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,9 +55,17 @@ Global
 		{2E285806-7FA1-4668-AD55-4C469B4194A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E285806-7FA1-4668-AD55-4C469B4194A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E285806-7FA1-4668-AD55-4C469B4194A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29974AA8-DAF8-4032-A972-8D4D8CACCCAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29974AA8-DAF8-4032-A972-8D4D8CACCCAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29974AA8-DAF8-4032-A972-8D4D8CACCCAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29974AA8-DAF8-4032-A972-8D4D8CACCCAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2E285806-7FA1-4668-AD55-4C469B4194A4} = {2DA7E0BA-0CA0-4806-B741-DF27B54E0E43}
+		{29974AA8-DAF8-4032-A972-8D4D8CACCCAF} = {2DA7E0BA-0CA0-4806-B741-DF27B54E0E43}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F4DDC164-4D6E-4782-9F0E-C3ED5ACE8073}

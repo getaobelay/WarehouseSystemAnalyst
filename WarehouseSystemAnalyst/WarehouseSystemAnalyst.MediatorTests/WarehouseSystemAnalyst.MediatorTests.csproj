@@ -25,4 +25,8 @@
     <ProjectReference Include="..\WarehouseSystemAnalyst.Mediator\WarehouseSystemAnalyst.Mediator.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Queries\Handlers\" />
+  </ItemGroup>
+
 </Project>
