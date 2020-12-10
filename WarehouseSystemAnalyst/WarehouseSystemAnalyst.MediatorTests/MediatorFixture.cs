@@ -19,7 +19,7 @@ namespace WarehouseSystemAnalyst.MediatorTests
 
     public class MediatorFixture : IDisposable
     {
-        private MockRepository mockRepository;
+        public  MockRepository mockRepository;
         private IMediator mediator;
         private Mock<FakeMediator> mockMediator;
         private FakeMediator FakeMediator;

@@ -9,7 +9,7 @@ namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities.Configurations
     {
         public void Configure(EntityTypeBuilder<ProductVendor> builder)
         {
-            builder.BaseBuilder();
+            builder.BaseEntityBuilder();
 
             builder.HasOne(d => d.Vendor)
                   .WithMany(p => p.ProductVendors)

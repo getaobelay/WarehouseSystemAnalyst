@@ -79,7 +79,7 @@ namespace WarehouseSystemAnalyst.MediatorTests.Implementation
 
             var expected = TransactionResponse.Success(source, destination);
 
-            transactionRepository.Setup(d => d.InsertAsync(It.IsAny<Inventory>(), It.IsAny<Stock>()))
+            transactionRepository.Setup(d => d.InsertAsync(source, destination))
            .ReturnsAsync(expected);
 
 

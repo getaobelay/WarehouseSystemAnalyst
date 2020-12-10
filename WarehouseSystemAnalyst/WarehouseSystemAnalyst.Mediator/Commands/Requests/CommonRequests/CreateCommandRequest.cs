@@ -12,6 +12,6 @@ namespace WarehouseSystemAnalyst.Mediator.Commands.Requests.CommonRequests
        where TEntity : class, IBaseEntity, new()
       where TDto : class, IBaseDto, new()
     {
-        public TDto Entity { get; set; }
+        public TDto CreateObject { get; set; }
     }
 }

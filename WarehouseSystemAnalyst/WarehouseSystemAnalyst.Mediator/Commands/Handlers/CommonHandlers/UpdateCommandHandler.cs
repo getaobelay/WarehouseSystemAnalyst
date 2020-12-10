@@ -41,7 +41,7 @@ namespace WarehouseSystemAnalyst.Mediator.Commands.Handlers.CommonHandlers
 
                 }
 
-                var mappedObject = MappingHelper.Mapper.Map<TEntity>(request.Entity);
+                var mappedObject = MappingHelper.Mapper.Map<TEntity>(request.UpdatedObject);
                 mappedObject.Id = is_exists.Id;
 
                 var result = await repository.UpdateAsync(mappedObject);

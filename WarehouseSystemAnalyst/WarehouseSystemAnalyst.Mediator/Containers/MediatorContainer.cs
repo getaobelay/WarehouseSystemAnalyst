@@ -27,17 +27,22 @@ namespace WarehouseSystemAnalyst.Mediator.Containers
             var builder = new ContainerBuilder();
 
             builder.RegisterAssemblyTypes(typeof(IMediator).GetTypeInfo().Assembly).AsImplementedInterfaces();
-            builder.RegisterHandlers<Product, ProductDto>();
-            builder.RegisterHandlers<ProductItem, ProductItemDto>();
-            builder.RegisterHandlers<Stock, StockDto>();
-            builder.RegisterHandlers<Inventory, InventoryDto>();
+
             builder.RegisterHandlers<GoodsWarehouse, GoodsWarehouseDto>();
             builder.RegisterInventoryHandlers<Inventory, InventoryDto, Stock, StockDto>();
             builder.RegisterWarehouseHandlers<GoodsWarehouse, GoodsWarehouseDto, AllocationWarehouse, AllocationWarehouseDto>();
             builder.RegisterWarehouseHandlers<AllocationWarehouse, AllocationWarehouseDto, ShippingWarehouse, ShippingWarehouseDto>();
-
-            builder.RegisterGeneric(typeof(CommandBehaviour<,,,>)).As(typeof(IPipelineBehavior<,>));
             builder.RegisterGeneric(typeof(TransacitonCommandBehaviour<,,,,,>)).As(typeof(IPipelineBehavior<,>));
+
+            builder.RegisterHandlers<Product, ProductDto>();
+            builder.RegisterHandlers<ProductItem, ProductItemDto>();
+            builder.RegisterHandlers<Stock, StockDto>();
+            builder.RegisterHandlers<Inventory, InventoryDto>();
+            builder.RegisterGeneric(typeof(CommandBehaviour<,,,>)).As(typeof(IPipelineBehavior<,>));
+            builder.RegisterGeneric(typeof(CreateCommandValidator<,>)).As(typeof(IValidator<>));
+            builder.RegisterGeneric(typeof(UpdateCommandValidator<,>)).As(typeof(IValidator<>));
+            builder.RegisterGeneric(typeof(DeleteCommandValidator<,>)).As(typeof(IValidator<>));
+
 
             builder.RegisterType(typeof(DataContext)).As(typeof(IDataContext));
             builder.RegisterGeneric(typeof(UnitOfWorkRepository<>)).As(typeof(IUnitOfWorkRepository<>));

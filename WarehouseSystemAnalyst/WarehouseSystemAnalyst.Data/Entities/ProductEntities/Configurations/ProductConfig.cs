@@ -9,7 +9,7 @@ namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities.Configurations
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.BaseBuilder();
+            builder.BaseEntityBuilder();
             builder.HasOne(d => d.Category)
                   .WithMany(p => p.Products)
                   .HasForeignKey(d => d.CategoryId)

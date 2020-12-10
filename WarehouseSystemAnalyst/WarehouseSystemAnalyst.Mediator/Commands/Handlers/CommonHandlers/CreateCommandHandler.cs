@@ -34,7 +34,7 @@ namespace WarehouseSystemAnalyst.Mediator.Commands.Handlers.CommonHandlers
         {
             try
             {
-                var mappedInsertObject = MappingHelper.Mapper.Map<TEntity>(request.Entity);
+                var mappedInsertObject = MappingHelper.Mapper.Map<TEntity>(request.CreateObject);
 
                 var result = await repository.InsertAsync(mappedInsertObject);
                 if (result != null)

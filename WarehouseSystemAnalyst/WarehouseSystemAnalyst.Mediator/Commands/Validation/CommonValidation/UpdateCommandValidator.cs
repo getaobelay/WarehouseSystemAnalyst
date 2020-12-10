@@ -14,13 +14,20 @@ namespace WarehouseSystemAnalyst.Mediator.Commands.Validation.CommonValidation
     {
         public UpdateCommandValidator()
         {
-            RuleFor(x => x.Entity)
+            RuleFor(x => x.UpdatedObject)
                 .NotEmpty()
                 .WithMessage("Entity should not be null");
+
+            RuleFor(x => x.UpdatedObject.PK)
+                .NotEmpty()
+                .WithMessage("Id should not be null");
 
             RuleFor(x => x.Id)
              .NotEmpty()
              .WithMessage("Id should not be null");
+
+
+
         }
     }
 }

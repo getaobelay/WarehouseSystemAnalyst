@@ -13,6 +13,6 @@ namespace WarehouseSystemAnalyst.Mediator.Commands.Requests.CommonRequests
       where TDto : class, IBaseDto, new()
     {
         public object Id { get; set; }
-        public TDto Entity { get; set; }
+        public TDto UpdatedObject { get; set; }
     }
 }

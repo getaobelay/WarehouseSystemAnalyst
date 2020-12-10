@@ -8,7 +8,7 @@ namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities.Configurations
     {
         public void Configure(EntityTypeBuilder<ProductItem> builder)
         {
-            builder.BaseBuilder();
+            builder.BaseEntityBuilder();
         }
     }
 }

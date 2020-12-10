@@ -18,7 +18,7 @@ namespace WarehouseSystemAnalyst.Mediator.Commands.Responses.CommonResponses
         }
     }
 
-    public class CommandResponse<TDto>
+    public class CommandResponse<TDto> : ICommandResponse<TDto>
         where TDto : class, IBaseDto, new()
     {
         public CommandResponse(TDto model, List<string> messages, bool error)

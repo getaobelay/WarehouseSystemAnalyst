@@ -7,16 +7,16 @@ namespace WarehouseSystemAnalyst.Data.Helpers
     public static class EntityBuilders
     {
         public static EntityTypeBuilder BasePallletBuilder<TBasePallet>(this EntityTypeBuilder<TBasePallet> builder)
-where TBasePallet : class, IBasePallet
+            where TBasePallet : class, IBasePallet, new()
         {
-            builder.BaseBuilder();
+            builder.BaseEntityBuilder();
             return builder;
         }
 
         public static EntityTypeBuilder BaseStockBuilder<TStock>(this EntityTypeBuilder<TStock> builder)
-            where TStock : class, IBaseStock
+            where TStock : class, IBaseStock, new()
         {
-            builder.BaseBuilder();
+            builder.BaseEntityBuilder();
 
             builder.Property(e => e.ProductQuantity)
                    .HasColumnType("decimal(8,2)")
@@ -34,10 +34,10 @@ where TBasePallet : class, IBasePallet
         }
 
         public static EntityTypeBuilder BaseMissionBuilder<TMission, TItem>(this EntityTypeBuilder<TMission> builder)
-            where TMission : class, IBaseMission<TItem>
-            where TItem : class, IBaseEntity
+            where TMission : class, IBaseMission<TItem>, new()
+            where TItem : class, IBaseEntity, new()
         {
-            builder.BaseBuilder();
+            builder.BaseEntityBuilder();
 
             builder.Property(e => e.AssignedTo)
                    .ValueGeneratedOnAddOrUpdate()
@@ -50,10 +50,10 @@ where TBasePallet : class, IBasePallet
 
 
         public static EntityTypeBuilder BaseWarehouseBuilder<TWarehouse>(this EntityTypeBuilder<TWarehouse> builder)
-            where TWarehouse : class, IBaseWarehouse
+            where TWarehouse : class, IBaseWarehouse, new()
 
         {
-            builder.BaseBuilder();
+            builder.BaseEntityBuilder();
 
             builder.Property(e => e.WarehouseName)
                 .HasMaxLength(50)
@@ -64,8 +64,8 @@ where TBasePallet : class, IBasePallet
             return builder;
         }
 
-        public static EntityTypeBuilder BaseBuilder<TBaseEntity>(this EntityTypeBuilder<TBaseEntity> builder)
-            where TBaseEntity : class, IBaseEntity
+        public static EntityTypeBuilder BaseEntityBuilder<TBaseEntity>(this EntityTypeBuilder<TBaseEntity> builder)
+            where TBaseEntity : class, IBaseEntity, new()
         {
 
             builder.Property(e => e.Id)

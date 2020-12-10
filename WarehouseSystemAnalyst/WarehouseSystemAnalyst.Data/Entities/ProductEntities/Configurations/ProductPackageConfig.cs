@@ -9,7 +9,7 @@ namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities.Configurations
     {
         public void Configure(EntityTypeBuilder<ProductPackages> builder)
         {
-            builder.BaseBuilder();
+            builder.BaseEntityBuilder();
 
             builder.HasOne(d => d.Package)
                  .WithMany(p => p.ProductPackages)

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,34 @@ namespace WarehouseSystemAnalyst.Mediator.Commands.Behaviours.CommonBehaviours
         where TEntity : class, IBaseEntity, new()
         where TDto : class, IBaseDto, new()
     {
-        public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+        private readonly IEnumerable<IValidator<TRequest>> _validators;
+
+        public ValidationBehaviour(IEnumerable<IValidator<TRequest>> validators)
         {
-            throw new NotImplementedException();
+            _validators = validators;
+        }
+
+        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+        {
+            TResponse response = default;
+
+            var context = new ValidationContext<TRequest>(request);
+
+            var failures = _validators
+                .Select(x => x.Validate(context))
+                .SelectMany(x => x.Errors)
+                .Where(x => x != null)
+                .ToList();
+
+            if (failures.Any())
+            {
+                throw new ValidationException(failures);
+            }
+
+            response = await next();
+
+            return response;
+
         }
     }
 }
