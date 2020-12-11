@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using System;
 
-namespace WarehouseSystemAnalyst.Mediator.Mapping
+namespace WarehouseSystemAnalyst.Mediator.Helpers
 {
     /// <summary>
     /// Return a mapper with all the profile configurations

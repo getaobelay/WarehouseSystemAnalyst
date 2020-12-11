@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 
-namespace WarehouseSystemAnalyst.Mediator.Mapping
+namespace WarehouseSystemAnalyst.Mediator.Helpers
 {
     public class MappingProfile : Profile
     {

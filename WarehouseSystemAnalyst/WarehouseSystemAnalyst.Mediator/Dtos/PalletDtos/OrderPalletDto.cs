@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using WarehouseSystemAnalyst.Data.Entities.PalletEntities;
 using WarehouseSystemAnalyst.Mediator.Dtos.SupplyChainEntities;
-using WarehouseSystemAnalyst.Mediator.Mapping;
+using WarehouseSystemAnalyst.Mediator.Helpers;
 
 namespace WarehouseSystemAnalyst.Mediator.Dtos.PalletDtos
 {

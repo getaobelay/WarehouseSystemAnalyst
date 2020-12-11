@@ -6,14 +6,14 @@ using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
 using WarehouseSystemAnalyst.Data.Implementation;
 using WarehouseSystemAnalyst.Data.Interfaces;
 using WarehouseSystemAnalyst.Mediator.Dtos;
+using WarehouseSystemAnalyst.Mediator.Helpers;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
-using WarehouseSystemAnalyst.Mediator.Mapping;
 using WarehouseSystemAnalyst.Mediator.Queries.Requests.CommonRequests;
 using WarehouseSystemAnalyst.Mediator.Queries.Responses.CommonResponses;
 
 namespace WarehouseSystemAnalyst.Mediator.Queries.Handlers.CommonHandlers
 {
-    public class ListQueryHandler<TEntity, TDto, TQuery> : IRequestHandler<TQuery, ListQueryResponse<TDto>>
+    public class ListQueryHandler<TEntity, TDto, TQuery> : IRequestHandler<TQuery, HandlerResponse<TDto>>
         where TEntity : class, IBaseEntity, new()
         where TDto : class, IBaseDto, new()
         where TQuery : ListQueryRequest<TEntity, TDto>, new()
@@ -28,13 +28,10 @@ namespace WarehouseSystemAnalyst.Mediator.Queries.Handlers.CommonHandlers
 
         public IDataContext Context { get; set; }
 
-        public async Task<ListQueryResponse<TDto>> Handle(TQuery request, CancellationToken cancellationToken)
+        public async Task<HandlerResponse<TDto>> Handle(TQuery request, CancellationToken cancellationToken)
         {
             var result = await repository.GetAllAsync();
-            return new ListQueryResponse<TDto>()
-            {
-                Dtos = MappingHelper.Mapper.Map<IEnumerable<TDto>>(result)
-            };
+            return HandlerResponse.ListResponse(MappingHelper.Mapper.Map<IEnumerable<TDto>>(result));
         }
     }
 }

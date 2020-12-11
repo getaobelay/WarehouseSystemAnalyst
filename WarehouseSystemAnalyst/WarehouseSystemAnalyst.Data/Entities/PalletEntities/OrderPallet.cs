@@ -8,7 +8,7 @@ namespace WarehouseSystemAnalyst.Data.Entities.PalletEntities
     public class OrderPallet : IBasePallet
     {
         public int Id { get; set; }
-        public string PK { get; set; }
+        public string? PK { get; set; }
         public string SupplierPallet { get; set; }
         public string PalletNumber { get; set; }
         public string PalletCode { get; set; }
@@ -17,6 +17,6 @@ namespace WarehouseSystemAnalyst.Data.Entities.PalletEntities
         public DateTime CreateDate { get; set; }
         public DateTime ModifiedDate { get; set; }
         public string OrderId { get; set; }
-        public ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

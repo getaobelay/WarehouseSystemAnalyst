@@ -2,7 +2,7 @@
 using Moq;
 using System;
 using System.Threading.Tasks;
-using WarehouseSystemAnalyst.Mediator.Containers;
+using WarehouseSystemAnalyst.Mediator.loC;
 
 namespace WarehouseSystemAnalyst.MediatorTests
 {

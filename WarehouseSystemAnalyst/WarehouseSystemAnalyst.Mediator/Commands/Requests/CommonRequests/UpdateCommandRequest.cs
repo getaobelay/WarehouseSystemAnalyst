@@ -8,7 +8,7 @@ namespace WarehouseSystemAnalyst.Mediator.Commands.Requests.CommonRequests
     /// </summary>
     /// <typeparam name="TEntity">The entity to insert into the database</typeparam>
     /// <typeparam name="TDto">The source dto to map result from</typeparam>
-    public class UpdateCommandRequest<TEntity, TDto> : ICommandRequest<TEntity, TDto>
+    public class UpdateCommandRequest<TEntity, TDto> : BaseCommandRequest<TEntity, TDto>
       where TEntity : class, IBaseEntity, new()
       where TDto : class, IBaseDto, new()
     {

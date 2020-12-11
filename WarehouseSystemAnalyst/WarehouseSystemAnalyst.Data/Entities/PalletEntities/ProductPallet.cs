@@ -7,7 +7,7 @@ namespace WarehouseSystemAnalyst.Data.Entities.PalletEntities
     public class ProductPallet : IBasePallet
     {
         public int Id { get; set; }
-        public string PK { get; set; }
+        public string? PK { get; set; }
         public string SupplierPallet { get; set; }
         public string PalletNumber { get; set; }
         public string PalletCode { get; set; }
@@ -18,7 +18,7 @@ namespace WarehouseSystemAnalyst.Data.Entities.PalletEntities
         public string ProductId { get; set; }
         public string BatchId { get; set; }
 
-        public Product Product { get; set; }
-        public Batch Batch { get; set; }
+        public virtual  Product Product { get; set; }
+        public virtual Batch Batch { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace WarehouseSystemAnalyst.Data.Entities.ContactEntities
     public class Customer : IBaseEntity
     {
         public int Id { get; set; }
-        public string PK { get; set; }
+        public string? PK { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime ModifiedDate { get; set; }
         public string CreatedBy { get; set; }

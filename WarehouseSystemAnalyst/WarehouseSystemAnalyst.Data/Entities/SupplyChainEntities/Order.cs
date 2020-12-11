@@ -17,7 +17,7 @@ namespace WarehouseSystemAnalyst.Data.Entities.SupplyChainEntities
         public string AllocationId { get; set; }
         public string OrderPalletId { get; set; }
 
-        public ICollection<Allocation> Allocations { get; set; }
-        public ICollection<OrderPallet> OrderPallets { get; set; }
+        public virtual ICollection<Allocation> Allocations { get; set; }
+        public virtual ICollection<OrderPallet> OrderPallets { get; set; }
     }
 }

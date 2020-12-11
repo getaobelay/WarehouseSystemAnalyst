@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using WarehouseSystemAnalyst.Data.Entities.StockEntites;
 using WarehouseSystemAnalyst.Mediator.Dtos.ProductDtos;
 using WarehouseSystemAnalyst.Mediator.Dtos.WarehouseDtos;
-using WarehouseSystemAnalyst.Mediator.Mapping;
+using WarehouseSystemAnalyst.Mediator.Helpers;
 
 namespace WarehouseSystemAnalyst.Mediator.Dtos.InventoryDtos
 {

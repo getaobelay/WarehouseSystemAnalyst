@@ -117,7 +117,7 @@ namespace WarehouseSystemAnalyst.Data.Implementation
         [Obsolete]
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await Entities.Include(Context.GetIncludePaths(typeof(TEntity))).ToListAsync();
+            return await Entities.ToListAsync();
         }
 
         public virtual async Task<TEntity> GetAsync(object Id) => await Entities.FindAsync(Id);

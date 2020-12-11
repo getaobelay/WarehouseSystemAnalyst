@@ -1,14 +1,12 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
 using WarehouseSystemAnalyst.Mediator.Commands.Requests.CommonRequests;
-using WarehouseSystemAnalyst.Mediator.Containers;
 using WarehouseSystemAnalyst.Mediator.Dtos.ProductDtos;
+using WarehouseSystemAnalyst.Mediator.loC;
 using WarehouseSystemAnalyst.Mediator.Queries.Requests.CommonRequests;
 using WarehouseSystemAnalyst.Server.BaseContollers;
 using WarehouseSystemAnalyst.Server.Interfaces;
@@ -20,21 +18,29 @@ namespace WarehouseSystemAnalyst.Server.Controllers
     public class ProductsController : ControllerBase, IAPIController<ProductDto>
     {
         private readonly IMediator mediator;
-        public ProductsController() => MediatorContainer.BuildMediator();
 
-        public virtual async Task<ActionResult<IBaseResponse<ProductDto>>> GetAllAsync()
+        public IMediator Mediator => mediator;
+
+        public ProductsController()
+        {
+            mediator = MediatorContainer.BuildMediator();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IBaseResponse<ProductDto>>> GetAllAsync()
         {
             try
             {
                 var query = new ListQueryRequest<Product, ProductDto>();
-                var result = await mediator.Send(query);
+                var result = await Mediator.Send(query);
 
-                if (result.Error)
+
+                if (result.Success)
                 {
-                    return Ok(BaseResponseHelper<ProductDto>.NullResponse(result.ErrorMessages));
-                }
+                    return Ok(ResponseHelper<ProductDto>.ListResponse((IEnumerable<ProductDto>)result.Object));
 
-                return Ok(BaseResponseHelper<ProductDto>.ListResponse(result.Dtos));
+                }
+                return Ok(ResponseHelper<ProductDto>.NullResponse(result.ErrorsMessages));
 
             }
             catch (Exception)
@@ -44,24 +50,24 @@ namespace WarehouseSystemAnalyst.Server.Controllers
 
         }
 
-        public virtual async Task<ActionResult<IBaseResponse<ProductDto>>> GetAsync(object Id)
+        [HttpGet("{Id}")]
+        public async Task<ActionResult<IBaseResponse<ProductDto>>> GetByIdAsync([FromQuery] string Id)
         {
             try
             {
                 var query = new SingleQueryRequest<Product, ProductDto>()
                 {
-                    Id = Id
+                    Filter = p => p.PK == Id
                 };
 
-                var result = await mediator.Send(query);
+                var result = await Mediator.Send(query);
 
-                if (result.Error)
+                if (result.Success)
                 {
-                    return Ok(BaseResponseHelper<ProductDto>.NullResponse(result.ErrorMessages));
+                    return Ok(ResponseHelper<ProductDto>.SingleResponse((ProductDto)result.Object));
+
                 }
-
-                return Ok(BaseResponseHelper<ProductDto>.SingleResponse(result.Dto));
-
+                return Ok(ResponseHelper<ProductDto>.NullResponse(result.ErrorsMessages));
             }
             catch (Exception)
             {
@@ -70,33 +76,30 @@ namespace WarehouseSystemAnalyst.Server.Controllers
 
         }
 
-        public virtual async Task<ActionResult<IBaseResponse<ProductDto>>> PostAsync(ProductDto createdObject)
+        [HttpPost]
+        public  async Task<ActionResult<IBaseResponse<ProductDto>>> PostAsync([FromBody] ProductDto createdObject)
         {
-            try
+
+            var query = new CreateCommandRequest<Product, ProductDto>()
             {
-                var query = new CreateCommandRequest<Product, ProductDto>()
-                {
-                    CreateObject = createdObject
-                };
+                CreateObject = createdObject
+            };
 
-                var result = await mediator.Send(query);
+            var result = await Mediator.Send(query);
 
-                if (result.Error)
-                {
-                    return Ok(BaseResponseHelper<ProductDto>.NullResponse(result.ErrorMessages));
-                }
-
-                return Ok(BaseResponseHelper<ProductDto>.SingleResponse(result.Dto));
-
-            }
-            catch (Exception)
+            if (result.Error)
             {
-                return StatusCode(500);
+                return Ok(ResponseHelper<ProductDto>.NullResponse(result.ErrorMessages));
             }
+
+            return Ok(ResponseHelper<ProductDto>.SingleResponse(result.Dto));
+
+
 
         }
 
-        public virtual async Task<ActionResult<IBaseResponse<ProductDto>>> PutAsync(object Id, ProductDto updatedObject)
+        [HttpPut("{Id}")]
+        public  async Task<ActionResult<IBaseResponse<ProductDto>>> PutAsync([FromQuery] string Id, [FromBody] ProductDto updatedObject)
         {
             var query = new UpdateCommandRequest<Product, ProductDto>()
             {
@@ -104,18 +107,19 @@ namespace WarehouseSystemAnalyst.Server.Controllers
                 UpdatedObject = updatedObject
             };
 
-            var result = await mediator.Send(query);
+            var result = await Mediator.Send(query);
 
             if (result.Error)
             {
-                return Ok(BaseResponseHelper<ProductDto>.NullResponse(result.ErrorMessages));
+                return Ok(ResponseHelper<ProductDto>.NullResponse(result.ErrorMessages));
             }
 
-            return Ok(BaseResponseHelper<ProductDto>.SingleResponse(result.Dto));
+            return Ok(ResponseHelper<ProductDto>.SingleResponse(result.Dto));
 
         }
 
-        public virtual async Task<ActionResult<IBaseResponse<ProductDto>>> DeleteAsync(object Id)
+        [HttpDelete("{Id}")]
+        public  async Task<ActionResult<IBaseResponse<ProductDto>>> DeleteAsync([FromQuery] string Id)
         {
             try
             {
@@ -124,20 +128,18 @@ namespace WarehouseSystemAnalyst.Server.Controllers
                     Id = Id
                 };
 
-                var result = await mediator.Send(query);
+                var result = await Mediator.Send(query);
 
                 if (result.Error)
                 {
-                    return Ok(BaseResponseHelper<ProductDto>.NullResponse(result.ErrorMessages));
+                    return Ok(ResponseHelper<ProductDto>.NullResponse(result.ErrorMessages));
                 }
 
-                return Ok(BaseResponseHelper<ProductDto>.SingleResponse(result.Dto));
-
+                return Ok(ResponseHelper<ProductDto>.SingleResponse(result.Dto));
             }
 
             catch (Exception)
             {
-
                 return StatusCode(500);
             }
         }

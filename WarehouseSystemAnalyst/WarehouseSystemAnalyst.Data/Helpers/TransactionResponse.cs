@@ -31,7 +31,7 @@ namespace WarehouseSystemAnalyst.Data.Helpers
             ErrorMessages = errorMessages;
         }
 
-        public TSource Source { get; set; }
+       public TSource Source { get; set; }
        public TDests Destination { get; set; }
        public List<string> ErrorMessages { get; set; }
     }

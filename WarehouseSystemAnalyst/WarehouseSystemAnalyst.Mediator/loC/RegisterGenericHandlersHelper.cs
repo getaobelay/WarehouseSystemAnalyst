@@ -1,6 +1,6 @@
 ﻿using Autofac;
-using FluentValidation;
 using MediatR;
+using System.Reflection;
 using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
 using WarehouseSystemAnalyst.Data.Helpers;
 using WarehouseSystemAnalyst.Mediator.Commands.Handlers.CommonHandlers;
@@ -9,21 +9,21 @@ using WarehouseSystemAnalyst.Mediator.Commands.Handlers.WarehouseHandlers;
 using WarehouseSystemAnalyst.Mediator.Commands.Requests.CommonRequests;
 using WarehouseSystemAnalyst.Mediator.Commands.Requests.InventoryRequests;
 using WarehouseSystemAnalyst.Mediator.Commands.Responses.CommonResponses;
-using WarehouseSystemAnalyst.Mediator.Commands.Validation.CommonValidation;
 using WarehouseSystemAnalyst.Mediator.Dtos;
+using WarehouseSystemAnalyst.Mediator.Helpers;
 using WarehouseSystemAnalyst.Mediator.Queries.Handlers.CommonHandlers;
 using WarehouseSystemAnalyst.Mediator.Queries.Requests.CommonRequests;
-using WarehouseSystemAnalyst.Mediator.Queries.Responses.CommonResponses;
 
-namespace WarehouseSystemAnalyst.Mediator.Containers
+namespace WarehouseSystemAnalyst.Mediator.loC
 {
-    public static class RegisterGenericHandlers
+    public static class RegisterGenericHandlersHelper
     {
         public static ContainerBuilder RegisterHandlers<TEntity, TDto>(this ContainerBuilder builder)
             where TEntity : class, IBaseEntity, new()
             where TDto : class, IBaseDto, new()
 
         {
+
             builder.RegisterType<CreateCommandHandler<TEntity, TDto, CreateCommandRequest<TEntity, TDto>>>()
                    .As<IRequestHandler<CreateCommandRequest<TEntity, TDto>, CommandResponse<TDto>>>();
 
@@ -34,11 +34,14 @@ namespace WarehouseSystemAnalyst.Mediator.Containers
                    .As<IRequestHandler<UpdateCommandRequest<TEntity, TDto>, CommandResponse<TDto>>>();
 
             builder.RegisterType<SingleQueryHandler<TEntity, TDto, SingleQueryRequest<TEntity, TDto>>>()
-                   .As<IRequestHandler<SingleQueryRequest<TEntity, TDto>, SingleQueryResponse<TDto>>>();
+                   .As<IRequestHandler<SingleQueryRequest<TEntity, TDto>, HandlerResponse<TDto>>>();
 
             builder.RegisterType<ListQueryHandler<TEntity, TDto, ListQueryRequest<TEntity, TDto>>>()
-                   .As<IRequestHandler<ListQueryRequest<TEntity, TDto>, ListQueryResponse<TDto>>>();
+                   .As<IRequestHandler<ListQueryRequest<TEntity, TDto>, HandlerResponse<TDto>>>();
 
+            builder.RegisterValidators<TEntity, TDto>();
+            builder.RegisterValidationBehaviours<TEntity, TDto>();
+            builder.RegisterCommandBehaviours<TEntity, TDto>();
 
             return builder;
         }

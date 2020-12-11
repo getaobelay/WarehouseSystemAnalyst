@@ -18,7 +18,15 @@ namespace WarehouseSystemAnalyst.Mediator.Commands.Responses.CommonResponses
         }
     }
 
-    public class CommandResponse<TDto> : ICommandResponse<TDto>
+    public abstract class BaseCommandResponse<TDto> : ICommandResponse<TDto>
+        where TDto : class, IBaseDto, new()
+    {
+        public TDto Dto { get; set; }
+        public bool Error { get; set; }
+        public List<string> ErrorMessages { get; set; }
+
+    }
+    public class CommandResponse<TDto> : BaseCommandResponse<TDto>
         where TDto : class, IBaseDto, new()
     {
         public CommandResponse(TDto model, List<string> messages, bool error)
@@ -27,8 +35,5 @@ namespace WarehouseSystemAnalyst.Mediator.Commands.Responses.CommonResponses
             Dto = model;
             ErrorMessages = messages;
         }
-        public TDto Dto { get; set; }
-        public bool Error { get; set; }
-        public List<string> ErrorMessages { get; set; }
     }
 }

@@ -69,10 +69,9 @@ namespace WarehouseSystemAnalyst.Data.Helpers
         {
 
             builder.Property(e => e.Id)
-                    .ValueGeneratedOnAdd();
+                    .UseIdentityColumn();
 
             builder.Property(e => e.PK)
-                    .ValueGeneratedOnAdd()
                     .IsConcurrencyToken();
 
             builder.HasIndex(e => e.Id)
@@ -91,6 +90,7 @@ namespace WarehouseSystemAnalyst.Data.Helpers
                    .HasMaxLength(50)
                    .IsUnicode(true)
                    .ValueGeneratedOnAdd();
+
             builder.Property(e => e.ModifiedBy)
                    .HasMaxLength(50)
                    .IsUnicode(true);

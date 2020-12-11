@@ -4,7 +4,7 @@ using WarehouseSystemAnalyst.Mediator.Dtos.ProductDtos;
 
 namespace WarehouseSystemAnalyst.Server.BaseContollers
 {
-    public class ProductQuryResponse : IBaseResponse<ProductDto>
+    public class ProductSingleResponse : IBaseResponse<ProductDto>
     {
         public ProductDto Object { get; set; }
         public decimal UnitsInStock { get; set; }

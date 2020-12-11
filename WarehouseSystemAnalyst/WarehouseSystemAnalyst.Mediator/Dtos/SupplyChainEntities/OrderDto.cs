@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using WarehouseSystemAnalyst.Data.Entities.SupplyChainEntities;
 using WarehouseSystemAnalyst.Mediator.Dtos.PalletDtos;
 using WarehouseSystemAnalyst.Mediator.Dtos.WarehouseDtos;
-using WarehouseSystemAnalyst.Mediator.Mapping;
+using WarehouseSystemAnalyst.Mediator.Helpers;
 
 namespace WarehouseSystemAnalyst.Mediator.Dtos.SupplyChainEntities
 {

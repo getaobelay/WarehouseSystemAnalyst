@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
-using WarehouseSystemAnalyst.Mediator.Mapping;
+using WarehouseSystemAnalyst.Mediator.Helpers;
 
 namespace WarehouseSystemAnalyst.Mediator.Dtos.WarehouseDtos
 {

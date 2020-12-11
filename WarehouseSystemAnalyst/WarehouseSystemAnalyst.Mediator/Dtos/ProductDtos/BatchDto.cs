@@ -5,7 +5,7 @@ using WarehouseSystemAnalyst.Mediator.Dtos.InventoryDtos;
 using WarehouseSystemAnalyst.Mediator.Dtos.PalletDtos;
 using WarehouseSystemAnalyst.Mediator.Dtos.SupplyChainEntities;
 using WarehouseSystemAnalyst.Mediator.Dtos.WarehouseDtos;
-using WarehouseSystemAnalyst.Mediator.Mapping;
+using WarehouseSystemAnalyst.Mediator.Helpers;
 
 namespace WarehouseSystemAnalyst.Mediator.Dtos.ProductDtos
 {

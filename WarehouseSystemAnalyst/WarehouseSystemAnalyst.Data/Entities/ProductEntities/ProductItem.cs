@@ -22,8 +22,8 @@ namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities
         public string MesureId { get; set; }
         public string AllocationId { get; set; }
 
-        public virtual ICollection<Batch> Batches { get; set; }
         public virtual Allocation Allocation { get; set; }
+        public virtual ICollection<Batch> Batches { get; set; } = new HashSet<Batch>();
         public virtual ICollection<Product> Products { get; set; } = new HashSet<Product>();
         public virtual ICollection<Mesure> UnitOfMesure { get; set; } = new HashSet<Mesure>();
     }

@@ -12,8 +12,8 @@ using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
 namespace WarehouseSystemAnalyst.Mediator.Commands.Behaviours.CommonBehaviours
 {
     public class CommandBehaviour<TRequest, TResponse, TEntity, TDto> : IPipelineBehavior<TRequest, TResponse>
-        where TRequest : ICommandRequest<TEntity, TDto>
-        where TResponse : ICommandResponse<TDto>
+        where TRequest : BaseCommandRequest<TEntity, TDto>
+        where TResponse : BaseCommandResponse<TDto>
         where TEntity : class, IBaseEntity, new()
         where TDto : class, IBaseDto, new()
     {

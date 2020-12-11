@@ -3,7 +3,7 @@ using WarehouseSystemAnalyst.Mediator.Dtos;
 
 namespace WarehouseSystemAnalyst.Server.BaseContollers
 {
-    public static class BaseResponseHelper<TResponseDto>
+    public static class ResponseHelper<TResponseDto>
           where TResponseDto : class, IBaseDto, new()
     {
         public static BaseResponse<TResponseDto> NullResponse(IEnumerable<string> errorsMessages) =>

@@ -8,7 +8,7 @@ using WarehouseSystemAnalyst.Data.Helpers;
 using WarehouseSystemAnalyst.Data.Implementation;
 using WarehouseSystemAnalyst.Mediator.Commands.Requests.InventoryRequests;
 using WarehouseSystemAnalyst.Mediator.Dtos;
-using WarehouseSystemAnalyst.Mediator.Mapping;
+using WarehouseSystemAnalyst.Mediator.Helpers;
 
 namespace WarehouseSystemAnalyst.Mediator.Commands.Handlers.InventoryHandlers
 {

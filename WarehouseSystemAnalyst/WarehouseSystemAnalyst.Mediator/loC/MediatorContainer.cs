@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
@@ -10,13 +9,12 @@ using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes;
 using WarehouseSystemAnalyst.Data.Implementation;
 using WarehouseSystemAnalyst.Data.Interfaces.Repositories;
 using WarehouseSystemAnalyst.Mediator.Commands.Behaviours.CommonBehaviours;
-using WarehouseSystemAnalyst.Mediator.Commands.Validation.CommonValidation;
 using WarehouseSystemAnalyst.Mediator.Dtos.InventoryDtos;
 using WarehouseSystemAnalyst.Mediator.Dtos.ProductDtos;
 using WarehouseSystemAnalyst.Mediator.Dtos.WarehouseDtos;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
 
-namespace WarehouseSystemAnalyst.Mediator.Containers
+namespace WarehouseSystemAnalyst.Mediator.loC
 {
 
     public static class MediatorContainer
@@ -38,11 +36,6 @@ namespace WarehouseSystemAnalyst.Mediator.Containers
             builder.RegisterHandlers<ProductItem, ProductItemDto>();
             builder.RegisterHandlers<Stock, StockDto>();
             builder.RegisterHandlers<Inventory, InventoryDto>();
-            builder.RegisterGeneric(typeof(CommandBehaviour<,,,>)).As(typeof(IPipelineBehavior<,>));
-            builder.RegisterGeneric(typeof(CreateCommandValidator<,>)).As(typeof(IValidator<>));
-            builder.RegisterGeneric(typeof(UpdateCommandValidator<,>)).As(typeof(IValidator<>));
-            builder.RegisterGeneric(typeof(DeleteCommandValidator<,>)).As(typeof(IValidator<>));
-
 
             builder.RegisterType(typeof(DataContext)).As(typeof(IDataContext));
             builder.RegisterGeneric(typeof(UnitOfWorkRepository<>)).As(typeof(IUnitOfWorkRepository<>));

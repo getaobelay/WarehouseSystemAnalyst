@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
 
-namespace WarehouseSystemAnalyst.Mediator.Mapping
+namespace WarehouseSystemAnalyst.Mediator.Helpers
 {
     public interface IMapFrom<TEntity>
         where TEntity : class, IBaseEntity, new()

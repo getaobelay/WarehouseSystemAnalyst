@@ -9,7 +9,7 @@ namespace WarehouseSystemAnalyst.Server.Data
     public class UserDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
         public UserDbContext(
-            DbContextOptions options,
+            DbContextOptions<UserDbContext> options,
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }

@@ -394,7 +394,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<string>("PK")
                         .IsConcurrencyToken()
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PalletId")
@@ -431,8 +430,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.HasIndex("InventoryId");
 
                     b.HasIndex("PK")
-                        .IsUnique()
-                        .HasFilter("[PK] IS NOT NULL");
+                        .IsUnique();
 
                     b.HasIndex("ProductId");
 
@@ -479,7 +477,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<string>("PK")
                         .IsConcurrencyToken()
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProductId")
@@ -495,8 +492,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasFilter("[Id] IS NOT NULL");
 
                     b.HasIndex("PK")
-                        .IsUnique()
-                        .HasFilter("[PK] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Categories");
                 });
@@ -529,7 +525,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<string>("PK")
                         .IsConcurrencyToken()
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProductItemId")
@@ -545,8 +540,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasFilter("[Id] IS NOT NULL");
 
                     b.HasIndex("PK")
-                        .IsUnique()
-                        .HasFilter("[PK] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Mesures");
                 });
@@ -579,7 +573,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<string>("PK")
                         .IsConcurrencyToken()
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProductPackageId")
@@ -595,8 +588,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasFilter("[Id] IS NOT NULL");
 
                     b.HasIndex("PK")
-                        .IsUnique()
-                        .HasFilter("[PK] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Packages");
                 });
@@ -650,7 +642,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<string>("PK")
                         .IsConcurrencyToken()
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PalletId")
@@ -694,8 +685,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.HasIndex("InventoryId");
 
                     b.HasIndex("PK")
-                        .IsUnique()
-                        .HasFilter("[PK] IS NOT NULL");
+                        .IsUnique();
 
                     b.HasIndex("ShippingWarehouseId");
 
@@ -753,7 +743,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<string>("PK")
                         .IsConcurrencyToken()
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProductId")
@@ -779,8 +768,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasFilter("[Id] IS NOT NULL");
 
                     b.HasIndex("PK")
-                        .IsUnique()
-                        .HasFilter("[PK] IS NOT NULL");
+                        .IsUnique();
 
                     b.HasIndex("ProductPackagesId");
 
@@ -820,7 +808,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
                     b.Property<string>("PK")
                         .IsConcurrencyToken()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProductId")
@@ -883,7 +870,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<string>("PK")
                         .IsConcurrencyToken()
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PackageId")
@@ -905,8 +891,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasFilter("[Id] IS NOT NULL");
 
                     b.HasIndex("PK")
-                        .IsUnique()
-                        .HasFilter("[PK] IS NOT NULL");
+                        .IsUnique();
 
                     b.HasIndex("PackageId");
 
@@ -951,7 +936,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
                     b.Property<string>("PK")
                         .IsConcurrencyToken()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -1015,7 +999,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<string>("PK")
                         .IsConcurrencyToken()
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProductId")
@@ -1043,8 +1026,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasFilter("[Id] IS NOT NULL");
 
                     b.HasIndex("PK")
-                        .IsUnique()
-                        .HasFilter("[PK] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Inventories");
                 });
@@ -1092,7 +1074,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<string>("PK")
                         .IsConcurrencyToken()
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProductId")
@@ -1120,8 +1101,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasFilter("[Id] IS NOT NULL");
 
                     b.HasIndex("PK")
-                        .IsUnique()
-                        .HasFilter("[PK] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Stocks");
                 });
@@ -1190,7 +1170,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
                     b.Property<string>("PK")
                         .IsConcurrencyToken()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProductId")
@@ -1388,7 +1367,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
                     b.Property<string>("PK")
                         .IsConcurrencyToken()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProductID")
@@ -1478,7 +1456,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<string>("PK")
                         .IsConcurrencyToken()
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProductID")
@@ -1506,8 +1483,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.HasIndex("InventoryId");
 
                     b.HasIndex("PK")
-                        .IsUnique()
-                        .HasFilter("[PK] IS NOT NULL");
+                        .IsUnique();
 
                     b.HasIndex("StockId");
 
@@ -1551,7 +1527,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<string>("PK")
                         .IsConcurrencyToken()
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProductID")
@@ -1576,8 +1551,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.HasIndex("InventoryId");
 
                     b.HasIndex("PK")
-                        .IsUnique()
-                        .HasFilter("[PK] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("GoodsWarehouses");
                 });
@@ -1616,7 +1590,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<string>("PK")
                         .IsConcurrencyToken()
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProductID")
@@ -1642,8 +1615,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasFilter("[Id] IS NOT NULL");
 
                     b.HasIndex("PK")
-                        .IsUnique()
-                        .HasFilter("[PK] IS NOT NULL");
+                        .IsUnique();
 
                     b.HasIndex("StockId");
 

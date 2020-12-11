@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WarehouseSystemAnalyst.Data.Migrations
 {
-    public partial class initial_db_creation : Migration
+    public partial class InitialDbCreation : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,7 +30,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -109,7 +109,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -130,7 +130,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -160,7 +160,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -185,7 +185,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -226,7 +226,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -246,7 +246,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -266,7 +266,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -295,7 +295,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -340,7 +340,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -370,7 +370,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -422,7 +422,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -459,7 +459,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -561,7 +561,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -672,7 +672,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -706,7 +706,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -753,7 +753,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -1058,8 +1058,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 name: "IX_AllocationWarehouses_PK",
                 table: "AllocationWarehouses",
                 column: "PK",
-                unique: true,
-                filter: "[PK] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AllocationWarehouses_StockId",
@@ -1092,8 +1091,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 name: "IX_Batches_PK",
                 table: "Batches",
                 column: "PK",
-                unique: true,
-                filter: "[PK] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Batches_ProductId",
@@ -1126,8 +1124,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 name: "IX_Categories_PK",
                 table: "Categories",
                 column: "PK",
-                unique: true,
-                filter: "[PK] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_GoodsWarehouseLocation_LocationsId",
@@ -1150,8 +1147,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 name: "IX_GoodsWarehouses_PK",
                 table: "GoodsWarehouses",
                 column: "PK",
-                unique: true,
-                filter: "[PK] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Inventories_Id",
@@ -1164,8 +1160,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 name: "IX_Inventories_PK",
                 table: "Inventories",
                 column: "PK",
-                unique: true,
-                filter: "[PK] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_LocationShippingWarehouse_ShippingWarehousesId",
@@ -1188,8 +1183,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 name: "IX_Mesures_PK",
                 table: "Mesures",
                 column: "PK",
-                unique: true,
-                filter: "[PK] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderOrderPallet_OrdersId",
@@ -1207,8 +1201,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 name: "IX_Packages_PK",
                 table: "Packages",
                 column: "PK",
-                unique: true,
-                filter: "[PK] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductItems_AllocationId1",
@@ -1231,8 +1224,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 name: "IX_ProductItems_PK",
                 table: "ProductItems",
                 column: "PK",
-                unique: true,
-                filter: "[PK] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductItems_ProductPackagesId",
@@ -1279,8 +1271,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 name: "IX_ProductPackages_PK",
                 table: "ProductPackages",
                 column: "PK",
-                unique: true,
-                filter: "[PK] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductPackages_ProductId",
@@ -1338,8 +1329,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 name: "IX_Products_PK",
                 table: "Products",
                 column: "PK",
-                unique: true,
-                filter: "[PK] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_ShippingWarehouseId",
@@ -1391,8 +1381,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 name: "IX_ShippingWarehouses_PK",
                 table: "ShippingWarehouses",
                 column: "PK",
-                unique: true,
-                filter: "[PK] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShippingWarehouses_StockId",
@@ -1410,8 +1399,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 name: "IX_Stocks_PK",
                 table: "Stocks",
                 column: "PK",
-                unique: true,
-                filter: "[PK] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_SubCategory_CategoryId",

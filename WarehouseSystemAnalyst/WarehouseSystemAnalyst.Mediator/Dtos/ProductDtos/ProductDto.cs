@@ -4,8 +4,9 @@ using WarehouseSystemAnalyst.Data.Entities.StockEntites;
 using WarehouseSystemAnalyst.Mediator.Dtos.PalletDtos;
 using WarehouseSystemAnalyst.Mediator.Dtos.SupplyChainEntities;
 using WarehouseSystemAnalyst.Mediator.Dtos.WarehouseDtos;
-using WarehouseSystemAnalyst.Mediator.Mapping;
 using System;
+using WarehouseSystemAnalyst.Mediator.Helpers;
+
 namespace WarehouseSystemAnalyst.Mediator.Dtos.ProductDtos
 {
     public class ProductDto : IBaseDto, IMapFrom<Product>

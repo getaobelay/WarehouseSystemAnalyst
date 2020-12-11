@@ -17,6 +17,7 @@ namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities
         public DateTime CreateDate { get; set; }
         public DateTime ModifiedDate { get; set; }
         public string ProductName { get; set; }
+
         public string CategoryId { get; set; }
         public string StockId { get; set; }
         public string InventoryId { get; set; }
@@ -27,6 +28,7 @@ namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities
         public string BatchId { get; set; }
         public string ProductVendorId { get; set; }
         public string ProductPackageId { get; set; }
+
         public virtual Category Category { get; set; }
         public virtual Stock Stock { get; set; }
         public virtual Inventory Inventory { get; set; }

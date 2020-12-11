@@ -18,7 +18,7 @@ namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities
         public decimal Height { get; set; }
         public string ProductId { get; set; }
         public string MesureId { get; set; }
-        public Product Product { get; set; }
-        public Mesure Mesure { get; set; }
+        public virtual Product Product { get; set; }
+        public virtual Mesure Mesure { get; set; }
     }
 }
