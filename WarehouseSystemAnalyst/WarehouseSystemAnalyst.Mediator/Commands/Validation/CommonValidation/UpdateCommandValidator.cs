@@ -25,9 +25,6 @@ namespace WarehouseSystemAnalyst.Mediator.Commands.Validation.CommonValidation
             RuleFor(x => x.Id)
              .NotEmpty()
              .WithMessage("Id should not be null");
-
-
-
         }
     }
 }

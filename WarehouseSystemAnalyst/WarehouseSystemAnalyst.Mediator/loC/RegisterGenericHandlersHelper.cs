@@ -46,31 +46,5 @@ namespace WarehouseSystemAnalyst.Mediator.loC
             return builder;
         }
 
-        public static ContainerBuilder RegisterInventoryHandlers<TSourceEntity, TSourceDto, TDestEntity, TDestDto>(this ContainerBuilder builder)
-            where TSourceEntity : class, IBaseStock, new()
-            where TSourceDto : class, IBaseStockDto, new()
-            where TDestEntity : class, IBaseStock, new()
-            where TDestDto : class, IBaseStockDto, new()
-
-        {
-            builder.RegisterType<CreateInventoryCommandHandler<TSourceEntity, TSourceDto, TDestEntity, TDestDto, CreateInventoryCommand<TSourceEntity, TSourceDto, TDestEntity, TDestDto>>>()
-                .As<IRequestHandler<CreateInventoryCommand<TSourceEntity, TSourceDto, TDestEntity, TDestDto>, TransactionResponse<TSourceDto, TDestDto>>>();
-
-            builder.RegisterType<UpdateInventoryCommandHandler<TSourceEntity, TSourceDto, TDestEntity, TDestDto, UpdateInventoryCommand<TSourceEntity, TSourceDto, TDestEntity, TDestDto>>>()
-               .As<IRequestHandler<UpdateInventoryCommand<TSourceEntity, TSourceDto, TDestEntity, TDestDto>, TransactionResponse<TSourceDto, TDestDto>>>();
-
-            return builder;
-        }
-
-        public static ContainerBuilder RegisterWarehouseHandlers<TSourceEntity, TSourceDto, TDestEntity, TDestDto>(this ContainerBuilder builder)
-         where TSourceEntity : class, IBaseWarehouse, new()
-         where TSourceDto : class, IBaseWarehouseDto, new()
-         where TDestEntity : class, IBaseWarehouse, new()
-         where TDestDto : class, IBaseWarehouseDto, new()
-
-        {
-            return builder;
-        }
-
     }
 }

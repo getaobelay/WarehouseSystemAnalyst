@@ -24,7 +24,7 @@ namespace WarehouseSystemAnalyst.Mediator.Commands.Validation.CommonValidation
         public CreateCommandValidator()
         {
             RuleFor(x => x.CreateObject)
-                .NotEmpty()
+                .NotNull()
                 .WithMessage("Entity should not be null");
 
             RuleFor(x => x.CreateObject.PK)

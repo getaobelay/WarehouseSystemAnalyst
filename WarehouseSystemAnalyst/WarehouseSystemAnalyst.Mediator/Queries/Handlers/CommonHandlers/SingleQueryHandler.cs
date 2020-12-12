@@ -38,7 +38,7 @@ namespace WarehouseSystemAnalyst.Mediator.Queries.Handlers.CommonHandlers
             }
             else
             {
-                return HandlerResponse.NullResponse<TDto>(errorsMessages: new List<string>() { $"{typeof(TEntity)} With {request.Id} not Found" });
+                return HandlerResponse.NullResponse<TDto>(errorsMessages: new List<string>() { $"{nameof(TEntity)} With {request.Id} not Found" });
             }
         }
     }

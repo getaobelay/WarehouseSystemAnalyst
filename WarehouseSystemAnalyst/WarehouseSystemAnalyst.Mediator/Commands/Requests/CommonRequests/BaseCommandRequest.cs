@@ -10,9 +10,6 @@ namespace WarehouseSystemAnalyst.Mediator.Commands.Requests.CommonRequests
         where TEntity : class, IBaseEntity, new()
         where TDto : class, IBaseDto, new()
     {
-        public TDto Dto { get; set; }
-        public bool Error { get; set; }
-        public List<string> ErrorMessages { get; set; }
     }
 
 }

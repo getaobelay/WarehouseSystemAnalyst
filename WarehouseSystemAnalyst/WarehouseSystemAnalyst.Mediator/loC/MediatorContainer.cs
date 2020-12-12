@@ -27,11 +27,8 @@ namespace WarehouseSystemAnalyst.Mediator.loC
             builder.RegisterAssemblyTypes(typeof(IMediator).GetTypeInfo().Assembly).AsImplementedInterfaces();
 
             builder.RegisterHandlers<GoodsWarehouse, GoodsWarehouseDto>();
-            builder.RegisterInventoryHandlers<Inventory, InventoryDto, Stock, StockDto>();
-            builder.RegisterWarehouseHandlers<GoodsWarehouse, GoodsWarehouseDto, AllocationWarehouse, AllocationWarehouseDto>();
-            builder.RegisterWarehouseHandlers<AllocationWarehouse, AllocationWarehouseDto, ShippingWarehouse, ShippingWarehouseDto>();
-            builder.RegisterGeneric(typeof(TransacitonCommandBehaviour<,,,,,>)).As(typeof(IPipelineBehavior<,>));
-
+            builder.RegisterHandlers<AllocationWarehouse, AllocationWarehouseDto>();
+            builder.RegisterHandlers<ShippingWarehouse, ShippingWarehouseDto>();
             builder.RegisterHandlers<Product, ProductDto>();
             builder.RegisterHandlers<ProductItem, ProductItemDto>();
             builder.RegisterHandlers<Stock, StockDto>();
