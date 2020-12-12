@@ -120,7 +120,7 @@ namespace WarehouseSystemAnalyst.Server.Controllers
         }
 
         [HttpDelete("{Id}")]
-        public  async Task<ActionResult<IBaseResponse<ProductDto>>> DeleteAsync([FromQuery] string Id)
+        public  async Task<ActionResult<IBaseResponse<ProductDto>>> DeleteAsync([FromRoute] string Id)
         {
             try
             {
