@@ -1,12 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
 using WarehouseSystemAnalyst.Data.Entities.ContactEntities;
 using WarehouseSystemAnalyst.Data.Entities.Enrollment;
 using WarehouseSystemAnalyst.Data.Entities.MissionEntites;
@@ -72,41 +70,13 @@ namespace WarehouseSystemAnalyst.Data.DataContext
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
-        private void BaseEntitySaving()
-        {
-            var now = DateTime.Now;
-
-            foreach (var changedEntity in ChangeTracker.Entries())
-            {
-                if (changedEntity.Entity is IBaseEntity baseEntity)
-                {
-                    switch (changedEntity.State)
-                    {
-                        case EntityState.Added:
-                            baseEntity.CreateDate = now;
-                            baseEntity.ModifiedDate = now;
-                            baseEntity.CreatedBy = "tester"; ///CurrentUser.GetUsername();
-                            baseEntity.ModifiedBy = "test";
-                            break;
-
-                        case EntityState.Modified:
-                            Entry(baseEntity).Property(x => x.CreatedBy).IsModified = false;
-                            Entry(baseEntity).Property(x => x.CreateDate).IsModified = false;
-                            baseEntity.ModifiedDate = now;
-                            baseEntity.ModifiedBy = "test";
-                            break;
-                    }
-                }
-
-            }
-        }
 
         public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
-            BaseEntitySaving();
             var auditEntries = OnBeforeSaveChanges();
             var result = await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
             await OnAfterSaveChanges(auditEntries);
+
             return result;
         }
 
@@ -180,8 +150,6 @@ namespace WarehouseSystemAnalyst.Data.DataContext
 
             foreach (var auditEntry in auditEntries)
             {
-                BaseEntitySaving();
-
                 // Get the final value of the temporary properties
                 foreach (var prop in auditEntry.TemporaryProperties)
                 {

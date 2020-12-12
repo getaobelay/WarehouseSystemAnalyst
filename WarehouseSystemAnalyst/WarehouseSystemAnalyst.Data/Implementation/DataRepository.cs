@@ -121,7 +121,7 @@ namespace WarehouseSystemAnalyst.Data.Implementation
 
         public virtual async Task<TEntity> GetAsync(object Id) => await Entities.FindAsync(Id);
 
-        public virtual async Task<TEntity> UpdateAsync(TEntity entityUpdate)
+        public virtual async Task<TEntity> UpdateAsync(TEntity entityUpdate, TEntity exists)
         {
             try
             {
@@ -132,6 +132,7 @@ namespace WarehouseSystemAnalyst.Data.Implementation
                     Context = new WarehouseDbContext();
 
                 Context.Entry(entityUpdate).State = EntityState.Modified;
+                Context.Entry(exists).CurrentValues.SetValues(entityUpdate);
 
                 return await Task.FromResult(entityUpdate);
             }
@@ -159,6 +160,7 @@ namespace WarehouseSystemAnalyst.Data.Implementation
                 }
 
                 Entities.Remove(entityToDelete);
+
                 return await Task.FromResult(true);
             }
             catch (Exception)

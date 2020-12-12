@@ -6,11 +6,12 @@ namespace WarehouseSystemAnalyst.Data.Context
 {
     public class DataContext : IDataContext
     {
-        public DataContext(IUnitOfWorkRepository<WarehouseDbContext> unitOfWork)
+        public DataContext(IUnitOfWorkRepository<WarehouseDbContext> unitOfWork, ICurrentUser currentUser)
         {
             UnitOfWork = unitOfWork;
+            CurrentUser = currentUser;
         }
         public IUnitOfWorkRepository<WarehouseDbContext> UnitOfWork { get; set; }
-        public ICurrentUser currentUser { get; set; }
+        public ICurrentUser CurrentUser { get; set; }
     }
 }

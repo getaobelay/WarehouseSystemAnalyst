@@ -16,6 +16,6 @@ namespace WarehouseSystemAnalyst.Data.Interfaces
         Task<bool> DeleteAsync(TEntity entityToDelete);
         Task<bool> DeleteAsync(object Id);
         Task<TEntity> InsertAsync(TEntity entity);
-        Task<TEntity> UpdateAsync(TEntity entityToUpdate);
+        Task<TEntity> UpdateAsync(TEntity entityToUpdate, TEntity exists);
     }
 }

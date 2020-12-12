@@ -6,6 +6,6 @@ namespace WarehouseSystemAnalyst.Mediator.Interfaces.Responses
     public interface IDataContext
     {
         IUnitOfWorkRepository<WarehouseDbContext> UnitOfWork { get; set; }
-        ICurrentUser currentUser { get; set; }
+        ICurrentUser CurrentUser { get; set; }
     }
 }
