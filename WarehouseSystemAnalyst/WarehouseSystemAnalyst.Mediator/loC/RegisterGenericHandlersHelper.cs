@@ -1,13 +1,8 @@
 ﻿using Autofac;
 using MediatR;
-using System.Reflection;
 using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
-using WarehouseSystemAnalyst.Data.Helpers;
 using WarehouseSystemAnalyst.Mediator.Commands.Handlers.CommonHandlers;
-using WarehouseSystemAnalyst.Mediator.Commands.Handlers.InventoryHandlers;
-using WarehouseSystemAnalyst.Mediator.Commands.Handlers.WarehouseHandlers;
 using WarehouseSystemAnalyst.Mediator.Commands.Requests.CommonRequests;
-using WarehouseSystemAnalyst.Mediator.Commands.Requests.InventoryRequests;
 using WarehouseSystemAnalyst.Mediator.Commands.Responses.CommonResponses;
 using WarehouseSystemAnalyst.Mediator.Dtos;
 using WarehouseSystemAnalyst.Mediator.Helpers;
@@ -39,9 +34,7 @@ namespace WarehouseSystemAnalyst.Mediator.loC
             builder.RegisterType<ListQueryHandler<TEntity, TDto, ListQueryRequest<TEntity, TDto>>>()
                    .As<IRequestHandler<ListQueryRequest<TEntity, TDto>, HandlerResponse<TDto>>>();
 
-            builder.RegisterValidators<TEntity, TDto>();
-            builder.RegisterValidationBehaviours<TEntity, TDto>();
-            builder.RegisterCommandBehaviours<TEntity, TDto>();
+            builder.RegisterAllProccessors<TEntity, TDto>();
 
             return builder;
         }

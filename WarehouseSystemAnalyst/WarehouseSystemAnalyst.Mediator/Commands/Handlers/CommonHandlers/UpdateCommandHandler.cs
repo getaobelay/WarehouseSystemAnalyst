@@ -34,16 +34,16 @@ namespace WarehouseSystemAnalyst.Mediator.Commands.Handlers.CommonHandlers
             try
             {
 
-                var exists = await repository.SingleOrDefaultAsync(p => p.PK == request.Id.ToString()) != null;
-                if (!exists)
+                var entityEntry = await repository.SingleOrDefaultAsync(p => p.PK == request.Id.ToString());
+                if (entityEntry == null)
                 {
                     return await Task.FromResult(CommandResponse.CommandFailed<TDto>(message: $"Record with id {request.Id} not found"));
 
                 }
 
                 var mappedObject = MappingHelper.Mapper.Map<TEntity>(request.UpdatedObject);
-
-                var result = await repository.UpdateAsync(mappedObject);
+                mappedObject.Id = entityEntry.Id;
+                var result = await repository.UpdateAsync(mappedObject, entityEntry);
                 await repository.UnitOfWork.SaveChangesAsync();
 
                 if (result != null)

@@ -1,14 +1,15 @@
 ﻿using Autofac;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
 using WarehouseSystemAnalyst.Data.Context;
+using WarehouseSystemAnalyst.Data.DataContext;
 using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
 using WarehouseSystemAnalyst.Data.Entities.StockEntites;
 using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes;
 using WarehouseSystemAnalyst.Data.Implementation;
 using WarehouseSystemAnalyst.Data.Interfaces.Repositories;
-using WarehouseSystemAnalyst.Mediator.Commands.Behaviours.CommonBehaviours;
 using WarehouseSystemAnalyst.Mediator.Dtos.InventoryDtos;
 using WarehouseSystemAnalyst.Mediator.Dtos.ProductDtos;
 using WarehouseSystemAnalyst.Mediator.Dtos.WarehouseDtos;
@@ -35,6 +36,8 @@ namespace WarehouseSystemAnalyst.Mediator.loC
             builder.RegisterHandlers<Inventory, InventoryDto>();
 
             builder.RegisterType(typeof(DataContext)).As(typeof(IDataContext));
+            builder.RegisterType(typeof(HttpContextAccessor)).As(typeof(IHttpContextAccessor));
+            builder.RegisterType(typeof(CurrentUser)).As(typeof(ICurrentUser));
             builder.RegisterGeneric(typeof(UnitOfWorkRepository<>)).As(typeof(IUnitOfWorkRepository<>));
 
             builder.RegisterType<LoggerFactory>()

@@ -9,16 +9,16 @@ using WarehouseSystemAnalyst.Mediator.Commands.Responses.CommonResponses;
 using WarehouseSystemAnalyst.Mediator.Dtos;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
 
-namespace WarehouseSystemAnalyst.Mediator.Commands.Behaviours.CommonBehaviours
+namespace WarehouseSystemAnalyst.Mediator.Commands.Proccessors
 {
-    public class CommandBehaviour<TRequest, TResponse, TEntity, TDto> : IPipelineBehavior<TRequest, TResponse>
+    public class PreCommandTransactionProccessor<TRequest, TResponse, TEntity, TDto> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : BaseCommandRequest<TEntity, TDto>
         where TResponse : BaseCommandResponse<TDto>
         where TEntity : class, IBaseEntity, new()
         where TDto : class, IBaseDto, new()
     {
-        private readonly ILogger<CommandBehaviour<TRequest, TResponse, TEntity, TDto>> _logger;
-        public CommandBehaviour(ILogger<CommandBehaviour<TRequest, TResponse, TEntity, TDto>> logger, IDataContext context)
+        private readonly ILogger<PreCommandTransactionProccessor<TRequest, TResponse, TEntity, TDto>> _logger;
+        public PreCommandTransactionProccessor(ILogger<PreCommandTransactionProccessor<TRequest, TResponse, TEntity, TDto>> logger, IDataContext context)
         {
             _logger = logger ?? throw new ArgumentException(nameof(ILogger));
             Context = context;

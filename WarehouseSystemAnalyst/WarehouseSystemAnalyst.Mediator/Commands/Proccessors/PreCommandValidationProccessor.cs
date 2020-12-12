@@ -11,9 +11,9 @@ using WarehouseSystemAnalyst.Mediator.Commands.Requests.CommonRequests;
 using WarehouseSystemAnalyst.Mediator.Commands.Responses.CommonResponses;
 using WarehouseSystemAnalyst.Mediator.Dtos;
 
-namespace WarehouseSystemAnalyst.Mediator.Commands.Behaviours.CommonBehaviours
+namespace WarehouseSystemAnalyst.Mediator.Commands.Proccessors
 {
-    public class ValidationBehaviour<TRequest, TResponse, TEntity, TDto> : IPipelineBehavior<TRequest, TResponse>
+    public class PreCommandValidationProccessor<TRequest, TResponse, TEntity, TDto> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : BaseCommandRequest<TEntity, TDto>
         where TResponse : BaseCommandResponse<TDto>
         where TEntity : class, IBaseEntity, new()
@@ -21,15 +21,13 @@ namespace WarehouseSystemAnalyst.Mediator.Commands.Behaviours.CommonBehaviours
     {
         private readonly IEnumerable<IValidator<TRequest>> _validators;
 
-        public ValidationBehaviour(IEnumerable<IValidator<TRequest>> validators)
+        public PreCommandValidationProccessor(IEnumerable<IValidator<TRequest>> validators)
         {
             _validators = validators;
         }
 
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
-            TResponse response = default;
-
             var context = new ValidationContext<TRequest>(request);
 
             var failures = _validators
@@ -43,9 +41,7 @@ namespace WarehouseSystemAnalyst.Mediator.Commands.Behaviours.CommonBehaviours
                 throw new ValidationException(failures);
             }
 
-            response = await next();
-
-            return response;
+            return await next();
 
         }
     }

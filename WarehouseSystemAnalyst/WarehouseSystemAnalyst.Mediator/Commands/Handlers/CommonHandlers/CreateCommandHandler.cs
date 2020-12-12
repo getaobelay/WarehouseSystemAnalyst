@@ -41,7 +41,6 @@ namespace WarehouseSystemAnalyst.Mediator.Commands.Handlers.CommonHandlers
                 if (result != null)
                 {
                     await repository.UnitOfWork.SaveChangesAsync();
-
                     var mapped = MappingHelper.Mapper.Map<TDto>(result);
                     return await Task.FromResult(CommandResponse.CommandExecuted(message: "Recored Created", mapped));
                 }

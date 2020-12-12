@@ -35,17 +35,17 @@ namespace WarehouseSystemAnalyst.Mediator.Commands.Handlers.CommonHandlers
             try
             {
 
-                var is_exists = await repository.SingleOrDefaultAsync(p => p.PK == request.Id.ToString());
+                var entityEntry = await repository.SingleOrDefaultAsync(p => p.PK == request.Id.ToString());
 
-                if (is_exists == null)
+                if (entityEntry == null)
                 {
                     return await Task.FromResult(CommandResponse.CommandFailed<TDto>(message: $"Record with id {request.Id} not found"));
 
                 }
 
-                repository.Context.Entry(is_exists).State = EntityState.Detached;
+                repository.Context.Entry(entityEntry).State = EntityState.Detached;
 
-                var result = await repository.DeleteAsync(is_exists);
+                var result = await repository.DeleteAsync(entityEntry);
                 await repository.UnitOfWork.SaveChangesAsync();
 
 
