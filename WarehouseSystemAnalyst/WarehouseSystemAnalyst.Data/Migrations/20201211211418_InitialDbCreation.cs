@@ -30,7 +30,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -42,7 +42,8 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categories", x => x.Id);
+                    table.PrimaryKey("PK_Categories", x => new { x.Id, x.PK })
+                        .Annotation("SqlServer:Clustered", true);
                     table.UniqueConstraint("AK_Categories_PK", x => x.PK);
                 });
 
@@ -109,7 +110,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -130,7 +131,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -150,7 +151,8 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Inventories", x => x.Id);
+                    table.PrimaryKey("PK_Inventories", x => new { x.Id, x.PK })
+                        .Annotation("SqlServer:Clustered", true);
                     table.UniqueConstraint("AK_Inventories_PK", x => x.PK);
                 });
 
@@ -160,7 +162,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -185,7 +187,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -195,7 +197,8 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Mesures", x => x.Id);
+                    table.PrimaryKey("PK_Mesures", x => new { x.Id, x.PK })
+                        .Annotation("SqlServer:Clustered", true);
                     table.UniqueConstraint("AK_Mesures_PK", x => x.PK);
                 });
 
@@ -226,7 +229,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -246,7 +249,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -256,7 +259,8 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Packages", x => x.Id);
+                    table.PrimaryKey("PK_Packages", x => new { x.Id, x.PK })
+                        .Annotation("SqlServer:Clustered", true);
                     table.UniqueConstraint("AK_Packages_PK", x => x.PK);
                 });
 
@@ -266,7 +270,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -285,7 +289,8 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Stocks", x => x.Id);
+                    table.PrimaryKey("PK_Stocks", x => new { x.Id, x.PK })
+                        .Annotation("SqlServer:Clustered", true);
                     table.UniqueConstraint("AK_Stocks_PK", x => x.PK);
                 });
 
@@ -295,7 +300,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -314,7 +319,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -325,7 +330,8 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SubCategory", x => x.Id);
+                    table.PrimaryKey("PK_SubCategory", x => new { x.Id, x.PK })
+                        .Annotation("SqlServer:Clustered", true);
                     table.ForeignKey(
                         name: "FK_SubCategory_Categories_CategoryId",
                         column: x => x.CategoryId,
@@ -340,7 +346,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -350,17 +356,19 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     LocationID = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductID = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BatchID = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    InventoryId = table.Column<int>(type: "int", nullable: true)
+                    InventoryId = table.Column<int>(type: "int", nullable: true),
+                    InventoryPK = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GoodsWarehouses", x => x.Id);
+                    table.PrimaryKey("PK_GoodsWarehouses", x => new { x.Id, x.PK })
+                        .Annotation("SqlServer:Clustered", true);
                     table.UniqueConstraint("AK_GoodsWarehouses_PK", x => x.PK);
                     table.ForeignKey(
-                        name: "FK_GoodsWarehouses_Inventories_InventoryId",
-                        column: x => x.InventoryId,
+                        name: "FK_GoodsWarehouses_Inventories_InventoryId_InventoryPK",
+                        columns: x => new { x.InventoryId, x.InventoryPK },
                         principalTable: "Inventories",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "Id", "PK" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -370,7 +378,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -422,7 +430,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -433,23 +441,26 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     ProductID = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BatchID = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     InventoryId = table.Column<int>(type: "int", nullable: true),
-                    StockId = table.Column<int>(type: "int", nullable: true)
+                    InventoryPK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    StockId = table.Column<int>(type: "int", nullable: true),
+                    StockPK = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AllocationWarehouses", x => x.Id);
+                    table.PrimaryKey("PK_AllocationWarehouses", x => new { x.Id, x.PK })
+                        .Annotation("SqlServer:Clustered", true);
                     table.UniqueConstraint("AK_AllocationWarehouses_PK", x => x.PK);
                     table.ForeignKey(
-                        name: "FK_AllocationWarehouses_Inventories_InventoryId",
-                        column: x => x.InventoryId,
+                        name: "FK_AllocationWarehouses_Inventories_InventoryId_InventoryPK",
+                        columns: x => new { x.InventoryId, x.InventoryPK },
                         principalTable: "Inventories",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "Id", "PK" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_AllocationWarehouses_Stocks_StockId",
-                        column: x => x.StockId,
+                        name: "FK_AllocationWarehouses_Stocks_StockId_StockPK",
+                        columns: x => new { x.StockId, x.StockPK },
                         principalTable: "Stocks",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "Id", "PK" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -459,7 +470,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -469,17 +480,19 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     LocationID = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductID = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BatchID = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StockId = table.Column<int>(type: "int", nullable: true)
+                    StockId = table.Column<int>(type: "int", nullable: true),
+                    StockPK = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ShippingWarehouses", x => x.Id);
+                    table.PrimaryKey("PK_ShippingWarehouses", x => new { x.Id, x.PK })
+                        .Annotation("SqlServer:Clustered", true);
                     table.UniqueConstraint("AK_ShippingWarehouses_PK", x => x.PK);
                     table.ForeignKey(
-                        name: "FK_ShippingWarehouses_Stocks_StockId",
-                        column: x => x.StockId,
+                        name: "FK_ShippingWarehouses_Stocks_StockId_StockPK",
+                        columns: x => new { x.StockId, x.StockPK },
                         principalTable: "Stocks",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "Id", "PK" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -487,17 +500,18 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 name: "GoodsWarehouseLocation",
                 columns: table => new
                 {
+                    LocationsId = table.Column<int>(type: "int", nullable: false),
                     GoodsWarehousesId = table.Column<int>(type: "int", nullable: false),
-                    LocationsId = table.Column<int>(type: "int", nullable: false)
+                    GoodsWarehousesPK = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GoodsWarehouseLocation", x => new { x.GoodsWarehousesId, x.LocationsId });
+                    table.PrimaryKey("PK_GoodsWarehouseLocation", x => new { x.LocationsId, x.GoodsWarehousesId, x.GoodsWarehousesPK });
                     table.ForeignKey(
-                        name: "FK_GoodsWarehouseLocation_GoodsWarehouses_GoodsWarehousesId",
-                        column: x => x.GoodsWarehousesId,
+                        name: "FK_GoodsWarehouseLocation_GoodsWarehouses_GoodsWarehousesId_GoodsWarehousesPK",
+                        columns: x => new { x.GoodsWarehousesId, x.GoodsWarehousesPK },
                         principalTable: "GoodsWarehouses",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "Id", "PK" },
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_GoodsWarehouseLocation_Locations_LocationsId",
@@ -511,17 +525,18 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 name: "AllocationWarehouseLocation",
                 columns: table => new
                 {
+                    LocationsId = table.Column<int>(type: "int", nullable: false),
                     AllocationWarehousesId = table.Column<int>(type: "int", nullable: false),
-                    LocationsId = table.Column<int>(type: "int", nullable: false)
+                    AllocationWarehousesPK = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AllocationWarehouseLocation", x => new { x.AllocationWarehousesId, x.LocationsId });
+                    table.PrimaryKey("PK_AllocationWarehouseLocation", x => new { x.LocationsId, x.AllocationWarehousesId, x.AllocationWarehousesPK });
                     table.ForeignKey(
-                        name: "FK_AllocationWarehouseLocation_AllocationWarehouses_AllocationWarehousesId",
-                        column: x => x.AllocationWarehousesId,
+                        name: "FK_AllocationWarehouseLocation_AllocationWarehouses_AllocationWarehousesId_AllocationWarehousesPK",
+                        columns: x => new { x.AllocationWarehousesId, x.AllocationWarehousesPK },
                         principalTable: "AllocationWarehouses",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "Id", "PK" },
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_AllocationWarehouseLocation_Locations_LocationsId",
@@ -536,11 +551,12 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 columns: table => new
                 {
                     LocationsId = table.Column<int>(type: "int", nullable: false),
-                    ShippingWarehousesId = table.Column<int>(type: "int", nullable: false)
+                    ShippingWarehousesId = table.Column<int>(type: "int", nullable: false),
+                    ShippingWarehousesPK = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LocationShippingWarehouse", x => new { x.LocationsId, x.ShippingWarehousesId });
+                    table.PrimaryKey("PK_LocationShippingWarehouse", x => new { x.LocationsId, x.ShippingWarehousesId, x.ShippingWarehousesPK });
                     table.ForeignKey(
                         name: "FK_LocationShippingWarehouse_Locations_LocationsId",
                         column: x => x.LocationsId,
@@ -548,10 +564,10 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_LocationShippingWarehouse_ShippingWarehouses_ShippingWarehousesId",
-                        column: x => x.ShippingWarehousesId,
+                        name: "FK_LocationShippingWarehouse_ShippingWarehouses_ShippingWarehousesId_ShippingWarehousesPK",
+                        columns: x => new { x.ShippingWarehousesId, x.ShippingWarehousesPK },
                         principalTable: "ShippingWarehouses",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "Id", "PK" },
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -561,7 +577,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -578,19 +594,23 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     ProductVendorId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductPackageId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AllocationWarehouseId = table.Column<int>(type: "int", nullable: true),
+                    AllocationWarehousePK = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CollectProductsId = table.Column<int>(type: "int", nullable: true),
                     GoodsWarehouseId = table.Column<int>(type: "int", nullable: true),
-                    ShippingWarehouseId = table.Column<int>(type: "int", nullable: true)
+                    GoodsWarehousePK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ShippingWarehouseId = table.Column<int>(type: "int", nullable: true),
+                    ShippingWarehousePK = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => new { x.Id, x.PK })
+                        .Annotation("SqlServer:Clustered", true);
                     table.UniqueConstraint("AK_Products_PK", x => x.PK);
                     table.ForeignKey(
-                        name: "FK_Products_AllocationWarehouses_AllocationWarehouseId",
-                        column: x => x.AllocationWarehouseId,
+                        name: "FK_Products_AllocationWarehouses_AllocationWarehouseId_AllocationWarehousePK",
+                        columns: x => new { x.AllocationWarehouseId, x.AllocationWarehousePK },
                         principalTable: "AllocationWarehouses",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "Id", "PK" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Products_Categories_CategoryId",
@@ -605,10 +625,10 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Products_GoodsWarehouses_GoodsWarehouseId",
-                        column: x => x.GoodsWarehouseId,
+                        name: "FK_Products_GoodsWarehouses_GoodsWarehouseId_GoodsWarehousePK",
+                        columns: x => new { x.GoodsWarehouseId, x.GoodsWarehousePK },
                         principalTable: "GoodsWarehouses",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "Id", "PK" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Products_Inventories_InventoryId",
@@ -617,10 +637,10 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         principalColumn: "PK",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Products_ShippingWarehouses_ShippingWarehouseId",
-                        column: x => x.ShippingWarehouseId,
+                        name: "FK_Products_ShippingWarehouses_ShippingWarehouseId_ShippingWarehousePK",
+                        columns: x => new { x.ShippingWarehouseId, x.ShippingWarehousePK },
                         principalTable: "ShippingWarehouses",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "Id", "PK" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Products_Stocks_StockId",
@@ -636,7 +656,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -651,7 +671,8 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductMesures", x => x.Id);
+                    table.PrimaryKey("PK_ProductMesures", x => new { x.Id, x.PK })
+                        .Annotation("SqlServer:Clustered", true);
                     table.ForeignKey(
                         name: "FK_ProductMesures_Mesures_MesureId",
                         column: x => x.MesureId,
@@ -672,7 +693,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -684,7 +705,8 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductPackages", x => x.Id);
+                    table.PrimaryKey("PK_ProductPackages", x => new { x.Id, x.PK })
+                        .Annotation("SqlServer:Clustered", true);
                     table.UniqueConstraint("AK_ProductPackages_PK", x => x.PK);
                     table.ForeignKey(
                         name: "FK_ProductPackages_Packages_PackageId",
@@ -706,7 +728,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -721,11 +743,13 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     AllocationId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AllocationId1 = table.Column<int>(type: "int", nullable: true),
                     CollectProductItemId = table.Column<int>(type: "int", nullable: true),
-                    ProductPackagesId = table.Column<int>(type: "int", nullable: true)
+                    ProductPackagesId = table.Column<int>(type: "int", nullable: true),
+                    ProductPackagesPK = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductItems", x => x.Id);
+                    table.PrimaryKey("PK_ProductItems", x => new { x.Id, x.PK })
+                        .Annotation("SqlServer:Clustered", true);
                     table.UniqueConstraint("AK_ProductItems_PK", x => x.PK);
                     table.ForeignKey(
                         name: "FK_ProductItems_Allocations_AllocationId1",
@@ -740,10 +764,10 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ProductItems_ProductPackages_ProductPackagesId",
-                        column: x => x.ProductPackagesId,
+                        name: "FK_ProductItems_ProductPackages_ProductPackagesId_ProductPackagesPK",
+                        columns: x => new { x.ProductPackagesId, x.ProductPackagesPK },
                         principalTable: "ProductPackages",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "Id", "PK" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -753,7 +777,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -766,24 +790,28 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     WarehouseItemId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductItemId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     AllocationWarehouseId = table.Column<int>(type: "int", nullable: true),
+                    AllocationWarehousePK = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     GoodsWarehouseId = table.Column<int>(type: "int", nullable: true),
-                    ShippingWarehouseId = table.Column<int>(type: "int", nullable: true)
+                    GoodsWarehousePK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ShippingWarehouseId = table.Column<int>(type: "int", nullable: true),
+                    ShippingWarehousePK = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Batches", x => x.Id);
+                    table.PrimaryKey("PK_Batches", x => new { x.Id, x.PK })
+                        .Annotation("SqlServer:Clustered", true);
                     table.UniqueConstraint("AK_Batches_PK", x => x.PK);
                     table.ForeignKey(
-                        name: "FK_Batches_AllocationWarehouses_AllocationWarehouseId",
-                        column: x => x.AllocationWarehouseId,
+                        name: "FK_Batches_AllocationWarehouses_AllocationWarehouseId_AllocationWarehousePK",
+                        columns: x => new { x.AllocationWarehouseId, x.AllocationWarehousePK },
                         principalTable: "AllocationWarehouses",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "Id", "PK" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Batches_GoodsWarehouses_GoodsWarehouseId",
-                        column: x => x.GoodsWarehouseId,
+                        name: "FK_Batches_GoodsWarehouses_GoodsWarehouseId_GoodsWarehousePK",
+                        columns: x => new { x.GoodsWarehouseId, x.GoodsWarehousePK },
                         principalTable: "GoodsWarehouses",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "Id", "PK" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Batches_Inventories_InventoryId",
@@ -804,10 +832,10 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         principalColumn: "PK",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Batches_ShippingWarehouses_ShippingWarehouseId",
-                        column: x => x.ShippingWarehouseId,
+                        name: "FK_Batches_ShippingWarehouses_ShippingWarehouseId_ShippingWarehousePK",
+                        columns: x => new { x.ShippingWarehouseId, x.ShippingWarehousePK },
                         principalTable: "ShippingWarehouses",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "Id", "PK" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Batches_Stocks_StockId",
@@ -822,22 +850,24 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 columns: table => new
                 {
                     ProductItemsId = table.Column<int>(type: "int", nullable: false),
-                    UnitOfMesureId = table.Column<int>(type: "int", nullable: false)
+                    ProductItemsPK = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UnitOfMesureId = table.Column<int>(type: "int", nullable: false),
+                    UnitOfMesurePK = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MesureProductItem", x => new { x.ProductItemsId, x.UnitOfMesureId });
+                    table.PrimaryKey("PK_MesureProductItem", x => new { x.ProductItemsId, x.ProductItemsPK, x.UnitOfMesureId, x.UnitOfMesurePK });
                     table.ForeignKey(
-                        name: "FK_MesureProductItem_Mesures_UnitOfMesureId",
-                        column: x => x.UnitOfMesureId,
+                        name: "FK_MesureProductItem_Mesures_UnitOfMesureId_UnitOfMesurePK",
+                        columns: x => new { x.UnitOfMesureId, x.UnitOfMesurePK },
                         principalTable: "Mesures",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "Id", "PK" },
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MesureProductItem_ProductItems_ProductItemsId",
-                        column: x => x.ProductItemsId,
+                        name: "FK_MesureProductItem_ProductItems_ProductItemsId_ProductItemsPK",
+                        columns: x => new { x.ProductItemsId, x.ProductItemsPK },
                         principalTable: "ProductItems",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "Id", "PK" },
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -846,22 +876,24 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 columns: table => new
                 {
                     ProductItemsId = table.Column<int>(type: "int", nullable: false),
-                    ProductsId = table.Column<int>(type: "int", nullable: false)
+                    ProductItemsPK = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProductsId = table.Column<int>(type: "int", nullable: false),
+                    ProductsPK = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductProductItem", x => new { x.ProductItemsId, x.ProductsId });
+                    table.PrimaryKey("PK_ProductProductItem", x => new { x.ProductItemsId, x.ProductItemsPK, x.ProductsId, x.ProductsPK });
                     table.ForeignKey(
-                        name: "FK_ProductProductItem_ProductItems_ProductItemsId",
-                        column: x => x.ProductItemsId,
+                        name: "FK_ProductProductItem_ProductItems_ProductItemsId_ProductItemsPK",
+                        columns: x => new { x.ProductItemsId, x.ProductItemsPK },
                         principalTable: "ProductItems",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "Id", "PK" },
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProductProductItem_Products_ProductsId",
-                        column: x => x.ProductsId,
+                        name: "FK_ProductProductItem_Products_ProductsId_ProductsPK",
+                        columns: x => new { x.ProductsId, x.ProductsPK },
                         principalTable: "Products",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "Id", "PK" },
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -905,23 +937,25 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ProductId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     VendorId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    BatchId = table.Column<int>(type: "int", nullable: true)
+                    BatchId = table.Column<int>(type: "int", nullable: true),
+                    BatchPK = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductVendors", x => x.Id);
+                    table.PrimaryKey("PK_ProductVendors", x => new { x.Id, x.PK })
+                        .Annotation("SqlServer:Clustered", true);
                     table.ForeignKey(
-                        name: "FK_ProductVendors_Batches_BatchId",
-                        column: x => x.BatchId,
+                        name: "FK_ProductVendors_Batches_BatchId_BatchPK",
+                        columns: x => new { x.BatchId, x.BatchPK },
                         principalTable: "Batches",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "Id", "PK" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ProductVendors_Products_ProductId",
@@ -943,7 +977,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PK = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PK = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -959,11 +993,13 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     GoodsWarehouseId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     ShippingWarhouseId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     ProductMesuresId = table.Column<int>(type: "int", nullable: true),
+                    ProductMesuresPK = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CollectItemId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WarehouseItems", x => x.Id);
+                    table.PrimaryKey("PK_WarehouseItems", x => new { x.Id, x.PK })
+                        .Annotation("SqlServer:Clustered", true);
                     table.ForeignKey(
                         name: "FK_WarehouseItems_Allocations_AllocationId",
                         column: x => x.AllocationId,
@@ -1007,10 +1043,10 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         principalColumn: "PK",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_WarehouseItems_ProductMesures_ProductMesuresId",
-                        column: x => x.ProductMesuresId,
+                        name: "FK_WarehouseItems_ProductMesures_ProductMesuresId_ProductMesuresPK",
+                        columns: x => new { x.ProductMesuresId, x.ProductMesuresPK },
                         principalTable: "ProductMesures",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "Id", "PK" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_WarehouseItems_ProductPackages_ProductPackageID",
@@ -1038,49 +1074,36 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 column: "OrderID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AllocationWarehouseLocation_LocationsId",
+                name: "IX_AllocationWarehouseLocation_AllocationWarehousesId_AllocationWarehousesPK",
                 table: "AllocationWarehouseLocation",
-                column: "LocationsId");
+                columns: new[] { "AllocationWarehousesId", "AllocationWarehousesPK" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AllocationWarehouses_Id",
+                name: "IX_AllocationWarehouses_InventoryId_InventoryPK",
                 table: "AllocationWarehouses",
-                column: "Id",
-                unique: true,
-                filter: "[Id] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AllocationWarehouses_InventoryId",
-                table: "AllocationWarehouses",
-                column: "InventoryId");
+                columns: new[] { "InventoryId", "InventoryPK" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AllocationWarehouses_PK",
                 table: "AllocationWarehouses",
                 column: "PK",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AllocationWarehouses_StockId",
-                table: "AllocationWarehouses",
-                column: "StockId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Batches_AllocationWarehouseId",
-                table: "Batches",
-                column: "AllocationWarehouseId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Batches_GoodsWarehouseId",
-                table: "Batches",
-                column: "GoodsWarehouseId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Batches_Id",
-                table: "Batches",
-                column: "Id",
                 unique: true,
-                filter: "[Id] IS NOT NULL");
+                filter: "[PK] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AllocationWarehouses_StockId_StockPK",
+                table: "AllocationWarehouses",
+                columns: new[] { "StockId", "StockPK" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Batches_AllocationWarehouseId_AllocationWarehousePK",
+                table: "Batches",
+                columns: new[] { "AllocationWarehouseId", "AllocationWarehousePK" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Batches_GoodsWarehouseId_GoodsWarehousePK",
+                table: "Batches",
+                columns: new[] { "GoodsWarehouseId", "GoodsWarehousePK" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Batches_InventoryId",
@@ -1091,7 +1114,8 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 name: "IX_Batches_PK",
                 table: "Batches",
                 column: "PK",
-                unique: true);
+                unique: true,
+                filter: "[PK] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Batches_ProductId",
@@ -1104,9 +1128,9 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 column: "ProductItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Batches_ShippingWarehouseId",
+                name: "IX_Batches_ShippingWarehouseId_ShippingWarehousePK",
                 table: "Batches",
-                column: "ShippingWarehouseId");
+                columns: new[] { "ShippingWarehouseId", "ShippingWarehousePK" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Batches_StockId",
@@ -1114,76 +1138,52 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 column: "StockId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Categories_Id",
-                table: "Categories",
-                column: "Id",
-                unique: true,
-                filter: "[Id] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Categories_PK",
                 table: "Categories",
                 column: "PK",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GoodsWarehouseLocation_LocationsId",
-                table: "GoodsWarehouseLocation",
-                column: "LocationsId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GoodsWarehouses_Id",
-                table: "GoodsWarehouses",
-                column: "Id",
                 unique: true,
-                filter: "[Id] IS NOT NULL");
+                filter: "[PK] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GoodsWarehouses_InventoryId",
+                name: "IX_GoodsWarehouseLocation_GoodsWarehousesId_GoodsWarehousesPK",
+                table: "GoodsWarehouseLocation",
+                columns: new[] { "GoodsWarehousesId", "GoodsWarehousesPK" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GoodsWarehouses_InventoryId_InventoryPK",
                 table: "GoodsWarehouses",
-                column: "InventoryId");
+                columns: new[] { "InventoryId", "InventoryPK" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_GoodsWarehouses_PK",
                 table: "GoodsWarehouses",
                 column: "PK",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Inventories_Id",
-                table: "Inventories",
-                column: "Id",
                 unique: true,
-                filter: "[Id] IS NOT NULL");
+                filter: "[PK] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Inventories_PK",
                 table: "Inventories",
                 column: "PK",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocationShippingWarehouse_ShippingWarehousesId",
-                table: "LocationShippingWarehouse",
-                column: "ShippingWarehousesId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MesureProductItem_UnitOfMesureId",
-                table: "MesureProductItem",
-                column: "UnitOfMesureId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Mesures_Id",
-                table: "Mesures",
-                column: "Id",
                 unique: true,
-                filter: "[Id] IS NOT NULL");
+                filter: "[PK] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LocationShippingWarehouse_ShippingWarehousesId_ShippingWarehousesPK",
+                table: "LocationShippingWarehouse",
+                columns: new[] { "ShippingWarehousesId", "ShippingWarehousesPK" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MesureProductItem_UnitOfMesureId_UnitOfMesurePK",
+                table: "MesureProductItem",
+                columns: new[] { "UnitOfMesureId", "UnitOfMesurePK" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Mesures_PK",
                 table: "Mesures",
                 column: "PK",
-                unique: true);
+                unique: true,
+                filter: "[PK] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderOrderPallet_OrdersId",
@@ -1191,17 +1191,11 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 column: "OrdersId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Packages_Id",
-                table: "Packages",
-                column: "Id",
-                unique: true,
-                filter: "[Id] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Packages_PK",
                 table: "Packages",
                 column: "PK",
-                unique: true);
+                unique: true,
+                filter: "[PK] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductItems_AllocationId1",
@@ -1214,29 +1208,16 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 column: "CollectProductItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductItems_Id",
-                table: "ProductItems",
-                column: "Id",
-                unique: true,
-                filter: "[Id] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ProductItems_PK",
                 table: "ProductItems",
                 column: "PK",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductItems_ProductPackagesId",
-                table: "ProductItems",
-                column: "ProductPackagesId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductMesures_Id",
-                table: "ProductMesures",
-                column: "Id",
                 unique: true,
-                filter: "[Id] IS NOT NULL");
+                filter: "[PK] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductItems_ProductPackagesId_ProductPackagesPK",
+                table: "ProductItems",
+                columns: new[] { "ProductPackagesId", "ProductPackagesPK" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductMesures_MesureId",
@@ -1256,13 +1237,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductPackages_Id",
-                table: "ProductPackages",
-                column: "Id",
-                unique: true,
-                filter: "[Id] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ProductPackages_PackageId",
                 table: "ProductPackages",
                 column: "PackageId");
@@ -1271,7 +1245,8 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 name: "IX_ProductPackages_PK",
                 table: "ProductPackages",
                 column: "PK",
-                unique: true);
+                unique: true,
+                filter: "[PK] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductPackages_ProductId",
@@ -1289,14 +1264,14 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductProductItem_ProductsId",
+                name: "IX_ProductProductItem_ProductsId_ProductsPK",
                 table: "ProductProductItem",
-                column: "ProductsId");
+                columns: new[] { "ProductsId", "ProductsPK" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_AllocationWarehouseId",
+                name: "IX_Products_AllocationWarehouseId_AllocationWarehousePK",
                 table: "Products",
-                column: "AllocationWarehouseId");
+                columns: new[] { "AllocationWarehouseId", "AllocationWarehousePK" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
@@ -1309,16 +1284,9 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 column: "CollectProductsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_GoodsWarehouseId",
+                name: "IX_Products_GoodsWarehouseId_GoodsWarehousePK",
                 table: "Products",
-                column: "GoodsWarehouseId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_Id",
-                table: "Products",
-                column: "Id",
-                unique: true,
-                filter: "[Id] IS NOT NULL");
+                columns: new[] { "GoodsWarehouseId", "GoodsWarehousePK" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_InventoryId",
@@ -1329,12 +1297,13 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 name: "IX_Products_PK",
                 table: "Products",
                 column: "PK",
-                unique: true);
+                unique: true,
+                filter: "[PK] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_ShippingWarehouseId",
+                name: "IX_Products_ShippingWarehouseId_ShippingWarehousePK",
                 table: "Products",
-                column: "ShippingWarehouseId");
+                columns: new[] { "ShippingWarehouseId", "ShippingWarehousePK" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_StockId",
@@ -1342,16 +1311,9 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 column: "StockId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductVendors_BatchId",
+                name: "IX_ProductVendors_BatchId_BatchPK",
                 table: "ProductVendors",
-                column: "BatchId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductVendors_Id",
-                table: "ProductVendors",
-                column: "Id",
-                unique: true,
-                filter: "[Id] IS NOT NULL");
+                columns: new[] { "BatchId", "BatchPK" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductVendors_PK",
@@ -1371,47 +1333,28 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 column: "VendorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShippingWarehouses_Id",
-                table: "ShippingWarehouses",
-                column: "Id",
-                unique: true,
-                filter: "[Id] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ShippingWarehouses_PK",
                 table: "ShippingWarehouses",
                 column: "PK",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ShippingWarehouses_StockId",
-                table: "ShippingWarehouses",
-                column: "StockId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Stocks_Id",
-                table: "Stocks",
-                column: "Id",
                 unique: true,
-                filter: "[Id] IS NOT NULL");
+                filter: "[PK] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShippingWarehouses_StockId_StockPK",
+                table: "ShippingWarehouses",
+                columns: new[] { "StockId", "StockPK" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Stocks_PK",
                 table: "Stocks",
                 column: "PK",
-                unique: true);
+                unique: true,
+                filter: "[PK] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SubCategory_CategoryId",
                 table: "SubCategory",
                 column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SubCategory_Id",
-                table: "SubCategory",
-                column: "Id",
-                unique: true,
-                filter: "[Id] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SubCategory_PK",
@@ -1451,13 +1394,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 column: "GoodsWarehouseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_WarehouseItems_Id",
-                table: "WarehouseItems",
-                column: "Id",
-                unique: true,
-                filter: "[Id] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_WarehouseItems_LocationID",
                 table: "WarehouseItems",
                 column: "LocationID");
@@ -1475,9 +1411,9 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 column: "ProductID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_WarehouseItems_ProductMesuresId",
+                name: "IX_WarehouseItems_ProductMesuresId_ProductMesuresPK",
                 table: "WarehouseItems",
-                column: "ProductMesuresId");
+                columns: new[] { "ProductMesuresId", "ProductMesuresPK" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_WarehouseItems_ProductPackageID",

@@ -21,30 +21,36 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
             modelBuilder.Entity("AllocationWarehouseLocation", b =>
                 {
-                    b.Property<int>("AllocationWarehousesId")
-                        .HasColumnType("int");
-
                     b.Property<int>("LocationsId")
                         .HasColumnType("int");
 
-                    b.HasKey("AllocationWarehousesId", "LocationsId");
+                    b.Property<int>("AllocationWarehousesId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("LocationsId");
+                    b.Property<string>("AllocationWarehousesPK")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LocationsId", "AllocationWarehousesId", "AllocationWarehousesPK");
+
+                    b.HasIndex("AllocationWarehousesId", "AllocationWarehousesPK");
 
                     b.ToTable("AllocationWarehouseLocation");
                 });
 
             modelBuilder.Entity("GoodsWarehouseLocation", b =>
                 {
-                    b.Property<int>("GoodsWarehousesId")
-                        .HasColumnType("int");
-
                     b.Property<int>("LocationsId")
                         .HasColumnType("int");
 
-                    b.HasKey("GoodsWarehousesId", "LocationsId");
+                    b.Property<int>("GoodsWarehousesId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("LocationsId");
+                    b.Property<string>("GoodsWarehousesPK")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LocationsId", "GoodsWarehousesId", "GoodsWarehousesPK");
+
+                    b.HasIndex("GoodsWarehousesId", "GoodsWarehousesPK");
 
                     b.ToTable("GoodsWarehouseLocation");
                 });
@@ -57,9 +63,12 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<int>("ShippingWarehousesId")
                         .HasColumnType("int");
 
-                    b.HasKey("LocationsId", "ShippingWarehousesId");
+                    b.Property<string>("ShippingWarehousesPK")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasIndex("ShippingWarehousesId");
+                    b.HasKey("LocationsId", "ShippingWarehousesId", "ShippingWarehousesPK");
+
+                    b.HasIndex("ShippingWarehousesId", "ShippingWarehousesPK");
 
                     b.ToTable("LocationShippingWarehouse");
                 });
@@ -69,12 +78,18 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<int>("ProductItemsId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ProductItemsPK")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("UnitOfMesureId")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductItemsId", "UnitOfMesureId");
+                    b.Property<string>("UnitOfMesurePK")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasIndex("UnitOfMesureId");
+                    b.HasKey("ProductItemsId", "ProductItemsPK", "UnitOfMesureId", "UnitOfMesurePK");
+
+                    b.HasIndex("UnitOfMesureId", "UnitOfMesurePK");
 
                     b.ToTable("MesureProductItem");
                 });
@@ -99,12 +114,18 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<int>("ProductItemsId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ProductItemsPK")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("ProductsId")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductItemsId", "ProductsId");
+                    b.Property<string>("ProductsPK")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasIndex("ProductsId");
+                    b.HasKey("ProductItemsId", "ProductItemsPK", "ProductsId", "ProductsPK");
+
+                    b.HasIndex("ProductsId", "ProductsPK");
 
                     b.ToTable("ProductProductItem");
                 });
@@ -364,8 +385,16 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("PK")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int?>("AllocationWarehouseId")
                         .HasColumnType("int");
+
+                    b.Property<string>("AllocationWarehousePK")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
@@ -380,6 +409,9 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<int?>("GoodsWarehouseId")
                         .HasColumnType("int");
 
+                    b.Property<string>("GoodsWarehousePK")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("InventoryId")
                         .HasColumnType("nvarchar(450)");
 
@@ -390,11 +422,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("PK")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PalletId")
                         .HasColumnType("nvarchar(max)");
@@ -411,34 +438,35 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<int?>("ShippingWarehouseId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ShippingWarehousePK")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("StockId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("WarehouseItemId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("AllocationWarehouseId");
-
-                    b.HasIndex("GoodsWarehouseId");
-
-                    b.HasIndex("Id")
-                        .IsUnique()
-                        .HasFilter("[Id] IS NOT NULL");
+                    b.HasKey("Id", "PK")
+                        .IsClustered();
 
                     b.HasIndex("InventoryId");
 
                     b.HasIndex("PK")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[PK] IS NOT NULL");
 
                     b.HasIndex("ProductId");
 
                     b.HasIndex("ProductItemId");
 
-                    b.HasIndex("ShippingWarehouseId");
-
                     b.HasIndex("StockId");
+
+                    b.HasIndex("AllocationWarehouseId", "AllocationWarehousePK");
+
+                    b.HasIndex("GoodsWarehouseId", "GoodsWarehousePK");
+
+                    b.HasIndex("ShippingWarehouseId", "ShippingWarehousePK");
 
                     b.ToTable("Batches");
                 });
@@ -449,6 +477,11 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<string>("PK")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
@@ -474,25 +507,18 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PK")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ProductId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SubCategoryId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id")
-                        .IsUnique()
-                        .HasFilter("[Id] IS NOT NULL");
+                    b.HasKey("Id", "PK")
+                        .IsClustered();
 
                     b.HasIndex("PK")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[PK] IS NOT NULL");
 
                     b.ToTable("Categories");
                 });
@@ -504,6 +530,11 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("PK")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2");
@@ -522,25 +553,18 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PK")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ProductItemId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductMesureId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id")
-                        .IsUnique()
-                        .HasFilter("[Id] IS NOT NULL");
+                    b.HasKey("Id", "PK")
+                        .IsClustered();
 
                     b.HasIndex("PK")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[PK] IS NOT NULL");
 
                     b.ToTable("Mesures");
                 });
@@ -552,6 +576,11 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("PK")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2");
@@ -570,25 +599,18 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PK")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ProductPackageId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id")
-                        .IsUnique()
-                        .HasFilter("[Id] IS NOT NULL");
+                    b.HasKey("Id", "PK")
+                        .IsClustered();
 
                     b.HasIndex("PK")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[PK] IS NOT NULL");
 
                     b.ToTable("Packages");
                 });
@@ -600,8 +622,16 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("PK")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int?>("AllocationWarehouseId")
                         .HasColumnType("int");
+
+                    b.Property<string>("AllocationWarehousePK")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BatchId")
                         .HasColumnType("nvarchar(max)");
@@ -625,6 +655,9 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<int?>("GoodsWarehouseId")
                         .HasColumnType("int");
 
+                    b.Property<string>("GoodsWarehousePK")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("InventoryId")
                         .HasColumnType("nvarchar(450)");
 
@@ -638,11 +671,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("PK")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PalletId")
                         .HasColumnType("nvarchar(max)");
@@ -662,34 +690,35 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<int?>("ShippingWarehouseId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ShippingWarehousePK")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("StockId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("WarehouseItemId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("AllocationWarehouseId");
+                    b.HasKey("Id", "PK")
+                        .IsClustered();
 
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("CollectProductsId");
 
-                    b.HasIndex("GoodsWarehouseId");
-
-                    b.HasIndex("Id")
-                        .IsUnique()
-                        .HasFilter("[Id] IS NOT NULL");
-
                     b.HasIndex("InventoryId");
 
                     b.HasIndex("PK")
-                        .IsUnique();
-
-                    b.HasIndex("ShippingWarehouseId");
+                        .IsUnique()
+                        .HasFilter("[PK] IS NOT NULL");
 
                     b.HasIndex("StockId");
+
+                    b.HasIndex("AllocationWarehouseId", "AllocationWarehousePK");
+
+                    b.HasIndex("GoodsWarehouseId", "GoodsWarehousePK");
+
+                    b.HasIndex("ShippingWarehouseId", "ShippingWarehousePK");
 
                     b.ToTable("Products");
                 });
@@ -700,6 +729,11 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<string>("PK")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("AllocationId")
                         .HasColumnType("nvarchar(max)");
@@ -740,11 +774,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PK")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ProductId")
                         .HasColumnType("nvarchar(max)");
 
@@ -754,23 +783,24 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<int?>("ProductPackagesId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ProductPackagesPK")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<decimal>("SellPricePerUnit")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id", "PK")
+                        .IsClustered();
 
                     b.HasIndex("AllocationId1");
 
                     b.HasIndex("CollectProductItemId");
 
-                    b.HasIndex("Id")
-                        .IsUnique()
-                        .HasFilter("[Id] IS NOT NULL");
-
                     b.HasIndex("PK")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[PK] IS NOT NULL");
 
-                    b.HasIndex("ProductPackagesId");
+                    b.HasIndex("ProductPackagesId", "ProductPackagesPK");
 
                     b.ToTable("ProductItems");
                 });
@@ -781,6 +811,11 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<string>("PK")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
@@ -806,10 +841,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PK")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ProductId")
                         .HasColumnType("nvarchar(450)");
 
@@ -825,11 +856,8 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<decimal>("Weight")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id")
-                        .IsUnique()
-                        .HasFilter("[Id] IS NOT NULL");
+                    b.HasKey("Id", "PK")
+                        .IsClustered();
 
                     b.HasIndex("MesureId");
 
@@ -849,6 +877,11 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("PK")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2");
@@ -867,11 +900,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PK")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("PackageId")
                         .HasColumnType("nvarchar(450)");
 
@@ -884,14 +912,12 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<string>("WarehouseItemId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id")
-                        .IsUnique()
-                        .HasFilter("[Id] IS NOT NULL");
+                    b.HasKey("Id", "PK")
+                        .IsClustered();
 
                     b.HasIndex("PK")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[PK] IS NOT NULL");
 
                     b.HasIndex("PackageId");
 
@@ -906,6 +932,11 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<string>("PK")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CategoryId")
                         .HasColumnType("nvarchar(450)");
@@ -934,17 +965,10 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PK")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
+                    b.HasKey("Id", "PK")
+                        .IsClustered();
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("Id")
-                        .IsUnique()
-                        .HasFilter("[Id] IS NOT NULL");
 
                     b.HasIndex("PK")
                         .IsUnique()
@@ -959,6 +983,11 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<string>("PK")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("AllocationWarehouseId")
                         .HasColumnType("nvarchar(max)");
@@ -996,11 +1025,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PK")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ProductId")
                         .HasColumnType("nvarchar(max)");
 
@@ -1019,14 +1043,12 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<decimal>("UnitsInOrder")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id")
-                        .IsUnique()
-                        .HasFilter("[Id] IS NOT NULL");
+                    b.HasKey("Id", "PK")
+                        .IsClustered();
 
                     b.HasIndex("PK")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[PK] IS NOT NULL");
 
                     b.ToTable("Inventories");
                 });
@@ -1037,6 +1059,11 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<string>("PK")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("AllocationWarehouseId")
                         .HasColumnType("nvarchar(max)");
@@ -1071,11 +1098,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PK")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ProductId")
                         .HasColumnType("nvarchar(max)");
 
@@ -1094,14 +1116,12 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<decimal>("UnitsInStock")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id")
-                        .IsUnique()
-                        .HasFilter("[Id] IS NOT NULL");
+                    b.HasKey("Id", "PK")
+                        .IsClustered();
 
                     b.HasIndex("PK")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[PK] IS NOT NULL");
 
                     b.ToTable("Stocks");
                 });
@@ -1147,8 +1167,16 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("PK")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int?>("BatchId")
                         .HasColumnType("int");
+
+                    b.Property<string>("BatchPK")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
@@ -1168,23 +1196,14 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PK")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ProductId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("VendorId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("BatchId");
-
-                    b.HasIndex("Id")
-                        .IsUnique()
-                        .HasFilter("[Id] IS NOT NULL");
+                    b.HasKey("Id", "PK")
+                        .IsClustered();
 
                     b.HasIndex("PK")
                         .IsUnique()
@@ -1193,6 +1212,8 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.HasIndex("VendorId");
+
+                    b.HasIndex("BatchId", "BatchPK");
 
                     b.ToTable("ProductVendors");
                 });
@@ -1326,6 +1347,11 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("PK")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("AllocationId")
                         .HasColumnType("nvarchar(450)");
 
@@ -1365,10 +1391,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PK")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ProductID")
                         .HasColumnType("nvarchar(450)");
 
@@ -1378,13 +1400,17 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<int?>("ProductMesuresId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ProductMesuresPK")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("ProductPackageID")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ShippingWarhouseId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id", "PK")
+                        .IsClustered();
 
                     b.HasIndex("AllocationId");
 
@@ -1398,10 +1424,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
                     b.HasIndex("GoodsWarehouseId");
 
-                    b.HasIndex("Id")
-                        .IsUnique()
-                        .HasFilter("[Id] IS NOT NULL");
-
                     b.HasIndex("LocationID");
 
                     b.HasIndex("PK")
@@ -1410,11 +1432,11 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
                     b.HasIndex("ProductID");
 
-                    b.HasIndex("ProductMesuresId");
-
                     b.HasIndex("ProductPackageID");
 
                     b.HasIndex("ShippingWarhouseId");
+
+                    b.HasIndex("ProductMesuresId", "ProductMesuresPK");
 
                     b.ToTable("WarehouseItems");
                 });
@@ -1426,6 +1448,11 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("PK")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("BatchID")
                         .HasColumnType("nvarchar(max)");
 
@@ -1442,6 +1469,9 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<int?>("InventoryId")
                         .HasColumnType("int");
 
+                    b.Property<string>("InventoryPK")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("LocationID")
                         .HasColumnType("nvarchar(max)");
 
@@ -1453,16 +1483,14 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PK")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ProductID")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("StockId")
                         .HasColumnType("int");
+
+                    b.Property<string>("StockPK")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("WarehouseItemID")
                         .HasColumnType("nvarchar(max)");
@@ -1474,18 +1502,16 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id")
-                        .IsUnique()
-                        .HasFilter("[Id] IS NOT NULL");
-
-                    b.HasIndex("InventoryId");
+                    b.HasKey("Id", "PK")
+                        .IsClustered();
 
                     b.HasIndex("PK")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[PK] IS NOT NULL");
 
-                    b.HasIndex("StockId");
+                    b.HasIndex("InventoryId", "InventoryPK");
+
+                    b.HasIndex("StockId", "StockPK");
 
                     b.ToTable("AllocationWarehouses");
                 });
@@ -1497,6 +1523,11 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("PK")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("BatchID")
                         .HasColumnType("nvarchar(max)");
 
@@ -1513,6 +1544,9 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<int?>("InventoryId")
                         .HasColumnType("int");
 
+                    b.Property<string>("InventoryPK")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("LocationID")
                         .HasColumnType("nvarchar(max)");
 
@@ -1523,11 +1557,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("PK")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProductID")
                         .HasColumnType("nvarchar(max)");
@@ -1542,16 +1571,14 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id")
-                        .IsUnique()
-                        .HasFilter("[Id] IS NOT NULL");
-
-                    b.HasIndex("InventoryId");
+                    b.HasKey("Id", "PK")
+                        .IsClustered();
 
                     b.HasIndex("PK")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[PK] IS NOT NULL");
+
+                    b.HasIndex("InventoryId", "InventoryPK");
 
                     b.ToTable("GoodsWarehouses");
                 });
@@ -1562,6 +1589,11 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<string>("PK")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BatchID")
                         .HasColumnType("nvarchar(max)");
@@ -1587,16 +1619,14 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PK")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ProductID")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("StockId")
                         .HasColumnType("int");
+
+                    b.Property<string>("StockPK")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("WarehouseItemID")
                         .HasColumnType("nvarchar(max)");
@@ -1608,46 +1638,44 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id")
-                        .IsUnique()
-                        .HasFilter("[Id] IS NOT NULL");
+                    b.HasKey("Id", "PK")
+                        .IsClustered();
 
                     b.HasIndex("PK")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[PK] IS NOT NULL");
 
-                    b.HasIndex("StockId");
+                    b.HasIndex("StockId", "StockPK");
 
                     b.ToTable("ShippingWarehouses");
                 });
 
             modelBuilder.Entity("AllocationWarehouseLocation", b =>
                 {
-                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.AllocationWarehouse", null)
-                        .WithMany()
-                        .HasForeignKey("AllocationWarehousesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.Location", null)
                         .WithMany()
                         .HasForeignKey("LocationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.AllocationWarehouse", null)
+                        .WithMany()
+                        .HasForeignKey("AllocationWarehousesId", "AllocationWarehousesPK")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("GoodsWarehouseLocation", b =>
                 {
-                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.GoodsWarehouse", null)
-                        .WithMany()
-                        .HasForeignKey("GoodsWarehousesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.Location", null)
                         .WithMany()
                         .HasForeignKey("LocationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.GoodsWarehouse", null)
+                        .WithMany()
+                        .HasForeignKey("GoodsWarehousesId", "GoodsWarehousesPK")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -1662,7 +1690,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.ShippingWarehouse", null)
                         .WithMany()
-                        .HasForeignKey("ShippingWarehousesId")
+                        .HasForeignKey("ShippingWarehousesId", "ShippingWarehousesPK")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -1671,13 +1699,13 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.ProductEntities.ProductItem", null)
                         .WithMany()
-                        .HasForeignKey("ProductItemsId")
+                        .HasForeignKey("ProductItemsId", "ProductItemsPK")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.ProductEntities.Mesure", null)
                         .WithMany()
-                        .HasForeignKey("UnitOfMesureId")
+                        .HasForeignKey("UnitOfMesureId", "UnitOfMesurePK")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -1701,13 +1729,13 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.ProductEntities.ProductItem", null)
                         .WithMany()
-                        .HasForeignKey("ProductItemsId")
+                        .HasForeignKey("ProductItemsId", "ProductItemsPK")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.ProductEntities.Product", null)
                         .WithMany()
-                        .HasForeignKey("ProductsId")
+                        .HasForeignKey("ProductsId", "ProductsPK")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -1731,14 +1759,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
             modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.ProductEntities.Batch", b =>
                 {
-                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.AllocationWarehouse", null)
-                        .WithMany("Batches")
-                        .HasForeignKey("AllocationWarehouseId");
-
-                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.GoodsWarehouse", null)
-                        .WithMany("Batches")
-                        .HasForeignKey("GoodsWarehouseId");
-
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.StockEntites.Inventory", "Inventory")
                         .WithMany("Batches")
                         .HasForeignKey("InventoryId")
@@ -1754,14 +1774,22 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasForeignKey("ProductItemId")
                         .HasPrincipalKey("PK");
 
-                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.ShippingWarehouse", null)
-                        .WithMany("Batches")
-                        .HasForeignKey("ShippingWarehouseId");
-
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.StockEntites.Stock", "Stock")
                         .WithMany("Batches")
                         .HasForeignKey("StockId")
                         .HasPrincipalKey("PK");
+
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.AllocationWarehouse", null)
+                        .WithMany("Batches")
+                        .HasForeignKey("AllocationWarehouseId", "AllocationWarehousePK");
+
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.GoodsWarehouse", null)
+                        .WithMany("Batches")
+                        .HasForeignKey("GoodsWarehouseId", "GoodsWarehousePK");
+
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.ShippingWarehouse", null)
+                        .WithMany("Batches")
+                        .HasForeignKey("ShippingWarehouseId", "ShippingWarehousePK");
 
                     b.Navigation("Inventory");
 
@@ -1774,10 +1802,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
             modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.ProductEntities.Product", b =>
                 {
-                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.AllocationWarehouse", null)
-                        .WithMany("Products")
-                        .HasForeignKey("AllocationWarehouseId");
-
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.ProductEntities.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
@@ -1787,23 +1811,27 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .WithMany("Items")
                         .HasForeignKey("CollectProductsId");
 
-                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.GoodsWarehouse", null)
-                        .WithMany("Products")
-                        .HasForeignKey("GoodsWarehouseId");
-
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.StockEntites.Inventory", "Inventory")
                         .WithMany("Products")
                         .HasForeignKey("InventoryId")
                         .HasPrincipalKey("PK");
 
-                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.ShippingWarehouse", null)
-                        .WithMany("Products")
-                        .HasForeignKey("ShippingWarehouseId");
-
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.StockEntites.Stock", "Stock")
                         .WithMany("Products")
                         .HasForeignKey("StockId")
                         .HasPrincipalKey("PK");
+
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.AllocationWarehouse", null)
+                        .WithMany("Products")
+                        .HasForeignKey("AllocationWarehouseId", "AllocationWarehousePK");
+
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.GoodsWarehouse", null)
+                        .WithMany("Products")
+                        .HasForeignKey("GoodsWarehouseId", "GoodsWarehousePK");
+
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.ShippingWarehouse", null)
+                        .WithMany("Products")
+                        .HasForeignKey("ShippingWarehouseId", "ShippingWarehousePK");
 
                     b.Navigation("Category");
 
@@ -1824,7 +1852,7 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.ProductEntities.ProductPackages", null)
                         .WithMany("ProductItems")
-                        .HasForeignKey("ProductPackagesId");
+                        .HasForeignKey("ProductPackagesId", "ProductPackagesPK");
 
                     b.Navigation("Allocation");
                 });
@@ -1875,10 +1903,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
 
             modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.SupplyChainEntities.ProductVendor", b =>
                 {
-                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.ProductEntities.Batch", "Batch")
-                        .WithMany("ProductSuppliers")
-                        .HasForeignKey("BatchId");
-
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.ProductEntities.Product", "Product")
                         .WithMany("ProductVendors")
                         .HasForeignKey("ProductId")
@@ -1888,6 +1912,10 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .WithMany("ProductVendors")
                         .HasForeignKey("VendorId")
                         .HasPrincipalKey("PK");
+
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.ProductEntities.Batch", "Batch")
+                        .WithMany("ProductSuppliers")
+                        .HasForeignKey("BatchId", "BatchPK");
 
                     b.Navigation("Batch");
 
@@ -1947,10 +1975,6 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .HasForeignKey("ProductID")
                         .HasPrincipalKey("PK");
 
-                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.ProductEntities.ProductMesures", "ProductMesures")
-                        .WithMany()
-                        .HasForeignKey("ProductMesuresId");
-
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.ProductEntities.ProductPackages", "ProductPackage")
                         .WithMany("WarehouseItems")
                         .HasForeignKey("ProductPackageID")
@@ -1960,6 +1984,10 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                         .WithMany("WarehouseItems")
                         .HasForeignKey("ShippingWarhouseId")
                         .HasPrincipalKey("PK");
+
+                    b.HasOne("WarehouseSystemAnalyst.Data.Entities.ProductEntities.ProductMesures", "ProductMesures")
+                        .WithMany()
+                        .HasForeignKey("ProductMesuresId", "ProductMesuresPK");
 
                     b.Navigation("Allocation");
 
@@ -1986,25 +2014,25 @@ namespace WarehouseSystemAnalyst.Data.Migrations
                 {
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.StockEntites.Inventory", null)
                         .WithMany("AllocationWarehouses")
-                        .HasForeignKey("InventoryId");
+                        .HasForeignKey("InventoryId", "InventoryPK");
 
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.StockEntites.Stock", null)
                         .WithMany("AllocationWarehouses")
-                        .HasForeignKey("StockId");
+                        .HasForeignKey("StockId", "StockPK");
                 });
 
             modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.GoodsWarehouse", b =>
                 {
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.StockEntites.Inventory", null)
                         .WithMany("GoodsWarehouses")
-                        .HasForeignKey("InventoryId");
+                        .HasForeignKey("InventoryId", "InventoryPK");
                 });
 
             modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes.ShippingWarehouse", b =>
                 {
                     b.HasOne("WarehouseSystemAnalyst.Data.Entities.StockEntites.Stock", null)
                         .WithMany("ShippingWarehouses")
-                        .HasForeignKey("StockId");
+                        .HasForeignKey("StockId", "StockPK");
                 });
 
             modelBuilder.Entity("WarehouseSystemAnalyst.Data.Entities.ContactEntities.Employee", b =>

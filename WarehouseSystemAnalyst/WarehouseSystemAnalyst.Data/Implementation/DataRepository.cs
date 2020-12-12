@@ -54,7 +54,6 @@ namespace WarehouseSystemAnalyst.Data.Implementation
             {
                 if (entity != null)
                 {
-                    Context.Entry(entity).State = EntityState.Added;
                     await Entities.AddAsync(entity);
 
                     if (Context == null || _isDisposed)
@@ -132,8 +131,6 @@ namespace WarehouseSystemAnalyst.Data.Implementation
                 if (Context == null || _isDisposed)
                     Context = new WarehouseDbContext();
 
-                var dbSet = Context.Set<TEntity>();
-                dbSet.Attach(entityUpdate);
                 Context.Entry(entityUpdate).State = EntityState.Modified;
 
                 return await Task.FromResult(entityUpdate);
@@ -235,12 +232,14 @@ namespace WarehouseSystemAnalyst.Data.Implementation
 
         public virtual async Task<TEntity> GetSingleQuery(Expression<Func<TEntity, bool>> filter, string includes = null)
         {
+            IQueryable<TEntity> query = Entities;
+
             if (filter == null)
                 throw new ArgumentNullException(nameof(filter));
 
             try
             {
-                return await Entities.Where(filter).SingleOrDefaultAsync();
+                return await query.Where(filter).SingleOrDefaultAsync();
             }
             catch (Exception)
             {

@@ -4,7 +4,7 @@ using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
 
 namespace WarehouseSystemAnalyst.Data.Helpers
 {
-    public static class EntityBuilders
+    public static class EntityBuilderHelper
     {
         public static EntityTypeBuilder BasePallletBuilder<TBasePallet>(this EntityTypeBuilder<TBasePallet> builder)
             where TBasePallet : class, IBasePallet, new()
@@ -68,19 +68,18 @@ namespace WarehouseSystemAnalyst.Data.Helpers
             where TBaseEntity : class, IBaseEntity, new()
         {
 
+            builder.HasKey(p => new { p.Id, p.PK })
+                   .IsClustered(true);
+
             builder.Property(e => e.Id)
                     .UseIdentityColumn();
 
             builder.Property(e => e.PK)
-                    .IsConcurrencyToken();
-
-            builder.HasIndex(e => e.Id)
-                    .IsUnique()
-                    .HasFilter("[Id] IS NOT NULL");
+                .ValueGeneratedOnAdd();
 
             builder.HasIndex(e => e.PK)
-                   .IsUnique()
-                   .HasFilter("[PK] IS NOT NULL");
+                    .IsUnique()
+                    .HasFilter("[PK] IS NOT NULL");
 
             builder.Property(e => e.CreateDate)
                    .ValueGeneratedOnAdd()
