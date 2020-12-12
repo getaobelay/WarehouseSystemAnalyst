@@ -51,12 +51,13 @@ namespace WarehouseSystemAnalyst.Server.Controllers
         }
 
         [HttpGet("{Id}")]
-        public async Task<ActionResult<IBaseResponse<ProductDto>>> GetByIdAsync([FromQuery] string Id)
+        public async Task<ActionResult<IBaseResponse<ProductDto>>> GetByIdAsync([FromRoute] string Id)
         {
             try
             {
                 var query = new SingleQueryRequest<Product, ProductDto>()
                 {
+                    Id = Id,
                     Filter = p => p.PK == Id
                 };
 
@@ -99,7 +100,7 @@ namespace WarehouseSystemAnalyst.Server.Controllers
         }
 
         [HttpPut("{Id}")]
-        public  async Task<ActionResult<IBaseResponse<ProductDto>>> PutAsync([FromQuery] string Id, [FromBody] ProductDto updatedObject)
+        public  async Task<ActionResult<IBaseResponse<ProductDto>>> PutAsync([FromRoute] string Id, [FromBody] ProductDto updatedObject)
         {
             var query = new UpdateCommandRequest<Product, ProductDto>()
             {
