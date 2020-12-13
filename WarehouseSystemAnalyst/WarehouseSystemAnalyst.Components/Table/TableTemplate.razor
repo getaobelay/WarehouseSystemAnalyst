@@ -1,84 +1,22 @@
 ﻿@using WarehouseSystemAnalyst.Components.Model;
 @typeparam TItem
 
-<style>
-    thead th.align-center {
-        text-align: center;
-    }
-
-    thead th.align-left {
-        text-align: left;
-    }
-
-    thead th.align-right {
-        text-align: right;
-    }
-</style>
-
 <table class="table table-responsive-lg">
     <thead class="thead-light">
         <tr>
-            @if (Columns == null || DataItems.Count <= 0)
-            {
-                foreach (var item in DataItems)
-                {
-                }
-            }
 
-            else
-            {
-                foreach (var column in Columns)
-                {
-                    if (column.Alignment != Alignment.NotSet)
-                    {
-                        switch (column.Alignment)
-                        {
-                            case Alignment.Left:
-                                <th class="align-left">@column.Caption</th>
-                                break;
-                            case Alignment.Center:
-                                <th class="align-center">@column.Caption</th>
-                                break;
-                            case Alignment.Right:
-                                <th class="align-right">@column.Caption</th>
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-
-                    else
-                    {
-                        <th>@column.Caption</th>
-                    }
-                }
-            }
         </tr>
     </thead>
 
     <tbody>
         <tr>
-            @foreach (var item in DataItems)
-            {
-                foreach (var column in Columns)
-                {
-                    if (column.Alignment != Alignment.NotSet)
-                    {
-                        <td align="@column.Alignment.ToString().ToLower()">@typeof(TItem).GetProperty(column.DataField).GetValue(item)</td>
-                    }
 
-                    else
-                    {
-                        <td>@typeof(TItem).GetProperty(column.DataField).GetValue(item)</td>
-                    }
-                }
-            }
         </tr>
     </tbody>
 </table>
 
 @code {
-
     [Parameter] public List<TItem> DataItems { get; set; }
     [Parameter] public List<ColumnDefinition> Columns { get; set; }
+
 }

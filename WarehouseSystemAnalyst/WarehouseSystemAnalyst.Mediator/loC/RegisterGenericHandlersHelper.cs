@@ -1,13 +1,13 @@
 ﻿using Autofac;
 using MediatR;
 using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
-using WarehouseSystemAnalyst.Mediator.Commands.Handlers.CommonHandlers;
-using WarehouseSystemAnalyst.Mediator.Commands.Requests.CommonRequests;
-using WarehouseSystemAnalyst.Mediator.Commands.Responses.CommonResponses;
+using WarehouseSystemAnalyst.Mediator.CommonCQRS.Commands.Handlers;
+using WarehouseSystemAnalyst.Mediator.CommonCQRS.Commands.Requests;
+using WarehouseSystemAnalyst.Mediator.CommonCQRS.Commands.Responses;
+using WarehouseSystemAnalyst.Mediator.CommonCQRS.Queries.Handlers;
+using WarehouseSystemAnalyst.Mediator.CommonCQRS.Queries.Requests;
 using WarehouseSystemAnalyst.Mediator.Dtos;
 using WarehouseSystemAnalyst.Mediator.Helpers;
-using WarehouseSystemAnalyst.Mediator.Queries.Handlers.CommonHandlers;
-using WarehouseSystemAnalyst.Mediator.Queries.Requests.CommonRequests;
 
 namespace WarehouseSystemAnalyst.Mediator.loC
 {

@@ -4,9 +4,9 @@ using Xunit.Priority;
 using FluentAssertions;
 using WarehouseSystemAnalyst.Mediator.Dtos.InventoryDtos;
 using WarehouseSystemAnalyst.Data.Entities.StockEntites;
-using WarehouseSystemAnalyst.Mediator.Commands.Requests.CommonRequests;
 using Moq;
-using WarehouseSystemAnalyst.Mediator.Commands.Responses.CommonResponses;
+using WarehouseSystemAnalyst.Mediator.Common.Commands.Requests;
+using WarehouseSystemAnalyst.Mediator.Common.Commands.Responses;
 
 namespace WarehouseSystemAnalyst.MediatorTests.Commands.Handlers
 {

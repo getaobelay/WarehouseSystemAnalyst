@@ -4,10 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
-using WarehouseSystemAnalyst.Mediator.Commands.Requests.CommonRequests;
+using WarehouseSystemAnalyst.Mediator.CommonCQRS.Commands.Requests;
+using WarehouseSystemAnalyst.Mediator.CommonCQRS.Queries.Requests;
 using WarehouseSystemAnalyst.Mediator.Dtos.ProductDtos;
 using WarehouseSystemAnalyst.Mediator.loC;
-using WarehouseSystemAnalyst.Mediator.Queries.Requests.CommonRequests;
 using WarehouseSystemAnalyst.Server.BaseContollers;
 using WarehouseSystemAnalyst.Server.Interfaces;
 

@@ -1,10 +1,10 @@
 ﻿using Autofac;
 using MediatR;
 using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
-using WarehouseSystemAnalyst.Mediator.Commands.Proccessors;
-using WarehouseSystemAnalyst.Mediator.Commands.Requests.CommonRequests;
-using WarehouseSystemAnalyst.Mediator.Commands.Responses.CommonResponses;
+using WarehouseSystemAnalyst.Mediator.CommonCQRS.Commands.Requests;
+using WarehouseSystemAnalyst.Mediator.CommonCQRS.Commands.Responses;
 using WarehouseSystemAnalyst.Mediator.Dtos;
+using WarehouseSystemAnalyst.Mediator.Proccessors;
 
 namespace WarehouseSystemAnalyst.Mediator.loC
 {
@@ -14,13 +14,13 @@ namespace WarehouseSystemAnalyst.Mediator.loC
      where TEntity : class, IBaseEntity, new()
      where TDto : class, IBaseDto, new()
         {
-            builder.RegisterType<PreCommandTransactionProccessor<CreateCommandRequest<TEntity, TDto>, CommandResponse<TDto>, TEntity, TDto>>()
+            builder.RegisterType<CommandTransactionProccessor<CreateCommandRequest<TEntity, TDto>, CommandResponse<TDto>, TEntity, TDto>>()
               .As<IPipelineBehavior<CreateCommandRequest<TEntity, TDto>, CommandResponse<TDto>>>();
 
-            builder.RegisterType<PreCommandTransactionProccessor<DeleteCommandRequest<TEntity, TDto>, CommandResponse<TDto>, TEntity, TDto>>()
+            builder.RegisterType<CommandTransactionProccessor<DeleteCommandRequest<TEntity, TDto>, CommandResponse<TDto>, TEntity, TDto>>()
                                 .As<IPipelineBehavior<DeleteCommandRequest<TEntity, TDto>, CommandResponse<TDto>>>();
 
-            builder.RegisterType<PreCommandTransactionProccessor<UpdateCommandRequest<TEntity, TDto>, CommandResponse<TDto>, TEntity, TDto>>()
+            builder.RegisterType<CommandTransactionProccessor<UpdateCommandRequest<TEntity, TDto>, CommandResponse<TDto>, TEntity, TDto>>()
                                 .As<IPipelineBehavior<UpdateCommandRequest<TEntity, TDto>, CommandResponse<TDto>>>();
             return builder;
         }
@@ -29,13 +29,13 @@ namespace WarehouseSystemAnalyst.Mediator.loC
   where TEntity : class, IBaseEntity, new()
   where TDto : class, IBaseDto, new()
         {
-            builder.RegisterType<PreCommandProccessor<CreateCommandRequest<TEntity, TDto>, CommandResponse<TDto>, TEntity, TDto>>()
+            builder.RegisterType<CommandProccessor<CreateCommandRequest<TEntity, TDto>, CommandResponse<TDto>, TEntity, TDto>>()
               .As<IPipelineBehavior<CreateCommandRequest<TEntity, TDto>, CommandResponse<TDto>>>();
 
-            builder.RegisterType<PreCommandProccessor<DeleteCommandRequest<TEntity, TDto>, CommandResponse<TDto>, TEntity, TDto>>()
+            builder.RegisterType<CommandProccessor<DeleteCommandRequest<TEntity, TDto>, CommandResponse<TDto>, TEntity, TDto>>()
                                 .As<IPipelineBehavior<DeleteCommandRequest<TEntity, TDto>, CommandResponse<TDto>>>();
 
-            builder.RegisterType<PreCommandProccessor<UpdateCommandRequest<TEntity, TDto>, CommandResponse<TDto>, TEntity, TDto>>()
+            builder.RegisterType<CommandProccessor<UpdateCommandRequest<TEntity, TDto>, CommandResponse<TDto>, TEntity, TDto>>()
                                 .As<IPipelineBehavior<UpdateCommandRequest<TEntity, TDto>, CommandResponse<TDto>>>();
             return builder;
         }
