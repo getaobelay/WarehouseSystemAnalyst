@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WarehouseSystemAnalyst.Mediator.Dtos;
+using WarehouseSystemAnalyst.Shared.Dtos.BaseDtos;
 
 namespace WarehouseSystemAnalyst.Mediator.Helpers
 {

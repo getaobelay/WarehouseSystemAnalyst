@@ -1,0 +1,113 @@
+@using WarehouseSystemAnalyst.Shared.Dtos.ProductDtos
+@page "/products"
+
+
+<h3>ProductPage</h3>
+@if (OpenAddView)
+{
+
+}
+
+
+<WarehouseSystemAnalyst.Components.Page.Modal ModalId="@productPackageModel" Title="Add Package" OnClick="AddProductPackage">
+    <Body>
+        <div class="row">
+            <div class="col-auto">
+                <div class="form-outline">
+                    <input type="text" id="form11Example1" class="form-control" />
+                    <label class="form-label" for="form11Example1">Label</label>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="form-check">
+                    <input class="form-check-input"
+                           type="checkbox"
+                           value=""
+                           id="form11Example2"
+                           checked />
+                    <label class="form-check-label" for="form11Example2"> Checked </label>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="form-outline">
+                    <input type="text" id="form11Example3" class="form-control" />
+                    <label class="form-label" for="form11Example3">Label</label>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="form11Example4" checked />
+                    <label class="form-check-label" for="form11Example4">Checked switch checkbox input</label>
+                </div>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </Body>
+</WarehouseSystemAnalyst.Components.Page.Modal>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-2">
+            <div class="btn-group pr-10" role="group">
+                <button type="button"
+                        class="btn btn-primary"
+                        data-mdb-toggle="modal"
+                        data-mdb-target="#@productPackageModel">
+                    <i class="fa fa-plus-circle"></i>
+                </button>
+
+                <button type="button"
+                        class="btn btn-secondery"
+                        data-mdb-toggle="modal"
+                        data-mdb-target="#@productPackageModel">
+                    <i class="fa fa-edit"></i>
+                </button>
+
+
+                <button type="button"
+                        class="btn btn-danger"
+                        data-mdb-toggle="modal"
+                        data-mdb-target="#@productPackageModel">
+                    <i class="fa fa-trash"></i>
+                </button>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-sm-12 col-md-12">
+            <WarehouseSystemAnalyst.Components.Page.TableComponent SetSelectedItem="SetSelectedItem"
+                                                                   Items="products">
+                <TableHeader>
+                    <td>Id</td>
+                    <td>Name</td>
+                </TableHeader>
+                <RowTamplate Context="product">
+                    <td>@product.PK</td>
+                    <td>@product.ProductName</td>
+                </RowTamplate>
+            </WarehouseSystemAnalyst.Components.Page.TableComponent>
+        </div>
+    </div>
+</div>
+
+
+@code{
+    private string productPackageModel { get; set; } = "productPackageModal";
+    private bool OpenAddView { get; set; }
+
+    private void SetSelectedItem(string Id)
+    {
+        selectId = Id;
+    }
+
+    private void AddProductPackage()
+    {
+        editPorduct.ProductPackages.Add(productPackage);
+    }
+}

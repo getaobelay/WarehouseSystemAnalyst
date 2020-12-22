@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Xunit.Priority;
 using FluentAssertions;
-using WarehouseSystemAnalyst.Mediator.Dtos.InventoryDtos;
+using WarehouseSystemAnalyst.Shared.Dtos.InventoryDtos;
 using WarehouseSystemAnalyst.Data.Entities.StockEntites;
 using Moq;
 using WarehouseSystemAnalyst.Mediator.Common.Commands.Requests;

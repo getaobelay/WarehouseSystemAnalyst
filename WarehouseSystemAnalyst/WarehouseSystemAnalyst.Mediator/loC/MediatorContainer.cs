@@ -10,9 +10,9 @@ using WarehouseSystemAnalyst.Data.Entities.StockEntites;
 using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites.WarehouseTypes;
 using WarehouseSystemAnalyst.Data.Implementation;
 using WarehouseSystemAnalyst.Data.Interfaces.Repositories;
-using WarehouseSystemAnalyst.Mediator.Dtos.InventoryDtos;
-using WarehouseSystemAnalyst.Mediator.Dtos.ProductDtos;
-using WarehouseSystemAnalyst.Mediator.Dtos.WarehouseDtos;
+using WarehouseSystemAnalyst.Shared.Dtos.InventoryDtos;
+using WarehouseSystemAnalyst.Shared.Dtos.ProductDtos;
+using WarehouseSystemAnalyst.Shared.Dtos.WarehouseDtos;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
 
 namespace WarehouseSystemAnalyst.Mediator.loC

@@ -3,8 +3,8 @@ using MediatR;
 using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
 using WarehouseSystemAnalyst.Mediator.CommonCQRS.Commands.Requests;
 using WarehouseSystemAnalyst.Mediator.CommonCQRS.Commands.Responses;
-using WarehouseSystemAnalyst.Mediator.Dtos;
 using WarehouseSystemAnalyst.Mediator.Proccessors;
+using WarehouseSystemAnalyst.Shared.Dtos.BaseDtos;
 
 namespace WarehouseSystemAnalyst.Mediator.loC
 {

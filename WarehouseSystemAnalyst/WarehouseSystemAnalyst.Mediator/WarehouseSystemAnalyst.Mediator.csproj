@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Shared\WarehouseSystemAnalyst.Shared.csproj" />
     <ProjectReference Include="..\WarehouseSystemAnalyst.Data\WarehouseSystemAnalyst.Data.csproj" />
   </ItemGroup>
 

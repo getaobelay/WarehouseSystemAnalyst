@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
 using WarehouseSystemAnalyst.Mediator.CommonCQRS.Commands.Requests;
-using WarehouseSystemAnalyst.Mediator.Dtos;
-using WarehouseSystemAnalyst.Mediator.Dtos.WarehouseDtos;
+using WarehouseSystemAnalyst.Shared.Dtos.WarehouseDtos;
+using WarehouseSystemAnalyst.Shared.Dtos.BaseDtos;
 
 namespace WarehouseSystemAnalyst.Mediator.WarehouseCQRS.Requests
 {

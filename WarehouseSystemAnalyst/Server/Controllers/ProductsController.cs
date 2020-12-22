@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
 using WarehouseSystemAnalyst.Mediator.CommonCQRS.Commands.Requests;
 using WarehouseSystemAnalyst.Mediator.CommonCQRS.Queries.Requests;
-using WarehouseSystemAnalyst.Mediator.Dtos.ProductDtos;
+using WarehouseSystemAnalyst.Shared.Dtos.ProductDtos;
 using WarehouseSystemAnalyst.Mediator.loC;
-using WarehouseSystemAnalyst.Server.BaseContollers;
 using WarehouseSystemAnalyst.Server.Interfaces;
+using WarehouseSystemAnalyst.Shared.Api.Responses;
 
 namespace WarehouseSystemAnalyst.Server.Controllers
 {

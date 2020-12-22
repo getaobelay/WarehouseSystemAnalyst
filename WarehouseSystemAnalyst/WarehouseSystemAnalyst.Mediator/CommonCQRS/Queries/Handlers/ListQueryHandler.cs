@@ -6,9 +6,10 @@ using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
 using WarehouseSystemAnalyst.Data.Implementation;
 using WarehouseSystemAnalyst.Data.Interfaces;
 using WarehouseSystemAnalyst.Mediator.CommonCQRS.Queries.Requests;
-using WarehouseSystemAnalyst.Mediator.Dtos;
 using WarehouseSystemAnalyst.Mediator.Helpers;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
+using WarehouseSystemAnalyst.Shared.Dtos;
+using WarehouseSystemAnalyst.Shared.Dtos.BaseDtos;
 
 namespace WarehouseSystemAnalyst.Mediator.CommonCQRS.Queries.Handlers
 {

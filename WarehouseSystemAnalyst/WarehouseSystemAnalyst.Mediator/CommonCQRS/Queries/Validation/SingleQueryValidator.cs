@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
 using WarehouseSystemAnalyst.Mediator.CommonCQRS.Queries.Requests;
-using WarehouseSystemAnalyst.Mediator.Dtos;
+using WarehouseSystemAnalyst.Shared.Dtos.BaseDtos;
 
 namespace WarehouseSystemAnalyst.Mediator.CommonCQRS.Queries.Validation
 {

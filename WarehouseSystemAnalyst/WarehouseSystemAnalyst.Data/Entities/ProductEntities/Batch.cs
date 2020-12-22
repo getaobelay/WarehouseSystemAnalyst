@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
-using WarehouseSystemAnalyst.Data.Entities.PalletEntities;
 using WarehouseSystemAnalyst.Data.Entities.StockEntites;
 using WarehouseSystemAnalyst.Data.Entities.SupplyChainEntities;
 using WarehouseSystemAnalyst.Data.Entities.WarehouseEntites;
@@ -20,14 +19,12 @@ namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities
         public string InventoryId { get; set; }
         public string StockId { get; set; }
         public string ProductSupplierId { get; set; }
-        public string PalletId { get; set; }
         public string WarehouseItemId { get; set; }
         public string ProductItemId { get; set; }
         public virtual Product Product { get; set; }
         public virtual ProductItem ProductItem { get; set; }
         public virtual Inventory Inventory { get; set; }
         public virtual Stock Stock { get; set; }
-        public virtual ICollection<ProductPallet> Pallets { get; set; } = new HashSet<ProductPallet>();
         public virtual ICollection<ProductVendor> ProductSuppliers { get; set; } = new HashSet<ProductVendor>();
         public virtual ICollection<WarehouseItem> WarehouseItems { get; set; } = new HashSet<WarehouseItem>();
     }

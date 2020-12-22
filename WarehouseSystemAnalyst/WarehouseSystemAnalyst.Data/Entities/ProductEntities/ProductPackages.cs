@@ -17,7 +17,6 @@ namespace WarehouseSystemAnalyst.Data.Entities.ProductEntities
         public string PackageId { get; set; }
         public string ProductItemId { get; set; }
         public string WarehouseItemId { get; set; }
-
         public virtual Product Product { get; set; }
         public virtual Package Package { get; set; }
         public virtual ICollection<WarehouseItem> WarehouseItems { get; set; } = new HashSet<WarehouseItem>();

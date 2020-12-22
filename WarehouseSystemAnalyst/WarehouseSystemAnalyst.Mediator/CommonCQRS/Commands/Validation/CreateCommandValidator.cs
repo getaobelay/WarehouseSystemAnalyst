@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using WarehouseSystemAnalyst.Data.Entities.BaseEntites;
 using WarehouseSystemAnalyst.Data.Implementation;
 using WarehouseSystemAnalyst.Mediator.CommonCQRS.Commands.Requests;
-using WarehouseSystemAnalyst.Mediator.Dtos;
 using WarehouseSystemAnalyst.Mediator.Interfaces.Responses;
+using WarehouseSystemAnalyst.Shared.Dtos.BaseDtos;
 
 namespace WarehouseSystemAnalyst.Mediator.CommonCQRS.Commands.Validation
 {

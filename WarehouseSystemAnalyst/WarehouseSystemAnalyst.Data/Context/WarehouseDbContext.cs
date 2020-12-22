@@ -7,8 +7,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using WarehouseSystemAnalyst.Data.Entities.ContactEntities;
 using WarehouseSystemAnalyst.Data.Entities.Enrollment;
-using WarehouseSystemAnalyst.Data.Entities.MissionEntites;
-using WarehouseSystemAnalyst.Data.Entities.PalletEntities;
 using WarehouseSystemAnalyst.Data.Entities.ProductEntities;
 using WarehouseSystemAnalyst.Data.Entities.StockEntites;
 using WarehouseSystemAnalyst.Data.Entities.SupplyChainEntities;
@@ -31,10 +29,6 @@ namespace WarehouseSystemAnalyst.Data.DataContext
         //public DbSet<Customer> Customers { get; set; }
 
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<CollectItem> CollectItems { get; set; }
-        public DbSet<CollectProductItem> CollectProductItems { get; set; }
-        public DbSet<CollectProducts> CollectProducts { get; set; }
-        public DbSet<ProductPallet> ProductPallets { get; set; }
         public DbSet<Batch> Batches { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Mesure> Mesures { get; set; }

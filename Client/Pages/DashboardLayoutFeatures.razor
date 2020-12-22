@@ -1,0 +1,105 @@
+@page "/dashboardlayout-features"
+@using Syncfusion.Blazor.Layouts
+<h2>Dashboard Layout</h2>
+<br/>
+<div id = "control-region">
+<div class="control-section" id="target">
+    <div style="padding:5px;text-align:right;">
+            <Syncfusion.Blazor.Buttons.SfButton CssClass="e-btn e-info" Content="Add Panel" @onclick="AddClick"></Syncfusion.Blazor.Buttons.SfButton>
+        </div>
+    <SfDashboardLayout @ref="dashboardObject" AllowFloating="true" AllowResizing="true" Columns="5">
+         <DashboardLayoutPanels>
+            <DashboardLayoutPanel Column="0" Row="0">
+                <ContentTemplate><div>0</div></ContentTemplate>
+            </DashboardLayoutPanel>
+            <DashboardLayoutPanel Row="1" Column="0" SizeX=1 SizeY=2>
+                <ContentTemplate><div>1</div></ContentTemplate>
+            </DashboardLayoutPanel>
+            <DashboardLayoutPanel Row="0" Column="1" SizeX=2 SizeY=2>
+                <ContentTemplate><div>2</div></ContentTemplate>
+            </DashboardLayoutPanel>
+            <DashboardLayoutPanel Row="2" Column="1" SizeX=1 SizeY=1>
+                <ContentTemplate><div>3</div></ContentTemplate>
+            </DashboardLayoutPanel>
+            <DashboardLayoutPanel Row="2" Column="2" SizeX=2 SizeY=1>
+                <ContentTemplate><div>4</div></ContentTemplate>
+            </DashboardLayoutPanel>
+            <DashboardLayoutPanel Row="0" Column="3" SizeX=1 SizeY=1>
+                <ContentTemplate><div>5</div></ContentTemplate>
+            </DashboardLayoutPanel>
+            <DashboardLayoutPanel Row="1" Column="3" SizeX=1 SizeY=1>
+                <ContentTemplate><div>6</div></ContentTemplate>
+            </DashboardLayoutPanel>
+            <DashboardLayoutPanel Row="0" Column="4" SizeX=1 SizeY=3>
+                <ContentTemplate><div>7</div></ContentTemplate>
+            </DashboardLayoutPanel>
+        </DashboardLayoutPanels>
+    </SfDashboardLayout>
+</div>
+</div>
+<br/>
+<div>
+  <h3>Selected Features:</h3>
+    <ul class="ulstyle">
+      <li class="list"> Dashboard Layout Samples - Default</li>
+      <li class="list"> Floating</li>
+      <li class="list"> Resizing</li>
+      <li class="list"> Theme - Fabric</li>
+    </ul>
+</div>
+<br/>
+<style>
+    .e-dashboardlayout {
+        padding: 10px;
+    }
+    .e-dashboardlayout.e-control .e-panel:hover span {
+        display: block;
+    }
+    .e-dashboardlayout .e-panel .e-panel-container .text-align {
+        vertical-align: middle;
+        font-weight: 600;
+        font-size: 20px;
+        text-align: center;
+    }
+    .e-template-icon {
+        padding: 10px;
+        float: right;
+        display: none;
+    }
+    .text-align {
+        line-height: 160px;
+    }
+    .sb-demo-section .container-fluid {
+        background: #E5E5E5;
+    }
+    .ulstyle {
+        margin: 0px;
+        padding-left: 20px;
+        display: inline-block;
+    }
+    .list {
+    float: left;
+    line-height: 20px;
+    margin: 10px;
+    min-width: 350px;
+    }
+</style>
+@code {
+    SfDashboardLayout dashboardObject;
+    public int Count = 8;
+    public void AddClick(EventArgs args)
+    {
+        string ContentValue = this.Count.ToString();
+        PanelModel panel = new PanelModel
+        {
+            Id = this.Count.ToString() + "_layout",
+            SizeX = 1,
+            SizeY = 1,
+            Column = 0,
+            Row = 0,
+            Content =@<div class='text-align'> @ContentValue </div>
+        };
+        dashboardObject.AddPanel(panel);
+        this.Count = this.Count + 1;
+    }
+}

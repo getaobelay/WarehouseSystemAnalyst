@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using WarehouseSystemAnalyst.Blazor.Client.ClientService;
 
 namespace WarehouseSystemAnalyst.Client
 {
@@ -16,7 +17,7 @@ namespace WarehouseSystemAnalyst.Client
 
             builder.Services.AddHttpClient("WarehouseSystemAnalyst.ServerAPI", client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
                 .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
-
+            builder.Services.AddScoped(typeof(ClientRepository<>));
             // Supply HttpClient instances that include access tokens when making requests to the server project
             builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("WarehouseSystemAnalyst.ServerAPI"));
 

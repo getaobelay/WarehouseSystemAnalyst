@@ -12,7 +12,7 @@ using WarehouseSystemAnalyst.Mediator.Commands.Requests;
 using WarehouseSystemAnalyst.Mediator.Commands.Requests.CommonRequests;
 using WarehouseSystemAnalyst.Mediator.Common.Commands.Requests;
 using WarehouseSystemAnalyst.Mediator.Common.Commands.Responses;
-using WarehouseSystemAnalyst.Mediator.Dtos.InventoryDtos;
+using WarehouseSystemAnalyst.Shared.Dtos.InventoryDtos;
 using WarehouseSystemAnalyst.Mediator.loC;
 using Xunit;
 

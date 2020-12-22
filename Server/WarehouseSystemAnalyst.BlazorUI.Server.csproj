@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+	<DisableImplicitComponentsAnalyzers>true</DisableImplicitComponentsAnalyzers>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.0" />
+	
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Client\WarehouseSystemAnalyst.BlazorUI.Client.csproj" />
+    <ProjectReference Include="..\Shared\WarehouseSystemAnalyst.BlazorUI.Shared.csproj" />
+    <ProjectReference Include="..\WarehouseSystemAnalyst\WarehouseSystemAnalyst.Mediator\WarehouseSystemAnalyst.Mediator.csproj" />
+  </ItemGroup>
+
+
+</Project>

@@ -6,12 +6,7 @@ namespace WarehouseSystemAnalyst.Data.Helpers
 {
     public static class EntityBuilderHelper
     {
-        public static EntityTypeBuilder BasePallletBuilder<TBasePallet>(this EntityTypeBuilder<TBasePallet> builder)
-            where TBasePallet : class, IBasePallet, new()
-        {
-            builder.BaseEntityBuilder();
-            return builder;
-        }
+
 
         public static EntityTypeBuilder BaseStockBuilder<TStock>(this EntityTypeBuilder<TStock> builder)
             where TStock : class, IBaseStock, new()
@@ -33,20 +28,6 @@ namespace WarehouseSystemAnalyst.Data.Helpers
             return builder;
         }
 
-        public static EntityTypeBuilder BaseMissionBuilder<TMission, TItem>(this EntityTypeBuilder<TMission> builder)
-            where TMission : class, IBaseMission<TItem>, new()
-            where TItem : class, IBaseEntity, new()
-        {
-            builder.BaseEntityBuilder();
-
-            builder.Property(e => e.AssignedTo)
-                   .ValueGeneratedOnAddOrUpdate()
-                   .HasMaxLength(50)
-                   .IsUnicode(true)
-                   .IsRequired();
-
-            return builder;
-        }
 
 
         public static EntityTypeBuilder BaseWarehouseBuilder<TWarehouse>(this EntityTypeBuilder<TWarehouse> builder)

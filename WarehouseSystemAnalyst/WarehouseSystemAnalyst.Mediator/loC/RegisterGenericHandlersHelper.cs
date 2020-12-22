@@ -6,8 +6,8 @@ using WarehouseSystemAnalyst.Mediator.CommonCQRS.Commands.Requests;
 using WarehouseSystemAnalyst.Mediator.CommonCQRS.Commands.Responses;
 using WarehouseSystemAnalyst.Mediator.CommonCQRS.Queries.Handlers;
 using WarehouseSystemAnalyst.Mediator.CommonCQRS.Queries.Requests;
-using WarehouseSystemAnalyst.Mediator.Dtos;
 using WarehouseSystemAnalyst.Mediator.Helpers;
+using WarehouseSystemAnalyst.Shared.Dtos.BaseDtos;
 
 namespace WarehouseSystemAnalyst.Mediator.loC
 {

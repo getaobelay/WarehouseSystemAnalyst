@@ -1,0 +1,104 @@
+@page "/products"
+@using WarehouseSystemAnalyst.Blazor.Client.ClientService;
+@using WarehouseSystemAnalyst.Mediator.Dtos.ProductDtos;
+@using Newtonsoft.Json
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+
+<h3>ProductPage</h3>
+
+@if (products == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container rounded bg-white mt-5 mb-5">
+                        <div class="row">
+                            <div class="col-md-7 border-right">
+                                <div class="p-3 py-5">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h4 class="text-right">Edit Product</h4>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-6"><label class="labels">Product Id</label><input type="text" class="form-control" placeholder="product id" @bind-value="editPorduct.PK"></div>
+                                        <div class="col-md-6"><label class="labels">Product Name</label><input type="text" class="form-control" placeholder="product name" @bind-value="editPorduct.ProductName"></div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col-md-2"><label class="labels">Per unit</label><input type="text" class="form-control" placeholder="quantity per unite" @bind-value="productMesure.QuantityPerUnit"></div>
+                                        <div class="col-md-2"><label class="labels">Buy Price</label><input type="text" class="form-control" placeholder="buy price" @bind-value="productMesure.UnitBuyPrice"></div>
+                                        <div class="col-md-2"><label class="labels">Sell Price</label><input type="text" class="form-control" placeholder="sell price" @bind-value="productMesure.UnitSellPrice"></div>
+                                        <div class="col-md-3"><label class="labels">Per unit</label><input type="text" class="form-control" placeholder="quantity per unite" @bind-value="productMesure.Height"></div>
+                                        <div class="col-md-3"><label class="labels">Buy Price</label><input type="text" class="form-control" placeholder="buy price" @bind-value="productMesure.Weight"></div>
+                                    </div>
+                                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button" @onclick="(await)=> PostAsync()">Save</button></div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="p-3 py-5">
+                                    <div class="d-flex justify-content-between align-items-center experience"><span>Product info</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Info</span></div><br>
+                                    <div class="col-md-12"><label class="labels">Package</label><input type="text" class="form-control" placeholder="package" @bind-value="productPackage.PK"></div> <br>
+                                    <div class="col-md-12"><label class="labels">Unit of measurement</label><input type="text" class="form-control" placeholder="measurement" @bind-value="productMesure.PK"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" @onclick="(await)=> PostAsync()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+
+        <div class="row">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Launch demo modal
+            </button>
+
+            <input @bind-value="selectId" />
+            <button class="btn btn-primary" @onclick="(await)=> DeleteAsync(selectId)">Delete product</button>
+        </div>
+        <div class="row">
+            <div class="col">
+                <WarehouseSystemAnalyst.Components.Table.TableComponent SetSelectedItem="SetSelectedItem"
+                                                                        Items="products">
+                    <TableHeader>
+                        <td>Id</td>
+                        <td>Name</td>
+                    </TableHeader>
+                    <RowTamplate Context="product">
+                        <td>@product.PK</td>
+                        <td>@product.ProductName</td>
+                    </RowTamplate>
+                </WarehouseSystemAnalyst.Components.Table.TableComponent>
+            </div>
+        </div>
+    </div>
+
+
+
+}
+
+@code{
+
+    private void SetSelectedItem(string Id)
+    {
+        selectId = Id;
+    }
+}

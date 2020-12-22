@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using WarehouseSystemAnalyst.Mediator.Dtos;
-using WarehouseSystemAnalyst.Mediator.Dtos.ProductDtos;
-using WarehouseSystemAnalyst.Server.BaseContollers;
+using WarehouseSystemAnalyst.Shared.Dtos.ProductDtos;
+using WarehouseSystemAnalyst.Shared.Api.Responses;
+using WarehouseSystemAnalyst.Shared.Dtos.BaseDtos;
 
 namespace WarehouseSystemAnalyst.Server.Interfaces
 {
